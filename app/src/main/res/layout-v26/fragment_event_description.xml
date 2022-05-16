@@ -1,0 +1,20 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentasion.ui.detail.EventDescriptionFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_description_layout_margin"
+            android:justificationMode="inter_word"
+            android:text="Пьесу Александра Попеску поставил режиссёр Сергей Ягодкин. Герой этой истории, мышонок Муф, жил в своём домике, который он соорудил из вещей, выброшенных людьми. Ему было уютно, тепло и безопасно. Но однажды в подвале, где жил Муф, оказалась фарфоровая балерина. Это очень странно, ведь хозяева так её любили. Как же она могла попасть в мусор? Всё происходящее — это конец её жизни или начало чего-то нового? Самая тёмная ночь — это обиды, которые нужно преодолеть, чтобы принять другого. А солнечный луч помогает увидеть того, кто рядом с тобой, и этим разрушить своё и его одиночество."
+            android:textColor="@color/black" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Theatre</string>
+    <string name="app_name">Театрал</string>
+    <string name="home">Афиша</string>
+    <string name="favourite">Избранное</string>
+    <string name="performance">Спектакли</string>
+    <string name="info">Информация</string>
+    <string name="empty_icon" translatable="false">Нет информации для отображения.</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_tickets">Билеты</string>
+    <string name="gaps">", "</string>
+    <string name="place">Место проведения:</string>
+    <string name="tel">"тел.: "</string>
+    <string name="website">"website: "</string>
+    <string name="place_is_closed">Закрыто.</string>
+    <string name="event_date_time">Сеансы:</string>
+    <string name="dash">-</string>
+    <string name="actors">Действующие лица:</string>
 </resources>

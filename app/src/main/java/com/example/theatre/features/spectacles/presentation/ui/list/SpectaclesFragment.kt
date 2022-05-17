@@ -30,15 +30,9 @@ import com.example.theatre.features.spectacles.presentation.adapters.EventListAd
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentSpectaclesBinding
 import com.example.theatre.features.spectacles.domain.model.Performance
-import com.example.theatre.features.spectacles.presentation.ui.detail.EventDescriptionFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class SpectaclesFragment : Fragment() {
-
-    companion object {
-        private const val event_id = "id"
-    }
 
     private lateinit var binding: FragmentSpectaclesBinding
     private lateinit var performancesAdapter: EventListAdapter
@@ -57,6 +51,7 @@ class SpectaclesFragment : Fragment() {
             onSpectacleClick(id)
         }
         recyclerView.adapter = performancesAdapter
+
         initObservers()
 
         lifecycleScope.launchWhenCreated {
@@ -83,11 +78,6 @@ class SpectaclesFragment : Fragment() {
         val intent = Intent(activity, EventActivity::class.java)
         intent.putExtra("id", id)
         startActivity(intent)
-
-        val fragment = EventDescriptionFragment()
-        val args = Bundle()
-        args.putSerializable(event_id, id)
-        fragment.arguments = args
     }
 
 }

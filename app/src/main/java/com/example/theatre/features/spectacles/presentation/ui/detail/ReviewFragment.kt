@@ -60,16 +60,28 @@ class ReviewFragment : Fragment() {
                 val city = place?.location?.let { RetrofitClient.retrofit.getCityName(it) }
 
                 with(binding) {
+                    textDatetime.text = getString(R.string.event_date_time)
+                    textPlace.text = getString(R.string.place)
+                    textParticipants.text = getString(R.string.actors)
                     if (results?.dates != null) {
                         with(results) {
                             textAgeRestriction.text = age_restriction
                             for (i in 0 until dates.size) {
-                                if(dates[i].start!!.toLong()*1000 >= DateUtils.currentTimeToLong()) {
+                                val startDate = dates[i].start!!.toLong()*1000
+                                if(startDate >= DateUtils.currentTimeToLong()) {
                                     textEventStartEnd.append(DateUtils.convertLongToTime(dates[i].start!!, dates[i].end!!) + "\n")
                                 }
                             }
+                            var role = ""
                             for(i in 0 until participants.size) {
-                                textParticipantsList.append(participants[i].agent?.title + getString(R.string.gaps) + participants[i].role?.name + "\n")
+                                when (participants[i].role?.slug) {
+                                    "actors" -> { role = "Актер" }
+                                    "director" -> { role = "Режиссер" }
+                                    "musician" -> { role = "Музыкант" }
+                                    "screenwriter" -> { role = "Сценарист" }
+                                    "stage-theatre" -> { role = "Театр-постановщик" }
+                                }
+                                textParticipantsList.append(participants[i].agent?.title + getString(R.string.gaps) + role + "\n")
                             }
                         }
                     }

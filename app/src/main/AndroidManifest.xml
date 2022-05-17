@@ -24,7 +24,12 @@
         <activity
             android:name="com.example.theatre.features.spectacles.presentation.ui.detail.EventActivity">
         </activity>
-
+        <activity
+            android:name="com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreActivity">
+        </activity>
+        <activity
+            android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonActivity">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

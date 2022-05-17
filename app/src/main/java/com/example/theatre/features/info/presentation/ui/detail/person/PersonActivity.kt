@@ -14,29 +14,27 @@
  * limitations under the License.
  */
 
-package com.example.theatre.features.spectacles.presentation.ui.detail
+package com.example.theatre.features.info.presentation.ui.detail.person
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.theatre.R
 import com.example.theatre.databinding.ActivityEventBinding
+import com.example.theatre.features.info.presentation.adapters.PersonPagerAdapter
 import com.example.theatre.network.net.RetrofitClient
-import com.example.theatre.features.spectacles.presentation.adapters.SectionPagerAdapter
-import com.example.theatre.features.spectacles.presentation.ui.SpectacleViewModel
+import com.example.theatre.features.info.presentation.ui.list.person.PersonViewModel
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EventActivity : AppCompatActivity() {
+class PersonActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityEventBinding
-    private val spectacleViewModel by viewModel<SpectacleViewModel>()
-    private var eventURL: String? = null
+    private val spectacleViewModel by viewModel<PersonViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,31 +44,24 @@ class EventActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val bundle = intent.extras
-        val eventId = bundle?.getInt("id")
+        val personId = bundle?.getInt("person_id")
         lifecycleScope.launchWhenCreated {
             spectacleViewModel.init()
             try {
-                val results = eventId?.let { RetrofitClient.retrofit.getPerformanceById(it) }
-                val place = results?.place?.id?.let { RetrofitClient.retrofit.getPlaceById(it) }
-                val city = place?.location?.let { RetrofitClient.retrofit.getCityName(it) }
-
-                eventURL = results?.site_url
+                val persons = personId?.let { RetrofitClient.retrofit.getPersonById(it) }
 
                 with(binding.content) {
-                    textName.text =
-                        results?.short_title?.replaceFirstChar { it.uppercaseChar() }
-                    if (results?.is_free == true) {
-                        textPrice.text = "бесплатно"
-                    } else {
-                        textPrice.text = results?.price
+                    when(persons?.agentType){
+                        "person" -> { textPrice.text = "Деятель" }
+                        "organization" -> { textPrice.text = "Организация" }
                     }
+                    textName.text = persons?.title?.replaceFirstChar { it.uppercaseChar() }
                     Picasso.get()
-                        .load(results?.images?.get(0)?.image.toString())
+                        .load(persons?.images?.get(0)?.image.toString())
                         .into(imageThumbnail)
                     Picasso.get()
-                        .load(results?.images?.get(0)?.image.toString())
+                        .load(persons?.images?.get(0)?.image.toString())
                         .into(binding.imageLarge)
-                    textVenue.text = city?.name
                 }
             } catch (e: Throwable) {
                 Toast.makeText(
@@ -82,22 +73,17 @@ class EventActivity : AppCompatActivity() {
         }
 
         val viewPager = binding.content.viewPager
-        viewPager.adapter = eventId?.let { SectionPagerAdapter(supportFragmentManager) }
+        viewPager.adapter = personId?.let { PersonPagerAdapter(supportFragmentManager) }
 
         val tabLayout = binding.content.tabs
         tabLayout.setupWithViewPager(viewPager)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_event, menu)
-        return true
-    }
-
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.home -> finish()
+            android.R.id.home -> finish()
             R.id.action_event -> {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(eventURL))
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://yandex.ru/"))
                 startActivity(browserIntent)
             }
         }

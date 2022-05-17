@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.presentation.ui.list
+package com.example.theatre.features.info.presentation.ui.list.theatre
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

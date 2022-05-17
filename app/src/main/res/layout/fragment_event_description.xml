@@ -62,15 +62,13 @@
 
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/text_body"
+            <WebView
+                android:id="@+id/web_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
                 android:layout_marginBottom="@dimen/text_description_layout_margin"
-                android:autoLink="web"
-                android:textColor="@color/black" />
+                android:layout_marginEnd="@dimen/text_description_layout_margin" />
 
         </LinearLayout>
 

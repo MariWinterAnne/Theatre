@@ -23,7 +23,6 @@
                     android:layout_marginStart="@dimen/text_description_layout_margin"
                     android:layout_marginTop="@dimen/text_description_layout_margin"
                     android:layout_marginEnd="@dimen/text_description_layout_margin"
-                    android:text="@string/event_date_time"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <TextView
@@ -53,7 +52,6 @@
                 android:layout_marginStart="@dimen/text_description_layout_margin"
                 android:layout_marginTop="@dimen/text_description_layout_margin"
                 android:layout_marginEnd="@dimen/text_description_layout_margin"
-                android:text="@string/place"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
             <TextView
@@ -116,7 +114,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_description_layout_margin"
-                android:text="@string/actors"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@color/black" />
 

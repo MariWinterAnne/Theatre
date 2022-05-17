@@ -14,5 +14,8 @@
     <string name="place_is_closed">Закрыто.</string>
     <string name="event_date_time">Сеансы:</string>
     <string name="dash">-</string>
-    <string name="actors">Действующие лица:</string>
+    <string name="actors">Участники:</string>
+    <string name="theatre_schedule">Расписание:</string>
+    <string name="theatre_address">Расположение:</string>
+    <string name="person_participations">Участие в постановках:</string>
 </resources>

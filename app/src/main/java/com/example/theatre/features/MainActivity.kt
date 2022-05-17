@@ -3,20 +3,16 @@ package com.example.theatre.features
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.theatre.R
 import com.example.theatre.databinding.ActivityMainBinding
 import com.example.theatre.features.favourite.FavoriteFragment
 import com.example.theatre.features.poster.PosterFragment
 import com.example.theatre.features.info.presentation.ui.InfoFragment
-import com.example.theatre.features.spectacles.presentation.ui.DialogFragment
 import com.example.theatre.features.spectacles.presentation.ui.list.SpectaclesFragment
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,17 +55,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            R.id.action_settings -> {
+                val myDialogFragment = DialogFragment()
+                val manager = supportFragmentManager
+                myDialogFragment.show(manager, "myDialog")
+            }
         }
-
-    override fun onClick(v: View?) {
-        val myDialogFragment = DialogFragment()
-        val manager: FragmentManager = supportFragmentManager
-        val transaction: FragmentTransaction = manager.beginTransaction()
-        myDialogFragment.show(transaction, "dialog")
+        return super.onOptionsItemSelected(item)
     }
-
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.theatre.features.spectacles.presentation.ui.detail
+package com.example.theatre.features.info.presentation.ui.detail.person
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,44 +27,46 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
+import com.example.theatre.features.info.presentation.ui.list.person.PersonViewModel
 import com.example.theatre.network.net.RetrofitClient
-import com.example.theatre.features.spectacles.presentation.ui.SpectacleViewModel
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EventDescriptionFragment : Fragment() {
+class PersonDescriptionFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(): EventDescriptionFragment {
-            return EventDescriptionFragment()
+        fun newInstance(): PersonDescriptionFragment {
+            return PersonDescriptionFragment()
         }
     }
 
     private lateinit var binding: FragmentEventDescriptionBinding
-    private val spectacleViewModel by viewModel<SpectacleViewModel>()
+    private val spectacleViewModel by viewModel<PersonViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
 
         val bundle = activity?.intent?.extras
-        val eventId = bundle?.getInt("id")
+        val personId = bundle?.getInt("person_id")
 
         lifecycleScope.launchWhenCreated {
             spectacleViewModel.init()
             try {
-                val results = eventId?.let { RetrofitClient.retrofit.getPerformanceById(it) }
+                val persons = personId?.let { RetrofitClient.retrofit.getPersonById(it) }
 
                 with(binding) {
                     Picasso.get()
-                        .load(results?.images?.get(0)?.image.toString())
+                        .load(persons?.images?.get(0)?.image.toString())
                         .into(imageThumbnail)
                     textName?.text =
-                        results?.title?.replaceFirstChar { it.uppercaseChar() }
+                        persons?.title
                     textDescription.text =
-                        results?.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY) }
-                    textTagline?.text = results?.tagline
-                    results?.body_text?.let {
+                        persons?.description?.let {
+                            HtmlCompat.fromHtml(it,
+                                HtmlCompat.FROM_HTML_MODE_LEGACY)
+                        }
+                    persons?.bodyText?.let {
                         webView?.loadDataWithBaseURL(null,
                             it,"text/html","UTF-8","about:blank")
                     }

@@ -19,17 +19,17 @@ package com.example.theatre.features.info.presentation.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.example.theatre.features.info.presentation.ui.list.person.PersonsFragment
-import com.example.theatre.features.info.presentation.ui.list.theatre.TheatresFragment
+import com.example.theatre.features.info.presentation.ui.detail.person.PersonDescriptionFragment
+import com.example.theatre.features.info.presentation.ui.detail.person.PersonReviewFragment
 
-class SectionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+class PersonPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    private val items = arrayOf("Театр", "Персона")
+    private val items = arrayOf("Информация", "Детали")
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> TheatresFragment.newInstance()
-            1 -> PersonsFragment.newInstance()
+            0 -> PersonDescriptionFragment.newInstance()
+            1 -> PersonReviewFragment.newInstance()
             else -> Fragment()
         }
     }

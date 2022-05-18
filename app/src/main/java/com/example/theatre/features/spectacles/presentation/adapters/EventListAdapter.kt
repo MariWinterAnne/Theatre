@@ -42,9 +42,8 @@ class EventListAdapter(
 
     override fun getItemCount(): Int = spectacles.size
 
-    inner class ViewHolder(val binding: FragmentSpectaclesItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+    class ViewHolder(val binding: FragmentSpectaclesItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     fun setSpectacles(spectacleList: List<Performance>) {
         spectacles.clear()

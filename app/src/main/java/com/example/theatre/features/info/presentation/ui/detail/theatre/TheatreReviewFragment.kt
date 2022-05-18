@@ -62,14 +62,14 @@ class TheatreReviewFragment : Fragment() {
                     textPlace.text = getString(R.string.theatre_address)
                     textEventStartEnd.text = theatres?.timetable
                     textPlaceTitle.text = theatres?.title?.replaceFirstChar { it.uppercaseChar() }
-                    textPlaceSubway.text = theatres?.subway
-                    ((city?.name + getString(R.string.gaps)).plus(theatres?.address)).also {
+                    textPlaceSubway.text = theatres?.subway ?: ""
+                    ((city?.name + getString(R.string.gaps)).plus(theatres?.address ?: "")).also {
                         textPlaceAddress.text = it
                     }
-                    (getString(R.string.tel).plus(theatres?.phone)).also {
+                    (getString(R.string.tel).plus(theatres?.phone ?: "")).also {
                         textPlacePhone.text = it
                     }
-                    (getString(R.string.website).plus(theatres?.foreignUrl)).also {
+                    (getString(R.string.website).plus(theatres?.foreignUrl ?: "")).also {
                         textPlaceSite.text = it
                     }
                     if (theatres?.isClosed == true) {

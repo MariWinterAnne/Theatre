@@ -38,9 +38,8 @@ class PersonsListAdapter(
 
     override fun getItemCount(): Int = persons.size
 
-    inner class ViewHolder(val binding: FragmentPersonsItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+    class ViewHolder(val binding: FragmentPersonsItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     fun setPersons(personList: List<Agent>) {
         persons.clear()

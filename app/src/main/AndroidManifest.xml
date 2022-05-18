@@ -30,9 +30,7 @@
         <activity
             android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonActivity">
         </activity>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

@@ -41,9 +41,8 @@ class TheatresListAdapter(
 
     override fun getItemCount(): Int = theatres.size
 
-    inner class ViewHolder(val binding: FragmentTheatresItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+    class ViewHolder(val binding: FragmentTheatresItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     fun setTheatres(theatreList: List<Theatre>) {
         theatres.clear()

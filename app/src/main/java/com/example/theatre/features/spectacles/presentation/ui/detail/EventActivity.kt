@@ -95,7 +95,7 @@ class EventActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.home -> finish()
+            android.R.id.home -> finish()
             R.id.action_event -> {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(eventURL))
                 startActivity(browserIntent)

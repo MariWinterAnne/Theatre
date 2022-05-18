@@ -6,14 +6,73 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_description"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_description_layout_margin"
-            android:justificationMode="inter_word"
-            android:text="Пьесу Александра Попеску поставил режиссёр Сергей Ягодкин. Герой этой истории, мышонок Муф, жил в своём домике, который он соорудил из вещей, выброшенных людьми. Ему было уютно, тепло и безопасно. Но однажды в подвале, где жил Муф, оказалась фарфоровая балерина. Это очень странно, ведь хозяева так её любили. Как же она могла попасть в мусор? Всё происходящее — это конец её жизни или начало чего-то нового? Самая тёмная ночь — это обиды, которые нужно преодолеть, чтобы принять другого. А солнечный луч помогает увидеть того, кто рядом с тобой, и этим разрушить своё и его одиночество."
-            android:textColor="@color/black" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:fontFamily="@font/decadancecursiv"
+                android:gravity="center"
+                android:textColor="@color/ultramarine"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:fontFamily="@font/moderno"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:gravity="center"
+                android:textColor="@color/black" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_main"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_bar_layout_height"
+                android:layout_margin="@dimen/cardview_layout_margin"
+                android:elevation="@dimen/cardview_elevation">
+
+                <ImageView
+                    android:id="@+id/image_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray"
+                    android:cropToPadding="true"
+                    android:elevation="@dimen/cardview_elevation"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+            </androidx.cardview.widget.CardView>
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginBottom="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin" />
+
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

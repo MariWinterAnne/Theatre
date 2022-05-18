@@ -89,14 +89,14 @@ class ReviewFragment : Fragment() {
                         with(place) {
                             textPlaceTitle.text =
                                 this.title?.replaceFirstChar { it.uppercaseChar() }
-                            textPlaceSubway.text = this.subway
-                            ((city?.name + getString(R.string.gaps)).plus(this.address)).also {
+                            textPlaceSubway.text = this.subway ?: ""
+                            ((city?.name + getString(R.string.gaps)).plus(this.address ?: "")).also {
                                 textPlaceAddress.text = it
                             }
-                            (getString(R.string.tel).plus(this.phone)).also {
+                            (getString(R.string.tel).plus(this.phone ?: "")).also {
                                 textPlacePhone.text = it
                             }
-                            (getString(R.string.website).plus(this.foreignUrl)).also {
+                            (getString(R.string.website).plus(this.foreignUrl ?: "")).also {
                                 textPlaceSite.text = it
                             }
                             if (this.isClosed == true) {

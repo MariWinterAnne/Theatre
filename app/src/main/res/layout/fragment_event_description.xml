@@ -18,6 +18,7 @@
                 android:layout_marginStart="@dimen/text_description_layout_margin"
                 android:layout_marginTop="@dimen/text_description_layout_margin"
                 android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:fontFamily="@font/decadancecursiv"
                 android:gravity="center"
                 android:textColor="@color/ultramarine"
                 android:textStyle="italic" />
@@ -29,6 +30,7 @@
                 android:layout_marginStart="@dimen/text_description_layout_margin"
                 android:layout_marginTop="@dimen/text_description_layout_margin"
                 android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:fontFamily="@font/moderno"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@color/black" />

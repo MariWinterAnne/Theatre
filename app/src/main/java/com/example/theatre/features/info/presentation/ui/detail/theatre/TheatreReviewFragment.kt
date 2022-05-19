@@ -57,23 +57,27 @@ class TheatreReviewFragment : Fragment() {
                 val theatres = theatreId?.let { RetrofitClient.retrofit.getTheatreById(it) }
                 val city = theatres?.location?.let { RetrofitClient.retrofit.getCityName(it) }
 
-                with(binding){
+                with(binding) {
                     textDatetime.text = getString(R.string.theatre_schedule)
                     textPlace.text = getString(R.string.theatre_address)
-                    textEventStartEnd.text = theatres?.timetable
-                    textPlaceTitle.text = theatres?.title?.replaceFirstChar { it.uppercaseChar() }
-                    textPlaceSubway.text = theatres?.subway ?: ""
-                    ((city?.name + getString(R.string.gaps)).plus(theatres?.address ?: "")).also {
-                        textPlaceAddress.text = it
-                    }
-                    (getString(R.string.tel).plus(theatres?.phone ?: "")).also {
-                        textPlacePhone.text = it
-                    }
-                    (getString(R.string.website).plus(theatres?.foreignUrl ?: "")).also {
-                        textPlaceSite.text = it
-                    }
-                    if (theatres?.isClosed == true) {
-                        textPlaceIsclosed.text = getString(R.string.place_is_closed)
+                    with(theatres) {
+                        textEventStartEnd.text = this?.timetable
+                        textPlaceTitle.text =
+                            this?.title?.replaceFirstChar { it.uppercaseChar() }
+                        textPlaceSubway.text = this?.subway ?: ""
+                        ((city?.name + getString(R.string.gaps)).plus(this?.address
+                            ?: "")).also {
+                            textPlaceAddress.text = it
+                        }
+                        (getString(R.string.tel).plus(this?.phone ?: "")).also {
+                            textPlacePhone.text = it
+                        }
+                        (getString(R.string.website).plus(this?.foreignUrl ?: "")).also {
+                            textPlaceSite.text = it
+                        }
+                        if (this?.isClosed == true) {
+                            textPlaceIsclosed.text = getString(R.string.place_is_closed)
+                        }
                     }
                 }
             } catch (e: Throwable) {

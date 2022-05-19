@@ -44,8 +44,13 @@ class PersonDescriptionFragment : Fragment() {
     private lateinit var binding: FragmentEventDescriptionBinding
     private val spectacleViewModel by viewModel<PersonViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
 
         val bundle = activity?.intent?.extras
         val personId = bundle?.getInt("person_id")
@@ -56,19 +61,21 @@ class PersonDescriptionFragment : Fragment() {
                 val persons = personId?.let { RetrofitClient.retrofit.getPersonById(it) }
 
                 with(binding) {
-                    Picasso.get()
-                        .load(persons?.images?.get(0)?.image.toString())
-                        .into(imageThumbnail)
-                    textName?.text =
-                        persons?.title
-                    textDescription.text =
-                        persons?.description?.let {
-                            HtmlCompat.fromHtml(it,
-                                HtmlCompat.FROM_HTML_MODE_LEGACY)
+                    with(persons) {
+                        Picasso.get()
+                            .load(this?.images?.get(0)?.image.toString())
+                            .into(imageThumbnail)
+                        textName.text =
+                            this?.title
+                        textDescription.text =
+                            this?.description?.let {
+                                HtmlCompat.fromHtml(it,
+                                    HtmlCompat.FROM_HTML_MODE_LEGACY)
+                            }
+                        this?.bodyText?.let {
+                            webView.loadDataWithBaseURL(null,
+                                it, "text/html", "UTF-8", "about:blank")
                         }
-                    persons?.bodyText?.let {
-                        webView?.loadDataWithBaseURL(null,
-                            it,"text/html","UTF-8","about:blank")
                     }
                 }
             } catch (e: Throwable) {

@@ -44,8 +44,13 @@ class EventDescriptionFragment : Fragment() {
     private lateinit var binding: FragmentEventDescriptionBinding
     private val spectacleViewModel by viewModel<SpectacleViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
 
         val bundle = activity?.intent?.extras
         val eventId = bundle?.getInt("id")
@@ -56,17 +61,22 @@ class EventDescriptionFragment : Fragment() {
                 val results = eventId?.let { RetrofitClient.retrofit.getPerformanceById(it) }
 
                 with(binding) {
-                    Picasso.get()
-                        .load(results?.images?.get(0)?.image.toString())
-                        .into(imageThumbnail)
-                    textName?.text =
-                        results?.title?.replaceFirstChar { it.uppercaseChar() }
-                    textDescription.text =
-                        results?.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY) }
-                    textTagline?.text = results?.tagline
-                    results?.body_text?.let {
-                        webView?.loadDataWithBaseURL(null,
-                            it,"text/html","UTF-8","about:blank")
+                    with(results) {
+                        Picasso.get()
+                            .load(this?.images?.get(0)?.image.toString())
+                            .into(imageThumbnail)
+                        textName.text =
+                            this?.title?.replaceFirstChar { it.uppercaseChar() }
+                        textDescription.text =
+                            this?.description?.let {
+                                HtmlCompat.fromHtml(it,
+                                    HtmlCompat.FROM_HTML_MODE_LEGACY)
+                            }
+                        textTagline.text = this?.tagline
+                        this?.body_text?.let {
+                            webView.loadDataWithBaseURL(null,
+                                it, "text/html", "UTF-8", "about:blank")
+                        }
                     }
                 }
             } catch (e: Throwable) {

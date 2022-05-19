@@ -44,8 +44,13 @@ class TheatreDescriptionFragment : Fragment() {
     private lateinit var binding: FragmentEventDescriptionBinding
     private val spectacleViewModel by viewModel<TheatreViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
 
         val bundle = activity?.intent?.extras
         val theatreId = bundle?.getInt("theatre_id")
@@ -56,19 +61,21 @@ class TheatreDescriptionFragment : Fragment() {
                 val theatres = theatreId?.let { RetrofitClient.retrofit.getTheatreById(it) }
 
                 with(binding) {
-                    Picasso.get()
-                        .load(theatres?.images?.get(0)?.image.toString())
-                        .into(imageThumbnail)
-                    textName?.text =
-                        theatres?.title?.replaceFirstChar { it.uppercaseChar() }
-                    textDescription.text =
-                        theatres?.description?.let {
-                            HtmlCompat.fromHtml(it,
-                                HtmlCompat.FROM_HTML_MODE_LEGACY)
+                    with(theatres) {
+                        Picasso.get()
+                            .load(this?.images?.get(0)?.image.toString())
+                            .into(imageThumbnail)
+                        textName.text =
+                            this?.title?.replaceFirstChar { it.uppercaseChar() }
+                        textDescription.text =
+                            this?.description?.let {
+                                HtmlCompat.fromHtml(it,
+                                    HtmlCompat.FROM_HTML_MODE_LEGACY)
+                            }
+                        this?.bodyText?.let {
+                            webView.loadDataWithBaseURL(null,
+                                it, "text/html", "UTF-8", "about:blank")
                         }
-                    theatres?.bodyText?.let {
-                        webView?.loadDataWithBaseURL(null,
-                            it,"text/html","UTF-8","about:blank")
                     }
                 }
             } catch (e: Throwable) {

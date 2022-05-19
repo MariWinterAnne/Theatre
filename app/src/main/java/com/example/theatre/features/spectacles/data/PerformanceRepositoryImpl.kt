@@ -1,7 +1,7 @@
 package com.example.theatre.features.spectacles.data
 
 import com.example.theatre.features.spectacles.data.mappers.GetPerformanceMapper
-import com.example.theatre.network.net.RetrofitClient
+import com.example.theatre.features.info.data.network.net.RetrofitClient
 import com.example.theatre.features.spectacles.data.mappers.GetAgentMapper
 import com.example.theatre.features.spectacles.data.mappers.GetRoleMapper
 import com.example.theatre.features.spectacles.data.model.Location

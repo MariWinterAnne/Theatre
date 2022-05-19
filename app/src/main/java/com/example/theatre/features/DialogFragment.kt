@@ -11,7 +11,7 @@ class DialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-            builder.setTitle("Поиск")
+            builder.setTitle("Поиск") //TODO in res
                 .setMessage("Темная тема")
                 .setMessage("Поиск по городу")
                 .setPositiveButton("Поиск") {

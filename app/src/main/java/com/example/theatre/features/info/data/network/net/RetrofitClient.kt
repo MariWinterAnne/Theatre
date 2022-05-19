@@ -1,4 +1,4 @@
-package com.example.theatre.network.net
+package com.example.theatre.features.info.data.network.net
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

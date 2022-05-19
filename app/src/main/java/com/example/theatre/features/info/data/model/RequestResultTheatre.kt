@@ -6,5 +6,5 @@ data class RequestResultTheatre(
     @SerializedName("count") var count: Int? = null,
     @SerializedName("next") var next: String? = null,
     @SerializedName("previous") var previous: String? = null,
-    @SerializedName("results") var results: ArrayList<GetTheatre> = arrayListOf()
+    @SerializedName("results") var results: ArrayList<TheatreModel> = arrayListOf()
 )

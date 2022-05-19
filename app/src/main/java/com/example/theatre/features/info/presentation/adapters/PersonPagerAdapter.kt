@@ -21,14 +21,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.theatre.features.info.presentation.ui.detail.person.PersonDescriptionFragment
 import com.example.theatre.features.info.presentation.ui.detail.person.PersonReviewFragment
-
-class PersonPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+//TODO items в конструктор
+class PersonPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val items = arrayOf("Информация", "Детали")
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> PersonDescriptionFragment.newInstance()
+            0 -> PersonDescriptionFragment.newInstance() //TODO числа вынести в const/enum/sealed classes
             1 -> PersonReviewFragment.newInstance()
             else -> Fragment()
         }

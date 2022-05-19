@@ -26,7 +26,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentReviewBinding
-import com.example.theatre.network.net.RetrofitClient
+import com.example.theatre.features.info.data.network.net.RetrofitClient
 import com.example.theatre.features.spectacles.presentation.utils.DateUtils
 import com.example.theatre.features.spectacles.presentation.ui.SpectacleViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -8,7 +8,7 @@ object DateUtils {
     private const val format2 = "HH:mm"
 
     fun convertLongToTime(startDay: Int, endDay: Int): String {
-        val date = Date(startDay.toLong()*1000)
+        val date = Date(startDay.toLong()*1000) // TODO никаких чисел -> const
         val date2 = Date(endDay.toLong()*1000)
         val format = SimpleDateFormat(format)
         val format2 = SimpleDateFormat(format2)

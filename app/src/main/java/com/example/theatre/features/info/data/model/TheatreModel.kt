@@ -29,7 +29,7 @@ import com.google.gson.annotations.SerializedName
  *
  */
 
-data class GetTheatre(
+data class TheatreModel(
     @SerializedName("id")
     var id: Int? = null,
     @SerializedName("title")

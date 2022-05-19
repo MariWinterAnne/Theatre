@@ -18,4 +18,10 @@
     <string name="theatre_schedule">Расписание:</string>
     <string name="theatre_address">Расположение:</string>
     <string name="person_participations">Участие в постановках:</string>
+
+    <string name="actor">Актеры</string>
+    <string name="director">Режиссеры</string>
+    <string name="musician">Музыканты</string>
+    <string name="screenwriter">Сценаристы</string>
+    <string name="stage_theatre">Театры-постановщики</string>
 </resources>

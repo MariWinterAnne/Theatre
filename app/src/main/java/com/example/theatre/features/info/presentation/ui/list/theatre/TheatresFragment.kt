@@ -41,6 +41,7 @@ class TheatresFragment : Fragment() {
         recyclerView.adapter = theatresAdapter
         initObservers()
 
+        //TODO remove
         lifecycleScope.launchWhenCreated {
             theatreViewModel.init()
         }

@@ -2,7 +2,7 @@ package com.example.theatre.features.info.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GetAgent(
+data class AgentModel(
     @SerializedName("id")
     var id: Int? = null,
     @SerializedName("title")

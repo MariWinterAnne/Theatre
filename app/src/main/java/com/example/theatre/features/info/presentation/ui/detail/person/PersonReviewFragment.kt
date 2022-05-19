@@ -28,7 +28,7 @@ import com.example.theatre.R
 import com.example.theatre.databinding.FragmentReviewBinding
 import com.example.theatre.features.info.presentation.ui.list.person.PersonViewModel
 
-import com.example.theatre.network.net.RetrofitClient
+import com.example.theatre.features.info.data.network.net.RetrofitClient
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PersonReviewFragment : Fragment() {
@@ -62,6 +62,7 @@ class PersonReviewFragment : Fragment() {
                     var role = ""
                     with(persons) {
                         for (i in 0 until this?.participations?.size!!) {
+                            // slug -> getString(RoleType.resId)
                             when (participations[i].role?.slug) {
                                 "actors" -> { role = "Актеры" }
                                 "director" -> { role = "Режиссеры" }

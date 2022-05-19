@@ -26,7 +26,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.theatre.R
 import com.example.theatre.databinding.ActivityEventBinding
 import com.example.theatre.features.info.presentation.adapters.PersonPagerAdapter
-import com.example.theatre.network.net.RetrofitClient
+import com.example.theatre.features.info.data.network.net.RetrofitClient
 import com.example.theatre.features.info.presentation.ui.list.person.PersonViewModel
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel

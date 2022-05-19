@@ -26,3 +26,8 @@ data class Agent(
     @SerializedName("participations")
     var participations: ArrayList<Participations> = arrayListOf()
 )
+
+/*
+ TODO Role.slug -> RoleType
+  for each  participations Role.slug convert to RoleType.title
+ */

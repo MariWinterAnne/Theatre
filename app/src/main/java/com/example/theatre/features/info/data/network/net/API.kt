@@ -1,9 +1,10 @@
-package com.example.theatre.network.net
+package com.example.theatre.features.info.data.network.net
 
 import com.example.theatre.features.info.data.model.RequestResultTheatre
 import com.example.theatre.features.info.data.model.TheatrePlace
 import com.example.theatre.features.info.data.model.GetAgentResult
-import com.example.theatre.features.info.data.model.GetAgent
+import com.example.theatre.features.info.data.model.AgentModel
+import com.example.theatre.features.info.data.network.net.Constants.SLUG
 import com.example.theatre.features.spectacles.data.model.RequestResult
 import com.example.theatre.features.spectacles.data.model.Place
 import com.example.theatre.features.spectacles.data.model.Location
@@ -14,6 +15,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface API {
+
     @GET("events/?fields=id,publication_date,dates,title,short_title,slug," +
             "place,description,body_text,location,categories,tagline,age_restriction," +
             "price,is_free,images,favorites_count,comments_count,site_url,tags," +
@@ -26,17 +28,14 @@ interface API {
     @GET("places/{id}/")
     suspend fun getPlaceById(@Path("id") id: Int): Place
 
-    @GET("locations/{slug}/")
-    suspend fun getCityName(@Path("slug") slug: String): Location
+    @GET("locations/{$SLUG}/")
+    suspend fun getCityName(@Path(SLUG) slug: String): Location
 
-    @GET("agents/?fields=id,title,slug,description,body_text,site_url,ctype," +
-            "images,agent_type,participations")
+    @GET("agents/?fields=id,title,$SLUG,description,body_text,site_url,ctype,images,agent_type,participations")
     suspend fun getAgent(): AgentResult
 
     @GET("agent-roles/?fields=id,name,name_plural")
     suspend fun getRoles(): RoleResult
-
-
 
 
     @GET("places/?fields=id,title,short_title,slug,address,location,timetable,phone,is_stub," +
@@ -52,5 +51,5 @@ interface API {
     suspend fun getPerson(): GetAgentResult
 
     @GET("agents/{agent_id}/")
-    suspend fun getPersonById(@Path("agent_id") id: Int): GetAgent
+    suspend fun getPersonById(@Path("agent_id") id: Int): AgentModel
 }

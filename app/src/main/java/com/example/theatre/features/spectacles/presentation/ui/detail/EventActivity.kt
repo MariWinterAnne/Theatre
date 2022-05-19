@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.theatre.R
 import com.example.theatre.databinding.ActivityEventBinding
-import com.example.theatre.network.net.RetrofitClient
+import com.example.theatre.features.info.data.network.net.RetrofitClient
 import com.example.theatre.features.spectacles.presentation.adapters.SectionPagerAdapter
 import com.example.theatre.features.spectacles.presentation.ui.SpectacleViewModel
 import com.squareup.picasso.Picasso

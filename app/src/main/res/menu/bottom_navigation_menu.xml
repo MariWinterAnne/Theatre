@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home_item"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/favourite"
+        android:enabled="true"
+        android:icon="@drawable/favorite_item"
+        android:title="@string/favourite" />
+    <item
+        android:id="@+id/performance"
+        android:enabled="true"
+        android:icon="@drawable/spectacles_item"
+        android:title="@string/performance" />
+    <item
+        android:id="@+id/info"
+        android:enabled="true"
+        android:icon="@drawable/info_item"
+        android:title="@string/info" />
+</menu>

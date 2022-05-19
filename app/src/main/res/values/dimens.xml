@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    /* drawable items */
+    <dimen name="item_width_height">24dp</dimen>
+    <dimen name="item_viewport_width_height">24</dimen>
+
+    /* activity_event */
+    <dimen name="app_bar_layout_height">256dp</dimen>
+
+    /* fragments */
+    <dimen name="behavior_overlaptop">128dp</dimen>
+    <dimen name="image_height_width">100dp</dimen>
+    <dimen name="fragment_layout_margin">16dp</dimen>
+    <dimen name="cardview_elevation">8dp</dimen>
+
+    /* content_event */
+    <dimen name="cardview_layout_margin_top">32dp</dimen>
+    <dimen name="cardview_layout_margin">16dp</dimen>
+    <dimen name="event_layout_margin">8dp</dimen>
+
+    /* fragment_event_description */
+    <dimen name="text_description_layout_margin">16dp</dimen>
+
+    /* fragment_info */
+    <dimen name="layout_editor_absoluteX">16dp</dimen>
+    <dimen name="layout_margin">8dp</dimen>
+
+    /* fragment_spectacles */
+    <dimen name="cardview_corner_radius">20dp</dimen>
+
+    /* fragment_spectacles_item */
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">200dp</dimen>
+    <dimen name="cardview_layout_margin_start">80dp</dimen>
+    <dimen name="image_button_width">56dp</dimen>
+    <dimen name="performance_title">20sp</dimen>
+    <dimen name="cardview_layout_margin_end_bottom">16dp</dimen>
+    <dimen name="container_horizontal_margin">16dp</dimen>
+    <dimen name="padding_top">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="padding_left_right">8dp</dimen>
+    <dimen name="cardview_margin_top">8dp</dimen>
+    <dimen name="container_margin">8dp</dimen>
+
+</resources>

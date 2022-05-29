@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.poster.presentation.ui.detail.PosterDetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_datetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/text_description_layout_margin"
+                    android:layout_marginTop="@dimen/text_description_layout_margin"
+                    android:layout_marginEnd="@dimen/text_description_layout_margin"
+                    android:fontFamily="@font/decadancecursiv"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <TextView
+                    android:id="@+id/text_age_restriction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_description_layout_margin"
+                    android:layout_marginEnd="@dimen/text_description_layout_margin"
+                    android:fontFamily="@font/decadancecursiv"
+                    android:gravity="right"
+                    android:textColor="@color/black"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_event_start_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:fontFamily="@font/decadancecursiv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <TextView
+                android:id="@+id/text_place_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_place_subway"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_place_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_place_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_place_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:autoLink="web"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_place_isclosed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginTop="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                android:id="@+id/text_participants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_description_layout_margin"
+                android:fontFamily="@font/decadancecursiv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_participants_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_description_layout_margin"
+                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:layout_marginBottom="@dimen/text_description_layout_margin"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</FrameLayout>

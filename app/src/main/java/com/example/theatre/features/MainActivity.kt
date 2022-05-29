@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.theatre.R
 import com.example.theatre.databinding.ActivityMainBinding
 import com.example.theatre.features.favourite.FavoriteFragment
-import com.example.theatre.features.poster.PosterFragment
+import com.example.theatre.features.poster.presentation.ui.detail.PosterFragment
 import com.example.theatre.features.info.presentation.ui.InfoFragment
 import com.example.theatre.features.spectacles.presentation.ui.list.SpectaclesFragment
 

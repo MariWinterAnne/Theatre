@@ -1,4 +1,4 @@
-package com.example.theatre.features.spectacles.data.model
+package com.example.theatre.core.data.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -27,49 +27,51 @@ import com.google.gson.annotations.SerializedName
  * @property tags - тэги события
  * @property participants - агенты события
  * @constructor Create empty Get perfomance
+ *
+ * @author Marianna Sabanchieva
  */
 
-data class GetPerformance(
+data class PerformanceModel(
     @SerializedName("id")
-    var id: Int? = null,
+    val id: Int? = null,
     @SerializedName("publication_date")
-    var publicationDate: Int? = null,
+    val publication_date: Int? = null,
     @SerializedName("dates")
-    var dates: ArrayList<Dates> = arrayListOf(),
+    val dates: ArrayList<PerformanceDates> = arrayListOf(),
     @SerializedName("title")
-    var title: String? = null,
+    val title: String? = null,
     @SerializedName("short_title")
-    var shortTitle: String? = null,
+    val short_title: String? = null,
     @SerializedName("slug")
-    var slug: String? = null,
+    val slug: String? = null,
     @SerializedName("place")
-    var place: Place? = Place(),
+    val place: PerformancePlace? = PerformancePlace(),
     @SerializedName("description")
-    var description: String? = null,
+    val description: String? = null,
     @SerializedName("body_text")
-    var bodyText: String? = null,
+    val body_text: String? = null,
     @SerializedName("location")
-    var location: Location? = Location(),
+    val location: PerformancePlaceLocation? = PerformancePlaceLocation(),
     @SerializedName("categories")
-    var categories: ArrayList<String> = arrayListOf(),
+    val categories: ArrayList<String> = arrayListOf(),
     @SerializedName("tagline")
-    var tagline: String? = null,
+    val tagline: String? = null,
     @SerializedName("age_restriction")
-    var ageRestriction: String? = null,
+    val age_restriction: String? = null,
     @SerializedName("price")
-    var price: String? = null,
+    val price: String? = null,
     @SerializedName("is_free")
-    var isFree: Boolean? = null,
+    val is_free: Boolean? = null,
     @SerializedName("images")
-    var images: ArrayList<Images> = arrayListOf(),
+    val images: ArrayList<ModelImages> = arrayListOf(),
     @SerializedName("favorites_count")
-    var favoritesCount: Int? = null,
+    val favorites_count: Int? = null,
     @SerializedName("comments_count")
-    var commentsCount: Int? = null,
+    val comments_count: Int? = null,
     @SerializedName("site_url")
-    var siteUrl: String? = null,
+    val site_url: String? = null,
     @SerializedName("tags")
-    var tags: ArrayList<String> = arrayListOf(),
+    val tags: ArrayList<String> = arrayListOf(),
     @SerializedName("participants")
-    var participants: ArrayList<Participants> = arrayListOf()
+    val participants: ArrayList<PerformanceParticipants> = arrayListOf()
 )

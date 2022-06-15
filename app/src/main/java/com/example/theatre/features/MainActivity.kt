@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.theatre.R
 import com.example.theatre.databinding.ActivityMainBinding
-import com.example.theatre.features.favourite.FavoriteFragment
-import com.example.theatre.features.poster.PosterFragment
-import com.example.theatre.features.info.presentation.ui.InfoFragment
-import com.example.theatre.features.spectacles.presentation.ui.list.SpectaclesFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,34 +20,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home -> {
-                    val fragment = PosterFragment()
-                    loadFragment(fragment)
-                }
-                R.id.favourite -> {
-                    val fragment = FavoriteFragment()
-                    loadFragment(fragment)
-                }
-                R.id.performance -> {
-                    val fragment = SpectaclesFragment()
-                    loadFragment(fragment)
-                }
-                R.id.info -> {
-                    val fragment = InfoFragment()
-                    loadFragment(fragment)
-                }
-            }
-            true
-        }
-    }
+        val navView: BottomNavigationView = binding.bottomNavigation
 
-    private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.navHostFragment, fragment, "Fragment")
-            .addToBackStack("Fragment")
-            .commit()
+        val navController = findNavController(R.id.navHostFragment)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.home,
+                R.id.favourite,
+                R.id.performance,
+                R.id.info
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

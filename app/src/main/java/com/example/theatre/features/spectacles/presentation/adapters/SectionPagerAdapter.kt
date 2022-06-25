@@ -5,10 +5,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.theatre.network.Constants.DETAILS
 import com.example.theatre.network.Constants.INFO
-import com.example.theatre.network.Constants.ONE
-import com.example.theatre.network.Constants.ZERO
 import com.example.theatre.features.spectacles.presentation.ui.detail.EventDescriptionFragment
 import com.example.theatre.features.spectacles.presentation.ui.detail.ReviewFragment
+import com.example.theatre.network.Constants.DescriptionTab
+import com.example.theatre.network.Constants.ReviewTab
 
 /**
  * Адаптер для списка фрагментов
@@ -22,8 +22,8 @@ class SectionPagerAdapter(fm: FragmentManager, private val items: Array<String> 
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            ZERO -> EventDescriptionFragment.newInstance()
-            ONE -> ReviewFragment.newInstance()
+            DescriptionTab -> EventDescriptionFragment.newInstance()
+            ReviewTab -> ReviewFragment.newInstance()
             else -> Fragment()
         }
     }

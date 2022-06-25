@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.presentation.utils.HtmlUtils.deleteHTML
+import com.example.theatre.core.presentation.utils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
-import com.squareup.picasso.Picasso
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с подробным описанием события
@@ -22,39 +22,46 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class EventDescriptionFragment : Fragment() {
 
     companion object {
-        private const val event_id = "id"
         fun newInstance(): EventDescriptionFragment {
             return EventDescriptionFragment()
         }
     }
 
     private lateinit var binding: FragmentEventDescriptionBinding
-    private val spectacleViewModel by viewModel<SpectacleDetailsViewModel>()
+    private val spectacleViewModel by sharedViewModel<SpectacleDetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_event_description, container, false)
-
-        arguments?.run { spectacleViewModel.init(getInt(event_id)) }
-        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
-
-        return binding.root
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_event_description, container, false)
     }
 
-    private fun setDetails(eventDetails: Performance){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentEventDescriptionBinding.bind(view)
+        arguments?.run { spectacleViewModel.init(getInt(event_id)) }
+        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
+    }
+
+    private fun setDetails(eventDetails: Performance) {
         with(binding) {
             with(eventDetails) {
-                Picasso.get()
-                    .load(images.first().image.toString())
-                    .into(imageThumbnail)
-                textName.text = title.orEmpty().replaceFirstChar { it.uppercaseChar() }
-                textDescription.text = deleteHTML(description.orEmpty())
+                try{
+                    val img = images.first().image.toString()
+                    context?.let {
+                        Glide
+                            .with(it)
+                            .load(img)
+                            .into(imageThumbnail)
+                    }
+                } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
+                try{ textName.text = title.replaceFirstChar { it.uppercaseChar() } } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
+                textDescription.text = (description.orEmpty()).deleteHTML()
                 textTagline.text = tagline
-                textBody.text = deleteHTML(body_text.orEmpty())
+                textBody.text = (body_text.orEmpty()).deleteHTML()
             }
         }
     }

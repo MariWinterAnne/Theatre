@@ -1,15 +1,14 @@
 package com.example.theatre.features.spectacles.presentation.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.databinding.FragmentSpectaclesItemBinding
 import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.presentation.utils.Default.orDefault
-import com.example.theatre.core.presentation.utils.HtmlUtils.deleteHTML
-import com.example.theatre.network.Constants.ISFREE
-import com.squareup.picasso.Picasso
+import com.example.theatre.core.presentation.utils.deleteHTML
+import com.example.theatre.databinding.FragmentSpectaclesItemBinding
 
 /**
  * Адаптер для списка постановок
@@ -33,19 +32,24 @@ class EventListAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context: Context = holder.binding.imageThumbnail.context
         with(holder.binding) {
-            textName.text = spectacles[position].title.orEmpty().replaceFirstChar { it.uppercaseChar() }
+            try { textName.text = spectacles[position].title.replaceFirstChar { it.uppercaseChar() } } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
             if (spectacles[position].is_free == true) {
-                textPrice.text = ISFREE
+                textPrice.text = root.context.getString(R.string.free)
             } else {
                 textPrice.text = spectacles[position].price
             }
-            Picasso.get()
-                .load(spectacles[position].images.first().image.toString())
-                .into(imageThumbnail)
-            textDescription.text = deleteHTML(spectacles[position].description.orEmpty())
+            try {
+                val img = spectacles[position].images.first().image.toString()
+                Glide
+                    .with(context)
+                    .load(img)
+                    .into(imageThumbnail)
+            } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
+            textDescription.text = (spectacles[position].description.orEmpty()).deleteHTML()
             root.setOnClickListener {
-                onItemClicked(spectacles[position].id.orDefault())
+                onItemClicked(spectacles[position].id)
             }
         }
     }

@@ -9,16 +9,15 @@ import android.view.ViewGroup
 import android.view.MenuItem
 import android.view.Menu
 import android.view.MenuInflater
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.data.model.PerformancePlaceLocation
 import com.example.theatre.core.domain.model.Performance
 import com.example.theatre.databinding.FragmentEventBinding
 import com.example.theatre.features.spectacles.presentation.adapters.SectionPagerAdapter
 import com.example.theatre.network.Constants.ISFREE
-import com.squareup.picasso.Picasso
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с отображением деталей события
@@ -33,7 +32,7 @@ class EventFragment : Fragment() {
     }
 
     lateinit var binding: FragmentEventBinding
-    private val spectacleViewModel by viewModel<SpectacleDetailsViewModel>()
+    private val spectacleViewModel by sharedViewModel<SpectacleDetailsViewModel>()
     private var eventURL: String? = null
 
     override fun onCreateView(
@@ -41,14 +40,15 @@ class EventFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event, container, false)
-
         setHasOptionsMenu(true)
         requireActivity().actionBar?.setDisplayHomeAsUpEnabled(true)
+        return inflater.inflate(R.layout.fragment_event, container, false)
+    }
 
-        arguments?.run { spectacleViewModel.init(getInt(event_id)) }
-        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
-        spectacleViewModel.cityLoaded.observe(viewLifecycleOwner, ::setCity)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentEventBinding.bind(view)
 
         val viewPager = binding.content.viewPager
         viewPager.adapter = SectionPagerAdapter(requireActivity().supportFragmentManager)
@@ -56,7 +56,9 @@ class EventFragment : Fragment() {
         val tabLayout = binding.content.tabs
         tabLayout.setupWithViewPager(viewPager)
 
-        return binding.root
+        arguments?.run { spectacleViewModel.init(getInt(event_id)) }
+        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
+        spectacleViewModel.cityLoaded.observe(viewLifecycleOwner, ::setCity)
     }
 
     private fun setDetails(eventDetails: Performance) {
@@ -69,12 +71,20 @@ class EventFragment : Fragment() {
                 } else {
                     textPrice.text = price
                 }
-                Picasso.get()
-                    .load(images.first().image.toString())
-                    .into(imageThumbnail)
-                Picasso.get()
-                    .load(images.first().image.toString())
-                    .into(binding.imageLarge)
+                try {
+                    val img = images.first().image.toString()
+                    context?.let {
+                        Glide
+                            .with(it)
+                            .load(img)
+                            .into(imageThumbnail)
+
+                        Glide
+                            .with(it)
+                            .load(img)
+                            .into(binding.imageLarge)
+                    }
+                } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
             }
         }
     }

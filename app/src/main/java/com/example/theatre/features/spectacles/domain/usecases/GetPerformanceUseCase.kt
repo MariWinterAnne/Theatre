@@ -14,7 +14,7 @@ import com.example.theatre.features.spectacles.domain.repository.PerformanceRepo
  */
 
 class GetPerformanceUseCase(private val performanceRepository: PerformanceRepository) {
-    suspend fun getPerformance(): List<Performance> = performanceRepository.getPerformance()
+    suspend fun getPerformance(): List<Performance> = performanceRepository.getPerformances()
     suspend fun getPerformanceById(id: Int): Performance = performanceRepository.getPerformanceById(id)
 
     suspend fun getPlaceById(id: Int): PerformancePlace = performanceRepository.getPlaceById(id)

@@ -8,13 +8,10 @@ import com.example.theatre.core.domain.model.Performance
 import com.example.theatre.features.spectacles.domain.usecases.GetPerformanceUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * View model для хранения списка событий
  *
- * @property getPerformanceUseCase
- * @constructor Create empty Spectacle view model
  * @author Marianna Sabanchieva
  */
 
@@ -27,10 +24,8 @@ class SpectacleViewModel(
 
     fun init() {
         _loading.value = true
-        viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                _spectacleLoaded.value = getPerformanceUseCase.getPerformance()
-            }
+        viewModelScope.launch(Dispatchers.IO) {
+            _spectacleLoaded.postValue(getPerformanceUseCase.getPerformance())
         }
         _loading.value = false
     }

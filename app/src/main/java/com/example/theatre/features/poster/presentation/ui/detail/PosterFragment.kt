@@ -27,7 +27,7 @@ class PosterFragment : Fragment() {
         binding = FragmentPosterBinding.inflate(inflater, container, false)
 
         val viewPager = binding.viewPager
-        viewPager.adapter = SectionPagerAdapter(requireActivity().supportFragmentManager, 0)
+        viewPager.adapter = SectionPagerAdapter(requireActivity().supportFragmentManager)
 
         val tabLayout = binding.tabs
         tabLayout.setupWithViewPager(viewPager)

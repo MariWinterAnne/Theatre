@@ -6,6 +6,7 @@ import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentSpectaclesItemBinding
+import com.example.theatre.features.poster.misc.PosterConstants
 import com.example.theatre.features.spectacles.domain.model.Performance
 import com.example.theatre.features.spectacles.presentation.adapters.EventListAdapter
 import com.squareup.picasso.Picasso
@@ -33,19 +34,21 @@ class PostersListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
-            textName.text = spectacles[position].title!!.replaceFirstChar { it.uppercaseChar() }
+            textName.text = spectacles[position].title?.replaceFirstChar { it.uppercaseChar() }
             if (spectacles[position].is_free == true) {
-                textPrice.text = "бесплатно"
+                textPrice.text = PosterConstants.FREE
             } else {
                 textPrice.text = spectacles[position].price
             }
             Picasso.get()
-                .load(spectacles[position].images[0].image.toString())
+                .load(spectacles[position].images.first().image.toString())
                 .into(imageThumbnail)
-            textDescription.text = HtmlCompat.fromHtml(
-                spectacles[position].description!!,
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-            )
+            textDescription.text = spectacles[position].description?.let {
+                HtmlCompat.fromHtml(
+                    it,
+                    HtmlCompat.FROM_HTML_MODE_LEGACY
+                )
+            }
             root.setOnClickListener {
                 onItemClicked(spectacles[position].id!!)
             }

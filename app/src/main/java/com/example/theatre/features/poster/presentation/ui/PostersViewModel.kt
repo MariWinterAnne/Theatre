@@ -24,8 +24,8 @@ class PostersViewModel(
 
     suspend fun init() {
         _loading.value = true
-        withContext(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
+        withContext(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
                 _posterLoaded.value = getPerformanceUseCase.getPerformance()
             }
         }

@@ -7,17 +7,21 @@ import com.example.theatre.features.poster.presentation.ui.detail.PosterDescript
 import com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment
 
 class SectionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-
     private val items = arrayOf("Информация", "Детали")
 
     override fun getCount(): Int = items.size
 
     override fun getItem(position: Int): Fragment =
         when (position) {
-            0 -> PosterDescriptionFragment()
-            1 -> PosterDetailFragment()
+            POSTER_DESCRIPTION -> PosterDescriptionFragment()
+            POSTER_DETAIL -> PosterDetailFragment()
             else -> Fragment()
         }
 
     override fun getPageTitle(position: Int): CharSequence = items[position]
+
+    companion object {
+        private const val POSTER_DESCRIPTION = 0
+        private const val POSTER_DETAIL = 1
+    }
 }

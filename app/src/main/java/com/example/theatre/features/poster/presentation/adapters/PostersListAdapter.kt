@@ -10,6 +10,7 @@ import com.example.theatre.features.poster.misc.PosterConstants
 import com.example.theatre.features.spectacles.domain.model.Performance
 import com.example.theatre.features.spectacles.presentation.adapters.EventListAdapter
 import com.squareup.picasso.Picasso
+import java.lang.NumberFormatException
 
 /**
  * Класс для списка афиш
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso
  * @author Tamerlan Mamukhov on 2022-05-28
  */
 class PostersListAdapter(
-    val spectacles: MutableList<Performance>,
+    private val spectacles: MutableList<Performance>,
     private val onItemClicked: (id: Int) -> Unit,
 ) : RecyclerView.Adapter<PostersListAdapter.ViewHolder>() {
 
@@ -34,23 +35,30 @@ class PostersListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
-            textName.text = spectacles[position].title?.replaceFirstChar { it.uppercaseChar() }
-            if (spectacles[position].is_free == true) {
+            val poster = spectacles[position]
+            textName.text = poster.title?.replaceFirstChar { it.uppercaseChar() }
+
+            if (poster.is_free == true) {
                 textPrice.text = PosterConstants.FREE
             } else {
-                textPrice.text = spectacles[position].price
+                textPrice.text = poster.price
             }
-            Picasso.get()
-                .load(spectacles[position].images.first().image.toString())
-                .into(imageThumbnail)
-            textDescription.text = spectacles[position].description?.let {
+
+            try {
+                val pic = poster.images.first().image.toString()
+                Picasso.get()
+                    .load(pic)
+                    .into(imageThumbnail)
+            } catch (e: NumberFormatException) { root.context.getString(R.string.empty_icon) }
+
+            textDescription.text = poster.description?.let {
                 HtmlCompat.fromHtml(
                     it,
                     HtmlCompat.FROM_HTML_MODE_LEGACY
                 )
             }
             root.setOnClickListener {
-                onItemClicked(spectacles[position].id!!)
+                poster.id?.let { it1 -> onItemClicked(it1) }
             }
         }
     }

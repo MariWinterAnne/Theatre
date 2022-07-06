@@ -20,13 +20,10 @@ class SpectacleViewModel(
 ) : ViewModel() {
     private var _spectacleLoaded = MutableLiveData<List<Performance>>()
     val spectacleLoaded: LiveData<List<Performance>> get() = _spectacleLoaded
-    private val _loading = MutableLiveData<Boolean>()
 
     fun init() {
-        _loading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             _spectacleLoaded.postValue(getPerformanceUseCase.getPerformance())
         }
-        _loading.value = false
     }
 }

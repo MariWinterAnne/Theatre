@@ -10,9 +10,9 @@ import com.example.theatre.core.data.model.PerformancePlace
 import com.example.theatre.core.data.model.PerformancePlaceLocation
 import com.example.theatre.core.domain.model.Performance
 import com.example.theatre.databinding.FragmentReviewBinding
-import com.example.theatre.core.presentation.utils.DateUtils.convertIntToStringBuilder
-import com.example.theatre.core.presentation.utils.Default.orDefault
-import com.example.theatre.features.info.presentation.ui.detail.toRole
+import com.example.theatre.core.presentation.utils.EMPTY
+import com.example.theatre.core.presentation.utils.getPersonsActingInPerformance
+import com.example.theatre.core.presentation.utils.getUpcomingPerformanceDates
 import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -25,6 +25,8 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class ReviewFragment : Fragment() {
 
     companion object {
+        const val DETAILS_TAB = 1
+        const val DETAILS = "Детали"
         fun newInstance(): ReviewFragment {
             return ReviewFragment()
         }
@@ -35,7 +37,11 @@ class ReviewFragment : Fragment() {
     private lateinit var cityName: String
     private lateinit var gaps: String
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.fragment_review, container, false)
     }
 
@@ -59,18 +65,8 @@ class ReviewFragment : Fragment() {
             textParticipants.text = getString(R.string.actors)
             with(eventDetails) {
                 textAgeRestriction.text = age_restriction
-                val datesList = StringBuilder()
-                for (i in 0 until dates.size) {
-                    datesList.appendLine(convertIntToStringBuilder(dates[i].start.orDefault(), dates[i].end.orDefault()))
-                }
-                textEventStartEnd.text = datesList
-                val participantsList = StringBuilder()
-                for (i in 0 until participants.size) {
-                    val role = getString(participants[i].role?.slug.orEmpty().toRole())
-                    val partList = participants[i].agent_model?.title.orEmpty()
-                    participantsList.appendLine("${partList}$gaps$role")
-                }
-                textParticipantsList.text = participantsList
+                textEventStartEnd.text = getUpcomingPerformanceDates(dates)
+                textParticipantsList.text = getPersonsActingInPerformance(participants, context)
             }
         }
     }
@@ -82,17 +78,12 @@ class ReviewFragment : Fragment() {
     private fun setPlace(place: PerformancePlace) {
         with(binding) {
             with(place) {
-                textPlaceTitle.text = try { title.orEmpty().replaceFirstChar { it.uppercaseChar() } } catch (e: NumberFormatException) { null }
+                textPlaceTitle.text = title.orEmpty().replaceFirstChar { it.uppercaseChar() }
                 textPlaceSubway.text = subway
-                ((cityName + gaps).plus(address)).also {
-                    textPlaceAddress.text = it
-                }
-                (getString(R.string.tel).plus(phone)).also {
-                    textPlacePhone.text = it
-                }
-                (getString(R.string.website).plus(foreign_url.orEmpty())).also {
-                    textPlaceSite.text = it
-                }
+                textPlaceAddress.text = "$cityName$gaps$address"
+                textPlacePhone.text = phone
+                val url = if (foreign_url?.isNotEmpty() == true) foreign_url else String.EMPTY
+                textPlaceSite.text = url
                 if (is_closed == true) {
                     textPlaceIsclosed.text = getString(R.string.place_is_closed)
                 }

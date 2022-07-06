@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.data.model.PerformancePlaceLocation
 import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.presentation.utils.EMPTY
 import com.example.theatre.databinding.FragmentEventBinding
 import com.example.theatre.features.spectacles.presentation.adapters.SectionPagerAdapter
 import com.example.theatre.network.Constants.ISFREE
@@ -71,20 +72,20 @@ class EventFragment : Fragment() {
                 } else {
                     textPrice.text = price
                 }
-                try {
-                    val img = images.first().image.toString()
+                val imageURL = if (images.isNotEmpty()) images.first().image.orEmpty() else String.EMPTY
+                if (imageURL.isNotEmpty()) {
                     context?.let {
                         Glide
                             .with(it)
-                            .load(img)
+                            .load(imageURL)
                             .into(imageThumbnail)
 
                         Glide
                             .with(it)
-                            .load(img)
+                            .load(imageURL)
                             .into(binding.imageLarge)
                     }
-                } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
+                }
             }
         }
     }

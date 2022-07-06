@@ -8,11 +8,8 @@ import androidx.core.text.HtmlCompat
  * @author Marianne Sabanchieva
  */
 
-fun String.deleteHTML(): String {
-    if (this.isEmpty())
-        return String.EMPTY
-    return "${HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)}"
-}
+fun String.deleteHTML(): String =
+    if (this.isEmpty()) String.EMPTY else "${HtmlCompat.fromHtml(this, HtmlCompat.FROM_HTML_MODE_LEGACY)}"
 
 val String.Companion.EMPTY: String
     get() = ""

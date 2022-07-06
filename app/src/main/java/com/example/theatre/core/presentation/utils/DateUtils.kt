@@ -12,25 +12,24 @@ import java.util.Date
  * @author Marianne Sabanchieva
  */
 
-object DateUtils {
-    private fun convertLongToTime(startDay: Int, endDay: Int): String {
-        val date = Date(startDay.toLong() * TIME_CONST)
-        val date2 = Date(endDay.toLong() * TIME_CONST)
-        val format = SimpleDateFormat(FORMAT)
-        val format2 = SimpleDateFormat(FORMAT2)
-        return "${format.format(date)} - ${format.format(date2)}, ${format2.format(date)}"
-    }
+private fun performanceDateFormatter(performanceStartDate: Int, performanceEndDate: Int): String {
+    //приведение к формату "dd.MM.yyyy"
+    val dateFormatter = SimpleDateFormat(FORMAT)
+    val startDate = dateFormatter.format(Date(performanceStartDate.toLong() * TIME_CONST))
+    val endDate = dateFormatter.format(Date(performanceEndDate.toLong() * TIME_CONST))
 
-    private fun currentTimeToLong(): Long {
-        return System.currentTimeMillis()
-    }
+    //приведение к формату "HH:mm"
+    val timeFormatter = SimpleDateFormat(FORMAT2)
+    val startTime = timeFormatter.format(Date(performanceStartDate.toLong() * TIME_CONST))
+    return "$startDate - $endDate, $startTime"
+}
 
-    fun convertIntToStringBuilder(startDay: Int, endDay: Int): String {
-        var l = String.EMPTY
-        val startDate = startDay.toLong() * TIME_CONST
-        if (startDate >= currentTimeToLong()) {
-            l = convertLongToTime(startDay, endDay)
-        }
-        return l
+fun getUpcomingPerformanceDateLine(performanceStartDate: Int, performanceEndDate: Int): String {
+    var formattedDateLine = String.EMPTY
+    val startDate = performanceStartDate.toLong() * TIME_CONST
+    //исключение уже прошедших сеансов
+    if (startDate >= System.currentTimeMillis()) {
+        formattedDateLine = performanceDateFormatter(performanceStartDate, performanceEndDate)
     }
+    return formattedDateLine
 }

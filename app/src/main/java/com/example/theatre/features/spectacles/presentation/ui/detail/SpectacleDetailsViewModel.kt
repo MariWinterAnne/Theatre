@@ -10,6 +10,7 @@ import com.example.theatre.core.domain.model.Performance
 import com.example.theatre.features.spectacles.domain.usecases.GetPerformanceUseCase
 import com.example.theatre.core.presentation.utils.Default.orDefault
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -31,17 +32,26 @@ class SpectacleDetailsViewModel(
     private val _placeLoaded = MutableLiveData<PerformancePlace>()
     val placeLoaded: LiveData<PerformancePlace> get() = _placeLoaded
 
-    private val _loading = MutableLiveData<Boolean>()
-
     fun init(id: Int) {
-        _loading.value = true
         viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                _spectacleDetailLoaded.value = getPerformanceUseCase.getPerformanceById(id)
-                _cityLoaded.value = _spectacleDetailLoaded.value?.location?.slug.orEmpty().let { getPerformanceUseCase.getCityName(it) }
-                _placeLoaded.value = _spectacleDetailLoaded.value?.place?.id.orDefault().let { getPerformanceUseCase.getPlaceById(it) }
+            _spectacleDetailLoaded.value =
+                    withContext(Dispatchers.IO) { getPerformanceUseCase.getPerformanceById(id) }
+
+            val job = async {
+                _cityLoaded.value = withContext(Dispatchers.IO) {
+                    _spectacleDetailLoaded.value?.location?.slug.orEmpty()
+                        .let { getPerformanceUseCase.getCityName(it) }
+                }
             }
+            val job2 = async {
+                _placeLoaded.value = withContext(Dispatchers.IO) {
+                    _spectacleDetailLoaded.value?.place?.id.orDefault()
+                        .let { getPerformanceUseCase.getPlace(it) }
+                }
+            }
+
+            job.await()
+            job2.await()
         }
-        _loading.value = false
     }
 }

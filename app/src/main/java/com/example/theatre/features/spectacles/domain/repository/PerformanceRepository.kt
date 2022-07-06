@@ -19,7 +19,7 @@ interface PerformanceRepository {
      *
      * @return - место проведения выбранной постановки по идентификатору
      */
-    suspend fun getPlaceById(id: Int): PerformancePlace
+    suspend fun getPlace(id: Int): PerformancePlace
 
     /**
      * Get city name

@@ -17,6 +17,6 @@ class GetPerformanceUseCase(private val performanceRepository: PerformanceReposi
     suspend fun getPerformance(): List<Performance> = performanceRepository.getPerformances()
     suspend fun getPerformanceById(id: Int): Performance = performanceRepository.getPerformanceById(id)
 
-    suspend fun getPlaceById(id: Int): PerformancePlace = performanceRepository.getPlaceById(id)
+    suspend fun getPlace(id: Int): PerformancePlace = performanceRepository.getPlace(id)
     suspend fun getCityName(slug: String): PerformancePlaceLocation = performanceRepository.getCityName(slug)
 }

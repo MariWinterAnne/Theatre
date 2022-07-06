@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.presentation.utils.EMPTY
 import com.example.theatre.core.presentation.utils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
 import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
@@ -49,16 +50,16 @@ class EventDescriptionFragment : Fragment() {
     private fun setDetails(eventDetails: Performance) {
         with(binding) {
             with(eventDetails) {
-                try{
-                    val img = images.first().image.toString()
+                val imageURL = if (images.isNotEmpty()) images.first().image.orEmpty() else String.EMPTY
+                if (imageURL.isNotEmpty()) {
                     context?.let {
                         Glide
                             .with(it)
-                            .load(img)
+                            .load(imageURL)
                             .into(imageThumbnail)
                     }
-                } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
-                try{ textName.text = title.replaceFirstChar { it.uppercaseChar() } } catch (e: NumberFormatException) { root.context.getString(R.string.empty) }
+                }
+                textName.text = title.replaceFirstChar { it.uppercaseChar() }
                 textDescription.text = (description.orEmpty()).deleteHTML()
                 textTagline.text = tagline
                 textBody.text = (body_text.orEmpty()).deleteHTML()

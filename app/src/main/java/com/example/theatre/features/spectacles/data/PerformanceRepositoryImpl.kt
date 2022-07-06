@@ -21,6 +21,6 @@ class PerformanceRepositoryImpl(
     override suspend fun getPerformances(): List<Performance> = performanceApiMapper.getPerformances()
     override suspend fun getPerformanceById(id: Int): Performance = performanceApiMapper.getPerformanceById(id)
 
-    override suspend fun getPlaceById(id: Int): PerformancePlace = performanceApiMapper.getPlaceById(id)
+    override suspend fun getPlace(id: Int): PerformancePlace = performanceApiMapper.getPlaceById(id)
     override suspend fun getCityName(slug: String): PerformancePlaceLocation = performanceApiMapper.getCityName(slug)
 }

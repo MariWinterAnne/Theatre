@@ -36,30 +36,32 @@ class PostersListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             val poster = spectacles[position]
-            textName.text = poster.title?.replaceFirstChar { it.uppercaseChar() }
 
-            if (poster.is_free == true) {
-                textPrice.text = PosterConstants.FREE
-            } else {
-                textPrice.text = poster.price
+            with(poster) {
+                textName.text = title?.replaceFirstChar { it.uppercaseChar() }
+
+                if (is_free == true) {
+                    textPrice.text = PosterConstants.FREE
+                } else {
+                    textPrice.text = poster.price
+                }
+
+                val imageURL =
+                    if (images.isNotEmpty()) images.first().image.orEmpty() else ""
+//                String.EMPTY в core пакете. Применю после merge
+                if (imageURL.isNotEmpty()) {
+                    Picasso.get()
+                        .load(imageURL)
+                        .into(imageThumbnail)
+                }
+
+//                textDescription.text = (description.orEmpty()).deleteHTML()
+//Функция deleteHTML в utils классе от Марианны. Применю после merge
+                root.setOnClickListener {
+                    id?.let { it1 -> onItemClicked(it1) }
+                }
             }
 
-            try {
-                val pic = poster.images.first().image.toString()
-                Picasso.get()
-                    .load(pic)
-                    .into(imageThumbnail)
-            } catch (e: NumberFormatException) { root.context.getString(R.string.empty_icon) }
-
-            textDescription.text = poster.description?.let {
-                HtmlCompat.fromHtml(
-                    it,
-                    HtmlCompat.FROM_HTML_MODE_LEGACY
-                )
-            }
-            root.setOnClickListener {
-                poster.id?.let { it1 -> onItemClicked(it1) }
-            }
         }
     }
 

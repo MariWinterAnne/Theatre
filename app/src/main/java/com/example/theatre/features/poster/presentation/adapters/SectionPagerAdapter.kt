@@ -6,22 +6,31 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.theatre.features.poster.presentation.ui.detail.PosterDescriptionFragment
 import com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment
 
-class SectionPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-    private val items = arrayOf("Информация", "Детали")
+/**
+ * Адаптер для фрагмента афиши
+ *
+ * @author Tamerlan Mamukhov on 2022-07-07
+ */
+class SectionPagerAdapter(
+    fm: FragmentManager,
+    private val items: Array<String> = arrayOf(INFO, DETAILS)
+) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getCount(): Int = items.size
 
     override fun getItem(position: Int): Fragment =
         when (position) {
-            POSTER_DESCRIPTION -> PosterDescriptionFragment()
-            POSTER_DETAIL -> PosterDetailFragment()
+            DESCRIPTION_TAB -> PosterDescriptionFragment()
+            DETAILS_TAB -> PosterDetailFragment()
             else -> Fragment()
         }
 
     override fun getPageTitle(position: Int): CharSequence = items[position]
 
     companion object {
-        private const val POSTER_DESCRIPTION = 0
-        private const val POSTER_DETAIL = 1
+        private const val DESCRIPTION_TAB = 0
+        private const val DETAILS_TAB = 1
+        private const val INFO = "Информация"
+        private const val DETAILS = "Детали"
     }
 }

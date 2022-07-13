@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.theatre.R
-import com.example.theatre.core.data.model.PerformancePlace
-import com.example.theatre.core.data.model.PerformancePlaceLocation
 import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.databinding.FragmentReviewBinding
-import com.example.theatre.core.presentation.utils.EMPTY
-import com.example.theatre.core.presentation.utils.getPersonsActingInPerformance
-import com.example.theatre.core.presentation.utils.getUpcomingPerformanceDates
+import com.example.theatre.core.utils.PerformanceDateFormatter
+import com.example.theatre.core.utils.StringUtils
+import com.example.theatre.core.utils.StringUtils.Companion.EMPTY
 import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -59,14 +59,16 @@ class ReviewFragment : Fragment() {
     }
 
     private fun setDetails(eventDetails: Performance) {
+        val formatter = PerformanceDateFormatter()
+        val getListOfActors = StringUtils()
         with(binding) {
             textDatetime.text = getString(R.string.event_date_time)
             textPlace.text = getString(R.string.place)
             textParticipants.text = getString(R.string.actors)
             with(eventDetails) {
                 textAgeRestriction.text = age_restriction
-                textEventStartEnd.text = getUpcomingPerformanceDates(dates)
-                textParticipantsList.text = getPersonsActingInPerformance(participants, context)
+                textEventStartEnd.text = formatter.getUpcomingPerformanceDates(dates)
+                textParticipantsList.text = getListOfActors.getPersonsActingInPerformance(participants, requireContext())
             }
         }
     }

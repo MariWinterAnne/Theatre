@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.presentation.utils.EMPTY
-import com.example.theatre.core.presentation.utils.deleteHTML
+import com.example.theatre.core.utils.StringUtils.Companion.EMPTY
+import com.example.theatre.core.utils.StringUtils.Companion.deleteHTML
 import com.example.theatre.databinding.FragmentSpectaclesItemBinding
 import com.example.theatre.network.Constants.ISFREE
 

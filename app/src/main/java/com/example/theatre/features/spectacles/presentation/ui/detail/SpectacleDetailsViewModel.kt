@@ -4,15 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.theatre.core.data.model.PerformancePlace
-import com.example.theatre.core.data.model.PerformancePlaceLocation
 import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.features.spectacles.domain.usecases.GetPerformanceUseCase
-import com.example.theatre.core.presentation.utils.Default.orDefault
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import com.example.theatre.core.utils.orDefault
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.SupervisorJob
 
 /**
  * View model для хранения деталей события
@@ -35,23 +36,21 @@ class SpectacleDetailsViewModel(
     fun init(id: Int) {
         viewModelScope.launch {
             _spectacleDetailLoaded.value =
-                    withContext(Dispatchers.IO) { getPerformanceUseCase.getPerformanceById(id) }
+                withContext(Dispatchers.IO) { getPerformanceUseCase.getPerformanceById(id) }
 
-            val job = async {
-                _cityLoaded.value = withContext(Dispatchers.IO) {
-                    _spectacleDetailLoaded.value?.location?.slug.orEmpty()
-                        .let { getPerformanceUseCase.getCityName(it) }
+            if (_spectacleDetailLoaded.value?.location?.slug != null) {
+                val jobLocationDeferred = async(Dispatchers.IO + SupervisorJob()) {
+                    getPerformanceUseCase.getCityName(_spectacleDetailLoaded.value?.location?.slug.orEmpty())
                 }
-            }
-            val job2 = async {
-                _placeLoaded.value = withContext(Dispatchers.IO) {
-                    _spectacleDetailLoaded.value?.place?.id.orDefault()
-                        .let { getPerformanceUseCase.getPlace(it) }
-                }
+                _cityLoaded.value = jobLocationDeferred.await()
             }
 
-            job.await()
-            job2.await()
+            if (_spectacleDetailLoaded.value?.place?.id != null) {
+                val jobPlaceDeferred = async(Dispatchers.IO + SupervisorJob()) {
+                    getPerformanceUseCase.getPlace(_spectacleDetailLoaded.value?.place?.id.orDefault())
+                }
+                _placeLoaded.value = jobPlaceDeferred.await()
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.example.theatre.core.utils
 
 import com.example.theatre.core.domain.model.PerformanceDates
-import com.example.theatre.core.utils.StringUtils.Companion.EMPTY
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -12,27 +12,21 @@ import java.util.Date
  */
 
 class PerformanceDateFormatter {
-    private fun performanceDateFormat(
-        performanceStartDate: Int,
-        performanceEndDate: Int
-    ): String {
+    private fun performanceDateFormat(performanceStartDate: Long, performanceEndDate: Long): String {
         //приведение к формату "dd.MM.yyyy"
-        val dateFormatter = SimpleDateFormat(FORMAT)
-        val startDate = dateFormatter.format(Date(performanceStartDate.toLong() * TIME_CONST))
-        val endDate = dateFormatter.format(Date(performanceEndDate.toLong() * TIME_CONST))
+        val dateFormatter = SimpleDateFormat(DAY_MONTH_YEAR_FORMAT)
+        val startDate = dateFormatter.format(Date(performanceStartDate * LONG_TO_MILLISECONDS))
+        val endDate = dateFormatter.format(Date(performanceEndDate * LONG_TO_MILLISECONDS))
 
         //приведение к формату "HH:mm"
-        val timeFormatter = SimpleDateFormat(FORMAT2)
-        val startTime = timeFormatter.format(Date(performanceStartDate.toLong() * TIME_CONST))
+        val timeFormatter = SimpleDateFormat(HOURS_MINUTES_FORMAT)
+        val startTime = timeFormatter.format(Date(performanceStartDate * LONG_TO_MILLISECONDS))
         return "$startDate - $endDate, $startTime"
     }
 
-    private fun getUpcomingPerformanceDateToLine(
-        performanceStartDate: Int,
-        performanceEndDate: Int
-    ): String {
+    private fun getUpcomingPerformanceDateToLine(performanceStartDate: Long, performanceEndDate: Long): String {
         var formattedDateLine = String.EMPTY
-        val startDate = performanceStartDate.toLong() * TIME_CONST
+        val startDate = performanceStartDate * LONG_TO_MILLISECONDS
         //исключение уже прошедших сеансов
         if (startDate >= System.currentTimeMillis()) {
             formattedDateLine = performanceDateFormat(performanceStartDate, performanceEndDate)
@@ -43,15 +37,15 @@ class PerformanceDateFormatter {
     fun getUpcomingPerformanceDates(dates: ArrayList<PerformanceDates>): String {
         val datesList = StringBuilder()
         for (date in dates) {
-            if (getUpcomingPerformanceDateToLine(date.start.orDefault(), date.end.orDefault()) != String.EMPTY)
-                datesList.appendLine(getUpcomingPerformanceDateToLine(date.start.orDefault(), date.end.orDefault()))
+            if (getUpcomingPerformanceDateToLine(date.start.orLongDefault(), date.end.orLongDefault()) != String.EMPTY)
+                datesList.appendLine(getUpcomingPerformanceDateToLine(date.start.orLongDefault(), date.end.orLongDefault()))
         }
         return datesList.toString()
     }
 
     companion object{
-        private const val FORMAT = "dd.MM.yyyy"
-        private const val FORMAT2 = "HH:mm"
-        private const val TIME_CONST = 1000
+        private const val DAY_MONTH_YEAR_FORMAT = "dd.MM.yyyy"
+        private const val HOURS_MINUTES_FORMAT = "HH:mm"
+        private const val LONG_TO_MILLISECONDS = 1000
     }
 }

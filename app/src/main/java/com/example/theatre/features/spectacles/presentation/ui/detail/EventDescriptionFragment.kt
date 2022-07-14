@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.utils.StringUtils.Companion.EMPTY
-import com.example.theatre.core.utils.StringUtils.Companion.deleteHTML
+import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
 import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -62,9 +62,9 @@ class EventDescriptionFragment : Fragment() {
                     }
                 }
                 textName.text = title.replaceFirstChar { it.uppercaseChar() }
-                textDescription.text = (description.orEmpty()).deleteHTML()
+                textDescription.text = description.orEmpty().deleteHTML()
                 textTagline.text = tagline
-                textBody.text = (body_text.orEmpty()).deleteHTML()
+                textBody.text = body_text.orEmpty().deleteHTML()
             }
         }
     }

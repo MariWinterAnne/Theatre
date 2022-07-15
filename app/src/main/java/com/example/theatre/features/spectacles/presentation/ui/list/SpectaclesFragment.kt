@@ -1,36 +1,24 @@
-/*
- * Copyright (c) 2018. André Mion
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.theatre.features.spectacles.presentation.ui.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.theatre.features.spectacles.presentation.ui.SpectacleViewModel
-import com.example.theatre.features.spectacles.presentation.ui.detail.EventActivity
-import com.example.theatre.features.spectacles.presentation.adapters.EventListAdapter
 import com.example.theatre.R
+import com.example.theatre.core.domain.model.Performance
 import com.example.theatre.databinding.FragmentSpectaclesBinding
-import com.example.theatre.features.spectacles.domain.model.Performance
+import com.example.theatre.features.spectacles.presentation.adapters.EventListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+/**
+ * Фрагмент со списком постановок
+ *
+ * @author Marianna Sabanchieva
+ */
 
 class SpectaclesFragment : Fragment() {
 
@@ -53,10 +41,7 @@ class SpectaclesFragment : Fragment() {
         recyclerView.adapter = performancesAdapter
 
         initObservers()
-
-        lifecycleScope.launchWhenCreated {
-            spectacleViewModel.init()
-        }
+        spectacleViewModel.init()
 
         return view
     }
@@ -75,9 +60,8 @@ class SpectaclesFragment : Fragment() {
     }
 
     private fun onSpectacleClick(id: Int) {
-        val intent = Intent(activity, EventActivity::class.java)
-        intent.putExtra("id", id)
-        startActivity(intent)
+        val bundle = bundleOf("id" to id)
+        requireActivity().findNavController(R.id.navHostFragment)
+            .navigate(R.id.action_performance_to_eventFragment, bundle)
     }
-
 }

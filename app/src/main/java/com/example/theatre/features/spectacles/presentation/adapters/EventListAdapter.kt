@@ -1,53 +1,73 @@
 package com.example.theatre.features.spectacles.presentation.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.theatre.R
+import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentSpectaclesItemBinding
-import com.example.theatre.features.spectacles.domain.model.Performance
-import com.squareup.picasso.Picasso
+import com.example.theatre.network.Constants.ISFREE
+
+/**
+ * Адаптер для списка постановок
+ *
+ * @property spectacles - список постановок
+ * @property onItemClicked - обработка нажатия на элемент списка
+ * @author Marianna Sabanchieva
+ */
 
 class EventListAdapter(
-    val spectacles: MutableList<Performance>,
+    private val spectacles: MutableList<Performance>,
     private val onItemClicked: (id: Int) -> Unit,
-) :
-    RecyclerView.Adapter<EventListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<EventListAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            FragmentSpectaclesItemBinding.bind(LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_spectacles_item, parent, false))
+    class ViewHolder(val binding: FragmentSpectaclesItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ViewHolder(
+            FragmentSpectaclesItemBinding.bind(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.fragment_spectacles_item, parent, false)
+            )
         )
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context: Context = holder.binding.imageThumbnail.context
         with(holder.binding) {
-            textName.text = spectacles[position].title!!.replaceFirstChar { it.uppercaseChar() }
-            if (spectacles[position].is_free == true) {
-                textPrice.text = "бесплатно"
-            } else {
-                textPrice.text = spectacles[position].price
-            }
-            Picasso.get()
-                .load(spectacles[position].images[0].image.toString())
-                .into(imageThumbnail)
-            textDescription.text = HtmlCompat.fromHtml(spectacles[position].description!!, HtmlCompat.FROM_HTML_MODE_LEGACY)
-            root.setOnClickListener {
-                onItemClicked(spectacles[position].id!!)
+            with(spectacles[position]) {
+                textName.text = title.replaceFirstChar { it.uppercaseChar() }
+                if (is_free == true) {
+                    textPrice.text = ISFREE
+                } else {
+                    textPrice.text = price
+                }
+                val imageURL = if (images.isNotEmpty()) images.first().image.orEmpty() else String.EMPTY
+                if (imageURL.isNotEmpty()) {
+                    Glide
+                        .with(context)
+                        .load(imageURL)
+                        .into(imageThumbnail)
+                }
+                textDescription.text = description.orEmpty().deleteHTML()
+                root.setOnClickListener {
+                    onItemClicked(id)
+                }
             }
         }
     }
 
     override fun getItemCount(): Int = spectacles.size
 
-    class ViewHolder(val binding: FragmentSpectaclesItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
     fun setSpectacles(spectacleList: List<Performance>) {
-        spectacles.clear()
-        spectacles.addAll(spectacleList)
-        notifyDataSetChanged()
+        if (spectacleList.isNotEmpty()) {
+            spectacles.clear()
+            spectacles.addAll(spectacleList)
+            notifyDataSetChanged()
+        }
     }
 }

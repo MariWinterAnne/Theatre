@@ -1,14 +1,22 @@
 package com.example.theatre.features.spectacles.domain.usecases
 
-import com.example.theatre.features.spectacles.domain.model.Performance
+import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.features.spectacles.domain.repository.PerformanceRepository
 
-interface GetPerformanceUseCase{
-    suspend fun getPerformance(): List<Performance>
-}
+/**
+ * Get performance use case
+ *
+ * @property performanceRepository - репозиторий
+ *
+ * @author Marianna Sabanchieva
+ */
 
-class GetPerformanceUseCaseImpl(
-    private val performanceRepository: PerformanceRepository
-): GetPerformanceUseCase {
-    override suspend fun getPerformance(): List<Performance> = performanceRepository.getPerformance()
+class GetPerformanceUseCase(private val performanceRepository: PerformanceRepository) {
+    suspend fun getPerformance(): List<Performance> = performanceRepository.getPerformances()
+    suspend fun getPerformanceById(id: Int): Performance = performanceRepository.getPerformanceById(id)
+
+    suspend fun getPlace(id: Int): PerformancePlace = performanceRepository.getPlace(id)
+    suspend fun getCityName(slug: String): PerformancePlaceLocation = performanceRepository.getCityName(slug)
 }

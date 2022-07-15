@@ -1,16 +1,30 @@
 package com.example.theatre.features.spectacles.domain.repository
 
-import com.example.theatre.features.spectacles.data.model.Location
-import com.example.theatre.features.spectacles.data.model.Place
-import com.example.theatre.features.spectacles.domain.model.Agent
-import com.example.theatre.features.spectacles.domain.model.Performance
-import com.example.theatre.features.spectacles.domain.model.Role
+import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.PerformancePlace
+
+/**
+ * Репозиторий для списка постановок и их детализации
+ *
+ * @author Marianna Sabanchieva
+ */
 
 interface PerformanceRepository {
-    suspend fun getPerformance(): List<Performance>
+    suspend fun getPerformances(): List<Performance>
     suspend fun getPerformanceById(id: Int): Performance
-    suspend fun getPlaceById(id: Int): Place
-    suspend fun getCityName(slug: String): Location
-    suspend fun getAgent(): List<Agent>
-    suspend fun getRole(): List<Role>
+
+    /**
+     * Get place by id
+     *
+     * @return - место проведения выбранной постановки по идентификатору
+     */
+    suspend fun getPlace(id: Int): PerformancePlace
+
+    /**
+     * Get city name
+     *
+     * @return - город, где проходит постановка по текстовому идентификатору, пример: msk, spb
+     */
+    suspend fun getCityName(slug: String): PerformancePlaceLocation
 }

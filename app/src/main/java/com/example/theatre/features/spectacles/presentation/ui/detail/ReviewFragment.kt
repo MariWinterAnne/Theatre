@@ -1,120 +1,95 @@
-/*
- * Copyright (c) 2018. André Mion
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.theatre.features.spectacles.presentation.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.example.theatre.R
+import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.databinding.FragmentReviewBinding
-import com.example.theatre.network.net.RetrofitClient
-import com.example.theatre.features.spectacles.presentation.utils.DateUtils
-import com.example.theatre.features.spectacles.presentation.ui.SpectacleViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.theatre.core.utils.PerformanceDateFormatter
+import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.utils.toListOfActorsInPerformance
+import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
+/**
+ * Фрагмент с отображением деталей места постановки
+ *
+ * @author Marianna Sabanchieva
+ */
 
 class ReviewFragment : Fragment() {
 
     companion object {
+        const val DETAILS_TAB = 1
+        const val DETAILS = "Детали"
         fun newInstance(): ReviewFragment {
             return ReviewFragment()
         }
     }
 
     private lateinit var binding: FragmentReviewBinding
-    private val spectacleViewModel by viewModel<SpectacleViewModel>()
+    private val spectacleViewModel by sharedViewModel<SpectacleDetailsViewModel>()
+    private val dateFormatter by inject<PerformanceDateFormatter>()
+    private lateinit var cityName: String
+    private lateinit var gaps: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_review, container, false)
-
-        val bundle = activity?.intent?.extras
-        val eventId = bundle?.getInt("id")
-
-        lifecycleScope.launchWhenCreated {
-            spectacleViewModel.init()
-            try {
-                val results = eventId?.let { RetrofitClient.retrofit.getPerformanceById(it) }
-                val place = results?.place?.id?.let { RetrofitClient.retrofit.getPlaceById(it) }
-                val city = place?.location?.let { RetrofitClient.retrofit.getCityName(it) }
-
-                with(binding) {
-                    textDatetime.text = getString(R.string.event_date_time)
-                    textPlace.text = getString(R.string.place)
-                    textParticipants.text = getString(R.string.actors)
-                    if (results?.dates != null) {
-                        with(results) {
-                            textAgeRestriction.text = age_restriction
-                            for (i in 0 until dates.size) {
-                                val startDate = dates[i].start!!.toLong()*1000
-                                if(startDate >= DateUtils.currentTimeToLong()) {
-                                    textEventStartEnd.append(DateUtils.convertLongToTime(dates[i].start!!, dates[i].end!!) + "\n")
-                                }
-                            }
-                            var role = ""
-                            for(i in 0 until participants.size) {
-                                when (participants[i].role?.slug) {
-                                    "actors" -> { role = "Актер" }
-                                    "director" -> { role = "Режиссер" }
-                                    "musician" -> { role = "Музыкант" }
-                                    "screenwriter" -> { role = "Сценарист" }
-                                    "stage-theatre" -> { role = "Театр-постановщик" }
-                                }
-                                textParticipantsList.append(participants[i].agent?.title + getString(R.string.gaps) + role + "\n")
-                            }
-                        }
-                    }
-                    if (place != null) {
-                        with(place) {
-                            textPlaceTitle.text =
-                                this.title?.replaceFirstChar { it.uppercaseChar() }
-                            textPlaceSubway.text = this.subway ?: ""
-                            ((city?.name + getString(R.string.gaps)).plus(this.address ?: "")).also {
-                                textPlaceAddress.text = it
-                            }
-                            (getString(R.string.tel).plus(this.phone ?: "")).also {
-                                textPlacePhone.text = it
-                            }
-                            (getString(R.string.website).plus(this.foreignUrl ?: "")).also {
-                                textPlaceSite.text = it
-                            }
-                            if (this.isClosed == true) {
-                                textPlaceIsclosed.text = getString(R.string.place_is_closed)
-                            }
-                        }
-                    }
-                }
-            } catch (e: Throwable) {
-                Toast.makeText(
-                    context,
-                    "Ошибка получения данных.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        return binding.root
+        return inflater.inflate(R.layout.fragment_review, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentReviewBinding.bind(view)
+        gaps = getString(R.string.gaps)
+        with(spectacleViewModel) {
+            arguments?.run { init(getInt(event_id)) }
+            spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
+            cityLoaded.observe(viewLifecycleOwner, ::setCity)
+            placeLoaded.observe(viewLifecycleOwner, ::setPlace)
+        }
+    }
+
+    private fun setDetails(eventDetails: Performance) {
+        with(binding) {
+            textDatetime.text = getString(R.string.event_date_time)
+            textPlace.text = getString(R.string.place)
+            textParticipants.text = getString(R.string.actors)
+            with(eventDetails) {
+                textAgeRestriction.text = age_restriction
+                textEventStartEnd.text = dateFormatter.getUpcomingPerformanceDates(dates)
+                textParticipantsList.text = participants.toListOfActorsInPerformance(requireContext())
+            }
+        }
+    }
+
+    private fun setCity(city: PerformancePlaceLocation) {
+        cityName = city.name.toString()
+    }
+
+    private fun setPlace(place: PerformancePlace) {
+        with(binding) {
+            with(place) {
+                textPlaceTitle.text = title.orEmpty().replaceFirstChar { it.uppercaseChar() }
+                textPlaceSubway.text = subway
+                textPlaceAddress.text = "$cityName$gaps$address"
+                textPlacePhone.text = phone
+                val url = if (foreign_url?.isNotEmpty() == true) foreign_url else String.EMPTY
+                textPlaceSite.text = url
+                if (is_closed == true) {
+                    textPlaceIsclosed.text = getString(R.string.place_is_closed)
+                }
+            }
+        }
+    }
 }

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.theatre.features.poster.PosterFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_poster" />
+
+    <fragment
+        android:id="@+id/favourite"
+        android:name="com.example.theatre.features.favourite.FavoriteFragment"
+        android:label="@string/favourite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/performance"
+        android:name="com.example.theatre.features.spectacles.presentation.ui.list.SpectaclesFragment"
+        android:label="@string/performance"
+        tools:layout="@layout/fragment_spectacles" >
+        <action
+            android:id="@+id/action_performance_to_eventFragment"
+            app:destination="@id/eventFragment"
+            app:popUpTo="@id/performance"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/info"
+        android:name="com.example.theatre.features.info.presentation.ui.InfoFragment"
+        android:label="@string/info"
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_info_to_personsFragment"
+            app:destination="@id/personsFragment" />
+        <action
+            android:id="@+id/action_info_to_theatresFragment"
+            app:destination="@id/theatresFragment" />
+        <action
+            android:id="@+id/action_info_to_theatreFragment"
+            app:destination="@id/theatreFragment" />
+        <action
+            android:id="@+id/action_info_to_personFragment"
+            app:destination="@id/personFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment"
+        android:label="EventFragment" >
+        <action
+            android:id="@+id/action_eventFragment_to_eventDescriptionFragment"
+            app:destination="@id/eventDescriptionFragment" />
+        <action
+            android:id="@+id/action_eventFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDescriptionFragment"
+        android:name="com.example.theatre.features.spectacles.presentation.ui.detail.EventDescriptionFragment"
+        android:label="EventDescriptionFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.theatre.features.spectacles.presentation.ui.detail.ReviewFragment"
+        android:label="ReviewFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/personsFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.list.person.PersonsFragment"
+        android:label="fragment_persons"
+        tools:layout="@layout/fragment_persons" >
+        <action
+            android:id="@+id/action_personsFragment_to_personFragment"
+            app:destination="@id/personFragment"
+            app:popUpTo="@id/personsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/theatresFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.list.theatre.TheatresFragment"
+        android:label="fragment_theatres"
+        tools:layout="@layout/fragment_theatres" >
+        <action
+            android:id="@+id/action_theatresFragment_to_theatreFragment"
+            app:destination="@id/theatreFragment"
+            app:popUpTo="@id/theatresFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/theatreFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreFragment"
+        android:label="TheatreFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_theatreFragment_to_theatreDescriptionFragment"
+            app:destination="@id/theatreDescriptionFragment" />
+        <action
+            android:id="@+id/action_theatreFragment_to_theatreReviewFragment"
+            app:destination="@id/theatreReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/theatreDescriptionFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreDescriptionFragment"
+        android:label="TheatreDescriptionFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/theatreReviewFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreReviewFragment"
+        android:label="TheatreReviewFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonFragment"
+        android:label="PersonFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_personFragment_to_personDescriptionFragment"
+            app:destination="@id/personDescriptionFragment" />
+        <action
+            android:id="@+id/action_personFragment_to_personReviewFragment"
+            app:destination="@id/personReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDescriptionFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonDescriptionFragment"
+        android:label="PersonDescriptionFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/personReviewFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonReviewFragment"
+        android:label="PersonReviewFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+</navigation>

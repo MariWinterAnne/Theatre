@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".ExecApp"
+        android:name=".TheatreApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,15 +20,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.theatre.features.spectacles.presentation.ui.detail.EventActivity">
-        </activity>
-        <activity
-            android:name="com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreActivity">
-        </activity>
-        <activity
-            android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonActivity">
         </activity>
 
     </application>

@@ -1,36 +1,26 @@
 package com.example.theatre.features.spectacles.data
 
-import com.example.theatre.features.spectacles.data.mappers.GetPerformanceMapper
-import com.example.theatre.network.net.RetrofitClient
-import com.example.theatre.features.spectacles.data.mappers.GetAgentMapper
-import com.example.theatre.features.spectacles.data.mappers.GetRoleMapper
-import com.example.theatre.features.spectacles.data.model.Location
-import com.example.theatre.features.spectacles.data.model.Place
-import com.example.theatre.features.spectacles.domain.model.Agent
-import com.example.theatre.features.spectacles.domain.model.Performance
-import com.example.theatre.features.spectacles.domain.model.Role
+import com.example.theatre.network.PerformanceApiMapper
+import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.features.spectacles.domain.repository.PerformanceRepository
 
+/**
+ * Реализация функций репозитория
+ *
+ * @property dispatcher
+ * @property performanceApiMapper
+ *
+ * @author Marianna Sabanchieva
+ */
+
 class PerformanceRepositoryImpl(
-    private val getPerformanceMapper: GetPerformanceMapper,
-    private val getAgentMapper: GetAgentMapper,
-    private val getRoleMapper: GetRoleMapper
+    private val performanceApiMapper: PerformanceApiMapper
 ) : PerformanceRepository {
-    override suspend fun getPerformance(): List<Performance> =
-        RetrofitClient.retrofit.getPerformance().results.map{getPerformanceMapper.getPerformance(it)}
+    override suspend fun getPerformances(): List<Performance> = performanceApiMapper.getPerformances()
+    override suspend fun getPerformanceById(id: Int): Performance = performanceApiMapper.getPerformanceById(id)
 
-    override suspend fun getPerformanceById(id: Int): Performance =
-        RetrofitClient.retrofit.getPerformanceById(id = id)
-
-    override suspend fun getPlaceById(id: Int): Place =
-        RetrofitClient.retrofit.getPlaceById(id = id)
-
-    override suspend fun getCityName(slug: String): Location =
-        RetrofitClient.retrofit.getCityName(slug = slug)
-
-    override suspend fun getAgent(): List<Agent> =
-        RetrofitClient.retrofit.getAgent().results.map{getAgentMapper.getAgent(it)}
-
-    override suspend fun getRole(): List<Role> =
-        RetrofitClient.retrofit.getRoles().results.map{getRoleMapper.getRole(it)}
+    override suspend fun getPlace(id: Int): PerformancePlace = performanceApiMapper.getPlaceById(id)
+    override suspend fun getCityName(slug: String): PerformancePlaceLocation = performanceApiMapper.getCityName(slug)
 }

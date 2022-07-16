@@ -1,6 +1,4 @@
-package com.example.theatre.core.data.model
-
-import com.google.gson.annotations.SerializedName
+package com.example.theatre.core.domain.model
 
 /**
  * Model images - модель для получения изображения
@@ -9,7 +7,6 @@ import com.google.gson.annotations.SerializedName
  * @author Marianna Sabanchieva
  */
 
-data class ModelImages(
-    @SerializedName("image")
-    val image: String? = null
+data class Images(
+    val image: String?
 )

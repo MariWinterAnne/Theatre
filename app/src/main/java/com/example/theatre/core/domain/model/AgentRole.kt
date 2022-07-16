@@ -1,18 +1,17 @@
 package com.example.theatre.core.domain.model
 
 /**
- * Role
+ * Agent role - модель для получения деталей о роли
  *
  * @property id - идентификатор
  * @property slug - слаг
  * @property name - наименование роли
- * @constructor Create empty Role
  *
  * @author Marianna Sabanchieva
  */
 
-data class Role(
-    val id: Int? = null,
-    val slug: String? = null,
-    val name: String? = null
+data class AgentRole(
+    val id: Int?,
+    val slug: String?,
+    val name: String?
 )

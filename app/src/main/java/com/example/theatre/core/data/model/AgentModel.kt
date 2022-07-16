@@ -3,7 +3,7 @@ package com.example.theatre.core.data.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Agent model
+ * Agent model - модель для получения деталей об актере
  *
  * @property id - идентификатор
  * @property title - наименование агента
@@ -11,10 +11,9 @@ import com.google.gson.annotations.SerializedName
  * @property description - описание
  * @property body_text - полное описание
  * @property agent_type - тип агента
- * @property images - картинки объекта
+ * @property images - картинки объекта [ModelImages]
  * @property site_url - адрес события на сайте kudago.com
- * @property participations - список участий агента
- * @constructor Create empty Agent model
+ * @property participations - список участий агента [AgentParticipationsModel]
  *
  * @author Marianna Sabanchieva
  */
@@ -37,5 +36,5 @@ data class AgentModel(
     @SerializedName("site_url")
     val site_url: String? = null,
     @SerializedName("participations")
-    val participations: ArrayList<AgentParticipations> = arrayListOf()
+    val participations: ArrayList<AgentParticipationsModel> = arrayListOf()
 )

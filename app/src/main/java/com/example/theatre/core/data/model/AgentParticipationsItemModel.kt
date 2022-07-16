@@ -3,22 +3,21 @@ package com.example.theatre.core.data.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Agent participations item
+ * Agent participations item - модель для получения постановок, в которых задействован актер
  *
  * @property id - идентификатор
  * @property title - наименование
  * @property description - описание
  * @property item_url - адрес
  * @property ctype - тип элемента
- * @property performance_place - место
- * @property first_image - главное изображение
+ * @property performance_place - место [PerformancePlaceModel]
+ * @property first_image - главное изображение [ModelImages]
  * @property age_restriction - ограничение по возрасту
- * @constructor Create empty Agent participations item
  *
  * @author Marianna Sabanchieva
  */
 
-data class AgentParticipationsItem(
+data class AgentParticipationsItemModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
@@ -30,7 +29,7 @@ data class AgentParticipationsItem(
     @SerializedName("ctype")
     val ctype: String? = null,
     @SerializedName("place")
-    val performance_place: PerformancePlace? = PerformancePlace(),
+    val performance_place: PerformancePlaceModel? = PerformancePlaceModel(),
     @SerializedName("first_image")
     val first_image: ModelImages? = ModelImages(),
     @SerializedName("age_restriction")

@@ -3,7 +3,7 @@ package com.example.theatre.core.data.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Performance place coordinates
+ * Performance place coordinates - модель для получения координат театра
  *
  * @property lat - широта
  * @property lon - долгота
@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
  * @author Marianna Sabanchieva
  */
 
-data class PerformancePlaceCoordinates(
+data class PerformancePlaceCoordinatesModel(
     @SerializedName("lat")
     val lat: Double? = null,
     @SerializedName("lon")

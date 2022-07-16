@@ -3,13 +3,12 @@ package com.example.theatre.core.data.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Agents list result
+ * Agents list result - модель для получения списка актеров
  *
  * @property count - количество элементов
  * @property next - ссылка на следующую страницу
  * @property previous - ссылка на предыдущую страницу
- * @property results - список агентов
- * @constructor Create empty Agents list result
+ * @property results - список агентов [AgentModel]
  *
  * @author Marianna Sabanchieva
  */

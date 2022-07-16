@@ -3,7 +3,7 @@ package com.example.theatre.core.data.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Performance place
+ * Performance place - модель для детализации места постановки
  *
  * @property id - идентификатор
  * @property title - название
@@ -17,13 +17,12 @@ import com.google.gson.annotations.SerializedName
  * @property site_url - адрес места на сайте kudago.com
  * @property foreign_url - сайт места
  * @property is_closed - закрыто ли место
- * @property performance_place_coordinates - координаты места
- * @constructor Create empty Performance place
+ * @property performance_place_coordinates - координаты места [PerformancePlaceCoordinatesModel]
  *
  * @author Marianna Sabanchieva
  */
 
-data class PerformancePlace(
+data class PerformancePlaceModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
@@ -49,5 +48,5 @@ data class PerformancePlace(
     @SerializedName("is_closed")
     val is_closed: Boolean? = null,
     @SerializedName("coords")
-    val performance_place_coordinates: PerformancePlaceCoordinates? = PerformancePlaceCoordinates()
+    val performance_place_coordinates: PerformancePlaceCoordinatesModel? = PerformancePlaceCoordinatesModel()
 )

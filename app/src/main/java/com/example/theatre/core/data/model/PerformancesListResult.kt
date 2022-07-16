@@ -3,13 +3,12 @@ package com.example.theatre.core.data.model
 import com.google.gson.annotations.SerializedName
 
 /**
- * Performances list result
+ * Performances list result - модель для получения списка постановок
  *
  * @property count - количество элементов
  * @property next - ссылка на следующую страницу
  * @property previous - ссылка на предыдущую страницу
- * @property results - список постановок
- * @constructor Create empty Performances list result
+ * @property results - список постановок [PerformanceModel]
  *
  * @author Marianna Sabanchieva
  */

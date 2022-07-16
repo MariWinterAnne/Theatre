@@ -1,5 +1,6 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -8,11 +9,11 @@ import com.google.gson.annotations.SerializedName
  * @property id - идентификатор
  * @property title - наименование
  * @property description - описание
- * @property item_url - адрес
+ * @property itemUrl - адрес
  * @property ctype - тип элемента
- * @property performance_place - место [PerformancePlaceModel]
- * @property first_image - главное изображение [ModelImages]
- * @property age_restriction - ограничение по возрасту
+ * @property performancePlace - место [PerformancePlaceModel]
+ * @property firstImage - главное изображение [ModelImages]
+ * @property ageRestriction - ограничение по возрасту
  *
  * @author Marianna Sabanchieva
  */
@@ -21,17 +22,17 @@ data class AgentParticipationsItemModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
-    val title: String? = null,
+    val title: String? = String.EMPTY,
     @SerializedName("description")
-    val description: String? = null,
+    val description: String? = String.EMPTY,
     @SerializedName("item_url")
-    val item_url: String? = null,
+    val itemUrl: String? = String.EMPTY,
     @SerializedName("ctype")
-    val ctype: String? = null,
+    val ctype: String? = String.EMPTY,
     @SerializedName("place")
-    val performance_place: PerformancePlaceModel? = PerformancePlaceModel(),
+    val performancePlace: PerformancePlaceModel? = null,
     @SerializedName("first_image")
-    val first_image: ModelImages? = ModelImages(),
+    val firstImage: ModelImages? = null,
     @SerializedName("age_restriction")
-    val age_restriction: String? = null
+    val ageRestriction: String? = String.EMPTY
 )

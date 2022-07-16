@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
 
 data class PerformancePlaceCoordinatesModel(
     @SerializedName("lat")
-    val lat: Double? = null,
+    val lat: Double? = 55.7602196,
     @SerializedName("lon")
-    val lon: Double? = null
+    val lon: Double? = 37.6186409
 )

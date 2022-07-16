@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName
  * Performance participants - модель для получения списка актеров и их ролей
  *
  * @property role - роль [AgentRoleModel]
- * @property agent_model - участник постановки [AgentModel]
+ * @property agentModel - участник постановки [AgentModel]
  *
  * @author Marianna Sabanchieva
  */
 
 data class PerformanceParticipantsModel(
     @SerializedName("role")
-    val role: AgentRoleModel? = AgentRoleModel(),
+    val role: AgentRoleModel? = null,
     @SerializedName("agent")
-    val agent_model: AgentModel? = AgentModel(),
+    val agentModel: AgentModel? = null,
 )

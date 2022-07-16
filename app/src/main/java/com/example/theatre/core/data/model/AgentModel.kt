@@ -1,5 +1,6 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -9,10 +10,10 @@ import com.google.gson.annotations.SerializedName
  * @property title - наименование агента
  * @property slug - слаг
  * @property description - описание
- * @property body_text - полное описание
- * @property agent_type - тип агента
+ * @property bodyText - полное описание
+ * @property agentType - тип агента
  * @property images - картинки объекта [ModelImages]
- * @property site_url - адрес события на сайте kudago.com
+ * @property siteUrl - адрес события на сайте kudago.com
  * @property participations - список участий агента [AgentParticipationsModel]
  *
  * @author Marianna Sabanchieva
@@ -22,19 +23,19 @@ data class AgentModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
-    val title: String? = null,
+    val title: String? = String.EMPTY,
     @SerializedName("slug")
-    val slug: String? = null,
+    val slug: String? = String.EMPTY,
     @SerializedName("description")
-    val description: String? = null,
+    val description: String? = String.EMPTY,
     @SerializedName("body_text")
-    val body_text: String? = null,
+    val bodyText: String? = String.EMPTY,
     @SerializedName("agent_type")
-    val agent_type: String? = null,
+    val agentType: String? = String.EMPTY,
     @SerializedName("images")
-    val images: ArrayList<ModelImages> = arrayListOf(),
+    val images: List<ModelImages> = listOf(),
     @SerializedName("site_url")
-    val site_url: String? = null,
+    val siteUrl: String? = String.EMPTY,
     @SerializedName("participations")
-    val participations: ArrayList<AgentParticipationsModel> = arrayListOf()
+    val participations: List<AgentParticipationsModel> = listOf()
 )

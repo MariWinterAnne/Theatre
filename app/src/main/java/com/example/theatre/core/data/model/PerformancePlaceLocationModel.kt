@@ -1,5 +1,6 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -8,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * @property slug - слаг
  * @property name - наименование
  * @property timezone - часовой пояс
- * @property performance_place_coordinates - координаты места [PerformancePlaceCoordinatesModel]
+ * @property performancePlaceCoordinates - координаты места [PerformancePlaceCoordinatesModel]
  * @property language - язык
  *
  * @author Marianna Sabanchieva
@@ -16,13 +17,13 @@ import com.google.gson.annotations.SerializedName
 
 data class PerformancePlaceLocationModel(
     @SerializedName("slug")
-    val slug: String? = null,
+    val slug: String? = String.EMPTY,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String? = String.EMPTY,
     @SerializedName("timezone")
-    val timezone: String? = null,
+    val timezone: String? = String.EMPTY,
     @SerializedName("coords")
-    val performance_place_coordinates: PerformancePlaceCoordinatesModel? = PerformancePlaceCoordinatesModel(),
+    val performancePlaceCoordinates: PerformancePlaceCoordinatesModel? = null,
     @SerializedName("language")
-    val language: String? = null
+    val language: String? = String.EMPTY
 )

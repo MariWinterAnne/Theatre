@@ -7,10 +7,10 @@ package com.example.theatre.core.domain.model
  * @property title - наименование агента
  * @property slug - слаг
  * @property description - описание
- * @property body_text - полное описание
- * @property agent_type - тип агента
+ * @property bodyText - полное описание
+ * @property agentType - тип агента
  * @property images - картинки объекта
- * @property site_url - адрес события на сайте kudago.com
+ * @property siteUrl - адрес события на сайте kudago.com
  * @property participations - список участий агента [AgentParticipations]
  *
  * @author Marianna Sabanchieva
@@ -21,9 +21,9 @@ data class Agent(
     val title: String?,
     val slug: String?,
     val description: String?,
-    val body_text: String?,
-    val agent_type: String?,
-    val images: ArrayList<Images>,
-    val site_url: String?,
-    val participations : ArrayList<AgentParticipations>
+    val bodyText: String?,
+    val agentType: String?,
+    val images: List<Images>,
+    val siteUrl: String?,
+    val participations : List<AgentParticipations>
 )

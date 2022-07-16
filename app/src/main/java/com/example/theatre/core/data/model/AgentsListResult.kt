@@ -1,5 +1,6 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -17,9 +18,9 @@ data class AgentsListResult(
     @SerializedName("count")
     val count: Int? = null,
     @SerializedName("next")
-    val next: String? = null,
+    val next: String? = String.EMPTY,
     @SerializedName("previous")
-    val previous: String? = null,
+    val previous: String? = String.EMPTY,
     @SerializedName("results")
-    val results: ArrayList<AgentModel> = arrayListOf()
+    val results: List<AgentModel> = listOf()
 )

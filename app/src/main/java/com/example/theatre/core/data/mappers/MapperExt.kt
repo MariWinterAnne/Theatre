@@ -31,61 +31,61 @@ import com.example.theatre.core.domain.model.PerformancePlaceLocation
 
 fun PerformanceModel.toPerformance() = Performance(
     id = id,
-    publication_date = publication_date,
-    dates = dates.map { it.toPerformanceDates() } as ArrayList<PerformanceDates>,
+    publicationDate = publicationDate,
+    dates = dates.map { it.toPerformanceDates() },
     title = title,
-    short_title = short_title,
+    shortTitle = shortTitle,
     slug = slug,
     place = place?.toPerformancePlace(),
     description = description,
-    body_text = body_text,
+    bodyText = bodyText,
     location = location?.toPerformancePlaceLocation(),
     categories = categories,
     tagline = tagline,
-    age_restriction = age_restriction,
+    ageRestriction = ageRestriction,
     price = price,
-    is_free = is_free,
-    images = images.map { it.toImages() } as ArrayList<Images>,
-    favorites_count = favorites_count,
-    comments_count = comments_count,
-    site_url = site_url,
+    isFree = isFree,
+    images = images.map { it.toImages() },
+    favoritesCount = favoritesCount,
+    commentsCount = commentsCount,
+    siteUrl = siteUrl,
     tags = tags,
-    participants = participants.map { it.toPerformanceParticipants() } as ArrayList<PerformanceParticipants>
+    participants = participants.map { it.toPerformanceParticipants() }
 )
 
 fun PerformanceDatesModel.toPerformanceDates() = PerformanceDates(
-    start_date = start_date,
-    start_time = start_time,
+    startDate = startDate,
+    startTime = startTime,
     start = start,
-    end_date = end_date,
-    end_time = end_time,
+    endDate = endDate,
+    endTime = endTime,
     end = end,
-    is_continuous = is_continuous,
-    is_endless = is_endless,
-    is_startless = is_startless
+    isContinuous = isContinuous,
+    isEndless = isEndless,
+    isStartles = isStartles
 )
 
 fun PerformancePlaceModel.toPerformancePlace() = PerformancePlace(
     id = id,
     title = title,
-    short_title = short_title,
+    shortTitle = shortTitle,
     slug = slug,
     description = description,
     address = address,
     phone = phone,
     subway = subway,
     location = location,
-    site_url = site_url,
-    foreign_url = foreign_url,
-    is_closed = is_closed,
-    performance_place_coordinates = performance_place_coordinates?.toPerformancePlaceCoordinates()
+    siteUrl = siteUrl,
+    foreignUrl = foreignUrl,
+    isClosed = isClosed,
+    performancePlaceCoordinates = performancePlaceCoordinates?.toPerformancePlaceCoordinates()
 )
 
 fun PerformancePlaceLocationModel.toPerformancePlaceLocation() = PerformancePlaceLocation(
     slug = slug,
     name = name,
     timezone = timezone,
-    performance_place_coordinates = performance_place_coordinates?.toPerformancePlaceCoordinates(),
+    performance_place_coordinates = performancePlaceCoordinates?.toPerformancePlaceCoordinates(),
     language = language
 )
 
@@ -95,12 +95,12 @@ fun PerformancePlaceCoordinatesModel.toPerformancePlaceCoordinates() = Performan
 )
 
 fun ModelImages.toImages() = Images(
-    image = image
+    imageURL = imageURL
 )
 
 fun PerformanceParticipantsModel.toPerformanceParticipants() = PerformanceParticipants(
     role = role?.toAgentRole(),
-    agent_model = agent_model?.toAgent()
+    agentModel = agentModel?.toAgent()
 )
 
 fun AgentRoleModel.toAgentRole() = AgentRole(
@@ -114,25 +114,25 @@ fun AgentModel.toAgent() = Agent(
     title = title,
     slug = slug,
     description = description,
-    body_text = body_text,
-    agent_type = agent_type,
-    images = images.map { it.toImages() } as ArrayList<Images>,
-    site_url = site_url,
-    participations = participations.map { it.toAgentParticipations() } as ArrayList<AgentParticipations>
+    bodyText = bodyText,
+    agentType = agentType,
+    images = images.map { it.toImages() },
+    siteUrl = siteUrl,
+    participations = participations.map { it.toAgentParticipations() }
 )
 
 fun AgentParticipationsModel.toAgentParticipations() = AgentParticipations(
     role = role?.toAgentRole(),
-    agent_participations_item = agent_participations_item?.toAgentParticipationsItem()
+    agentParticipationsItem = agentParticipationsItem?.toAgentParticipationsItem()
 )
 
 fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipationsItem(
     id = id,
     title = title,
     description = description,
-    item_url = item_url,
+    itemUrl = itemUrl,
     ctype = ctype,
-    performance_place = performance_place?.toPerformancePlace(),
-    first_image = first_image?.toImages(),
-    age_restriction = age_restriction
+    performancePlace = performancePlace?.toPerformancePlace(),
+    firstImage = firstImage?.toImages(),
+    ageRestriction = ageRestriction
 )

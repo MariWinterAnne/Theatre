@@ -1,40 +1,41 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
  * Performance dates - модель для получения списка дат, на которые назначен показ постановки
  *
- * @property start_date - дата начала
- * @property start_time - время начала
+ * @property startDate - дата начала
+ * @property startTime - время начала
  * @property start - дата и время начала
- * @property end_date - дата окончания
- * @property end_time - время окончания
+ * @property endDate - дата окончания
+ * @property endTime - время окончания
  * @property end - дата и время окончания
- * @property is_continuous - мероприятие продолжительное
- * @property is_endless - мероприятие не имеет времени конца
- * @property is_startless - мероприятие не имеет времени начала
+ * @property isContinuous - мероприятие продолжительное
+ * @property isEndless - мероприятие не имеет времени конца
+ * @property isStartles - мероприятие не имеет времени начала
  *
  * @author Marianna Sabanchieva
  */
 
 data class PerformanceDatesModel(
     @SerializedName("start_date")
-    val start_date: String? = null,
+    val startDate: String? = String.EMPTY,
     @SerializedName("start_time")
-    val start_time: String? = null,
+    val startTime: String? = String.EMPTY,
     @SerializedName("start")
-    val start: Long? = null,
+    val start: Long? = 0,
     @SerializedName("end_date")
-    val end_date: String? = null,
+    val endDate: String? = String.EMPTY,
     @SerializedName("end_time")
-    val end_time: String? = null,
+    val endTime: String? = String.EMPTY,
     @SerializedName("end")
-    val end: Long? = null,
+    val end: Long? = 0,
     @SerializedName("is_continuous")
-    val is_continuous: Boolean? = null,
+    val isContinuous: Boolean? = false,
     @SerializedName("is_endless")
-    val is_endless: Boolean? = null,
+    val isEndless: Boolean? = false,
     @SerializedName("is_startless")
-    val is_startless: Boolean? = null
+    val isStartles: Boolean? = false
 )

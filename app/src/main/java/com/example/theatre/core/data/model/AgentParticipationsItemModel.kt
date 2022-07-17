@@ -22,17 +22,17 @@ data class AgentParticipationsItemModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
-    val title: String? = String.EMPTY,
+    val title: String = String.EMPTY,
     @SerializedName("description")
-    val description: String? = String.EMPTY,
+    val description: String = String.EMPTY,
     @SerializedName("item_url")
-    val itemUrl: String? = String.EMPTY,
+    val itemUrl: String = String.EMPTY,
     @SerializedName("ctype")
-    val ctype: String? = String.EMPTY,
+    val ctype: String = String.EMPTY,
     @SerializedName("place")
     val performancePlace: PerformancePlaceModel? = null,
     @SerializedName("first_image")
     val firstImage: ModelImages? = null,
     @SerializedName("age_restriction")
-    val ageRestriction: String? = String.EMPTY
+    val ageRestriction: String = String.EMPTY
 )

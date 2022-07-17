@@ -17,7 +17,7 @@ data class AgentRoleModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("slug")
-    val slug: String? = String.EMPTY,
+    val slug: String = String.EMPTY,
     @SerializedName("name")
-    val name: String? = String.EMPTY
+    val name: String = String.EMPTY
 )

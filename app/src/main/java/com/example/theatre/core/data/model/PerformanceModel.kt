@@ -41,37 +41,37 @@ data class PerformanceModel(
     @SerializedName("title")
     val title: String,
     @SerializedName("short_title")
-    val shortTitle: String? = String.EMPTY,
+    val shortTitle: String = String.EMPTY,
     @SerializedName("slug")
-    val slug: String? = String.EMPTY,
+    val slug: String = String.EMPTY,
     @SerializedName("place")
     val place: PerformancePlaceModel? = null,
     @SerializedName("description")
-    val description: String? = String.EMPTY,
+    val description: String = String.EMPTY,
     @SerializedName("body_text")
-    val bodyText: String? = String.EMPTY,
+    val bodyText: String = String.EMPTY,
     @SerializedName("location")
     val location: PerformancePlaceLocationModel? = null,
     @SerializedName("categories")
-    val categories: List<String>? = null,
+    val categories: List<String> = listOf(),
     @SerializedName("tagline")
-    val tagline: String? = String.EMPTY,
+    val tagline: String = String.EMPTY,
     @SerializedName("age_restriction")
-    val ageRestriction: String? = String.EMPTY,
+    val ageRestriction: String = String.EMPTY,
     @SerializedName("price")
-    val price: String? = String.EMPTY,
+    val price: String = String.EMPTY,
     @SerializedName("is_free")
     val isFree: Boolean? = false,
     @SerializedName("images")
-    val images: List<ModelImages>,
+    val images: List<ModelImages> = listOf(),
     @SerializedName("favorites_count")
     val favoritesCount: Int? = 0,
     @SerializedName("comments_count")
     val commentsCount: Int? = 0,
     @SerializedName("site_url")
-    val siteUrl: String? = String.EMPTY,
+    val siteUrl: String = String.EMPTY,
     @SerializedName("tags")
     val tags: List<String> = listOf(),
     @SerializedName("participants")
-    val participants: List<PerformanceParticipantsModel>
+    val participants: List<PerformanceParticipantsModel> = listOf()
 )

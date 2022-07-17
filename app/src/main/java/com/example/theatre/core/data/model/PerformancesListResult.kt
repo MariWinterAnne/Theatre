@@ -18,9 +18,9 @@ data class PerformancesListResult(
     @SerializedName("count")
     val count: Int? = null,
     @SerializedName("next")
-    val next: String? = String.EMPTY,
+    val next: String = String.EMPTY,
     @SerializedName("previous")
-    val previous: String? = String.EMPTY,
+    val previous: String = String.EMPTY,
     @SerializedName("results")
     val results: List<PerformanceModel> = listOf()
 )

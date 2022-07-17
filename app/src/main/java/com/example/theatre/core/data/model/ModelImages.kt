@@ -12,5 +12,5 @@ import com.google.gson.annotations.SerializedName
 
 data class ModelImages(
     @SerializedName("image")
-    val imageURL: String? = String.EMPTY
+    val imageURL: String = String.EMPTY
 )

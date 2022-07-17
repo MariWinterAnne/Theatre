@@ -34,7 +34,7 @@ class PerformanceDateFormatter {
         return formattedDateLine
     }
 
-    fun getUpcomingPerformanceDates(dates: ArrayList<PerformanceDates>): String {
+    fun getUpcomingPerformanceDates(dates: List<PerformanceDates>): String {
         val datesList = StringBuilder()
         for (date in dates) {
             if (getUpcomingPerformanceDateToLine(date.start.orLongDefault(), date.end.orLongDefault()) != String.EMPTY)

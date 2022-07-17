@@ -17,13 +17,13 @@ import com.google.gson.annotations.SerializedName
 
 data class PerformancePlaceLocationModel(
     @SerializedName("slug")
-    val slug: String? = String.EMPTY,
+    val slug: String = String.EMPTY,
     @SerializedName("name")
-    val name: String? = String.EMPTY,
+    val name: String = String.EMPTY,
     @SerializedName("timezone")
-    val timezone: String? = String.EMPTY,
+    val timezone: String = String.EMPTY,
     @SerializedName("coords")
     val performancePlaceCoordinates: PerformancePlaceCoordinatesModel? = null,
     @SerializedName("language")
-    val language: String? = String.EMPTY
+    val language: String = String.EMPTY
 )

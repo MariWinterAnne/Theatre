@@ -23,19 +23,19 @@ data class AgentModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
-    val title: String? = String.EMPTY,
+    val title: String = String.EMPTY,
     @SerializedName("slug")
-    val slug: String? = String.EMPTY,
+    val slug: String = String.EMPTY,
     @SerializedName("description")
-    val description: String? = String.EMPTY,
+    val description: String = String.EMPTY,
     @SerializedName("body_text")
-    val bodyText: String? = String.EMPTY,
+    val bodyText: String = String.EMPTY,
     @SerializedName("agent_type")
-    val agentType: String? = String.EMPTY,
+    val agentType: String = String.EMPTY,
     @SerializedName("images")
     val images: List<ModelImages> = listOf(),
     @SerializedName("site_url")
-    val siteUrl: String? = String.EMPTY,
+    val siteUrl: String = String.EMPTY,
     @SerializedName("participations")
     val participations: List<AgentParticipationsModel> = listOf()
 )

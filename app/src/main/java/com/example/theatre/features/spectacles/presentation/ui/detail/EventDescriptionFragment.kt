@@ -52,7 +52,7 @@ class EventDescriptionFragment : Fragment() {
     private fun setDetails(eventDetails: Performance) {
         with(binding) {
             with(eventDetails) {
-                val imageURL = if (images.isNotEmpty()) images.first().image.orEmpty() else String.EMPTY
+                val imageURL = if (images.isNotEmpty()) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {
                     context?.let {
                         Glide
@@ -64,7 +64,7 @@ class EventDescriptionFragment : Fragment() {
                 textName.text = title.replaceFirstChar { it.uppercaseChar() }
                 textDescription.text = description.orEmpty().deleteHTML()
                 textTagline.text = tagline
-                textBody.text = body_text.orEmpty().deleteHTML()
+                textBody.text = bodyText.orEmpty().deleteHTML()
             }
         }
     }

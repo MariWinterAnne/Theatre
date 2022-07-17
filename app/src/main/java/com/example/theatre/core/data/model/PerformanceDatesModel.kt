@@ -21,15 +21,15 @@ import com.google.gson.annotations.SerializedName
 
 data class PerformanceDatesModel(
     @SerializedName("start_date")
-    val startDate: String? = String.EMPTY,
+    val startDate: String = String.EMPTY,
     @SerializedName("start_time")
-    val startTime: String? = String.EMPTY,
+    val startTime: String = String.EMPTY,
     @SerializedName("start")
     val start: Long? = 0,
     @SerializedName("end_date")
-    val endDate: String? = String.EMPTY,
+    val endDate: String = String.EMPTY,
     @SerializedName("end_time")
-    val endTime: String? = String.EMPTY,
+    val endTime: String = String.EMPTY,
     @SerializedName("end")
     val end: Long? = 0,
     @SerializedName("is_continuous")

@@ -41,12 +41,12 @@ class EventListAdapter(
         with(holder.binding) {
             with(spectacles[position]) {
                 textName.text = title.replaceFirstChar { it.uppercaseChar() }
-                if (is_free == true) {
+                if (isFree == true) {
                     textPrice.text = ISFREE
                 } else {
                     textPrice.text = price
                 }
-                val imageURL = if (images.isNotEmpty()) images.first().image.orEmpty() else String.EMPTY
+                val imageURL = if (images.isNotEmpty()) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {
                     Glide
                         .with(context)

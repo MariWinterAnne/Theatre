@@ -85,7 +85,7 @@ fun PerformancePlaceLocationModel.toPerformancePlaceLocation() = PerformancePlac
     slug = slug,
     name = name,
     timezone = timezone,
-    performance_place_coordinates = toPerformancePlaceCoordinates(),
+    performancePlaceCoordinates = toPerformancePlaceCoordinates(),
     language = language
 )
 

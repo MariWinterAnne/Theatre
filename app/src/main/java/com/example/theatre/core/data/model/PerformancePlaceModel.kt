@@ -27,25 +27,25 @@ data class PerformancePlaceModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
-    val title: String? = String.EMPTY,
+    val title: String = String.EMPTY,
     @SerializedName("short_title")
-    val shortTitle: String? = String.EMPTY,
+    val shortTitle: String = String.EMPTY,
     @SerializedName("slug")
-    val slug: String? = String.EMPTY,
+    val slug: String = String.EMPTY,
     @SerializedName("description")
-    val description: String? = String.EMPTY,
+    val description: String = String.EMPTY,
     @SerializedName("address")
-    val address: String? = String.EMPTY,
+    val address: String = String.EMPTY,
     @SerializedName("phone")
-    val phone: String? = String.EMPTY,
+    val phone: String = String.EMPTY,
     @SerializedName("subway")
-    val subway: String? = String.EMPTY,
+    val subway: String = String.EMPTY,
     @SerializedName("location")
-    val location: String? = String.EMPTY,
+    val location: String = String.EMPTY,
     @SerializedName("site_url")
-    val siteUrl: String? = String.EMPTY,
+    val siteUrl: String = String.EMPTY,
     @SerializedName("foreign_url")
-    val foreignUrl: String? = String.EMPTY,
+    val foreignUrl: String = String.EMPTY,
     @SerializedName("is_closed")
     val isClosed: Boolean? = false,
     @SerializedName("coords")

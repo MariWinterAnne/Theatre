@@ -19,11 +19,11 @@ fun Long?.orLongDefault(value: Long = -1) = this ?: value
  * @author Marianne Sabanchieva
  */
 
-fun ArrayList<PerformanceParticipants>.toListOfActorsInPerformance(context: Context): String {
+fun List<PerformanceParticipants>.toListOfActorsInPerformance(context: Context): String {
     val participantsList = StringBuilder()
     for (actor in this) {
         val role = context.getString(actor.role?.slug.orEmpty().toRole())
-        val partList = actor.agent_model?.title.orEmpty()
+        val partList = actor.agentModel?.title.orEmpty()
         participantsList.appendLine("$partList, $role")
     }
     return participantsList.toString()

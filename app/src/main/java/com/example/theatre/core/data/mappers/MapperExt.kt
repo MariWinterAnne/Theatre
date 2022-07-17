@@ -24,7 +24,7 @@ import com.example.theatre.core.domain.model.PerformancePlaceCoordinates
 import com.example.theatre.core.domain.model.PerformancePlaceLocation
 
 /**
- * To performance - конвертирует data model в domain model
+ * Конвертирует data model в domain model
  *
  * @author Marianna Sabanchieva
  */
@@ -32,25 +32,25 @@ import com.example.theatre.core.domain.model.PerformancePlaceLocation
 fun PerformanceModel.toPerformance() = Performance(
     id = id,
     publicationDate = publicationDate,
-    dates = dates.map { it.toPerformanceDates() },
+    dates = toListPerformanceDates(),
     title = title,
     shortTitle = shortTitle,
     slug = slug,
-    place = place?.toPerformancePlace(),
+    place = toPerformancePlace(),
     description = description,
     bodyText = bodyText,
-    location = location?.toPerformancePlaceLocation(),
+    location = toPerformancePlaceLocation(),
     categories = categories,
     tagline = tagline,
     ageRestriction = ageRestriction,
     price = price,
     isFree = isFree,
-    images = images.map { it.toImages() },
+    images = toListPerformanceImages(),
     favoritesCount = favoritesCount,
     commentsCount = commentsCount,
     siteUrl = siteUrl,
     tags = tags,
-    participants = participants.map { it.toPerformanceParticipants() }
+    participants = toListPerformanceParticipants()
 )
 
 fun PerformanceDatesModel.toPerformanceDates() = PerformanceDates(
@@ -78,14 +78,14 @@ fun PerformancePlaceModel.toPerformancePlace() = PerformancePlace(
     siteUrl = siteUrl,
     foreignUrl = foreignUrl,
     isClosed = isClosed,
-    performancePlaceCoordinates = performancePlaceCoordinates?.toPerformancePlaceCoordinates()
+    performancePlaceCoordinates = toPerformancePlaceCoordinates()
 )
 
 fun PerformancePlaceLocationModel.toPerformancePlaceLocation() = PerformancePlaceLocation(
     slug = slug,
     name = name,
     timezone = timezone,
-    performance_place_coordinates = performancePlaceCoordinates?.toPerformancePlaceCoordinates(),
+    performance_place_coordinates = toPerformancePlaceCoordinates(),
     language = language
 )
 
@@ -99,8 +99,8 @@ fun ModelImages.toImages() = Images(
 )
 
 fun PerformanceParticipantsModel.toPerformanceParticipants() = PerformanceParticipants(
-    role = role?.toAgentRole(),
-    agentModel = agentModel?.toAgent()
+    role = toAgentRole(),
+    agentModel = toAgent()
 )
 
 fun AgentRoleModel.toAgentRole() = AgentRole(
@@ -116,14 +116,14 @@ fun AgentModel.toAgent() = Agent(
     description = description,
     bodyText = bodyText,
     agentType = agentType,
-    images = images.map { it.toImages() },
+    images = toListAgentImages(),
     siteUrl = siteUrl,
-    participations = participations.map { it.toAgentParticipations() }
+    participations = toListAgentParticipations()
 )
 
 fun AgentParticipationsModel.toAgentParticipations() = AgentParticipations(
-    role = role?.toAgentRole(),
-    agentParticipationsItem = agentParticipationsItem?.toAgentParticipationsItem()
+    role = toAgentRole(),
+    agentParticipationsItem = toAgentParticipationsItem()
 )
 
 fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipationsItem(
@@ -132,7 +132,7 @@ fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipatio
     description = description,
     itemUrl = itemUrl,
     ctype = ctype,
-    performancePlace = performancePlace?.toPerformancePlace(),
-    firstImage = firstImage?.toImages(),
+    performancePlace = toPerformancePlace(),
+    firstImage = toImages(),
     ageRestriction = ageRestriction
 )

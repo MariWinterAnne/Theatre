@@ -1,23 +1,23 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
- * Agent role
+ * Agent role - модель для получения деталей о роли
  *
  * @property id - идентификатор
  * @property slug - слаг
  * @property name - наименование роли
- * @constructor Create empty Agent role
  *
  * @author Marianna Sabanchieva
  */
 
-data class AgentRole(
+data class AgentRoleModel(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("slug")
-    val slug: String? = null,
+    val slug: String = String.EMPTY,
     @SerializedName("name")
-    val name: String? = null
+    val name: String = String.EMPTY
 )

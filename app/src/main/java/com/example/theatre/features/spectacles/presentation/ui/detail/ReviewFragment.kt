@@ -66,7 +66,7 @@ class ReviewFragment : Fragment() {
             textPlace.text = getString(R.string.place)
             textParticipants.text = getString(R.string.actors)
             with(eventDetails) {
-                textAgeRestriction.text = age_restriction
+                textAgeRestriction.text = ageRestriction
                 textEventStartEnd.text = dateFormatter.getUpcomingPerformanceDates(dates)
                 textParticipantsList.text = participants.toListOfActorsInPerformance(requireContext())
             }
@@ -84,9 +84,9 @@ class ReviewFragment : Fragment() {
                 textPlaceSubway.text = subway
                 textPlaceAddress.text = "$cityName$gaps$address"
                 textPlacePhone.text = phone
-                val url = if (foreign_url?.isNotEmpty() == true) foreign_url else String.EMPTY
+                val url = if (foreignUrl?.isNotEmpty() == true) foreignUrl else String.EMPTY
                 textPlaceSite.text = url
-                if (is_closed == true) {
+                if (isClosed == true) {
                     textPlaceIsclosed.text = getString(R.string.place_is_closed)
                 }
             }

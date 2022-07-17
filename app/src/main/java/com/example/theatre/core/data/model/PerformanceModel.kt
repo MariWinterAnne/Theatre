@@ -1,77 +1,77 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
- * Get performance
+ * Get performance - модель для получения детализации постановки
  *
  * @property id - идентификатор
- * @property publication_date - дата публикации
- * @property dates - даты проведения
+ * @property publicationDate - дата публикации
+ * @property dates - даты проведения [PerformanceDatesModel]
  * @property title - название
- * @property short_title - короткое название
+ * @property shortTitle - короткое название
  * @property slug - слаг
- * @property place - место проведения
+ * @property place - место проведения [PerformancePlaceModel]
  * @property description - описание
- * @property body_text - полное описание
- * @property location - город проведения
+ * @property bodyText - полное описание
+ * @property location - город проведения [PerformancePlaceLocationModel]
  * @property categories - список категорий
  * @property tagline - тэглайн
- * @property age_restriction - возрастное ограничение
+ * @property ageRestriction - возрастное ограничение
  * @property price - стоимость
- * @property is_free - бесплатное ли событие
- * @property images - картинки
- * @property favorites_count - сколько пользователей добавило событие в избранное
- * @property comments_count - число комментариев к событию
- * @property site_url - адрес события на сайте kudago.com
+ * @property isFree - бесплатное ли событие
+ * @property images - картинки [ModelImages]
+ * @property favoritesCount - сколько пользователей добавило событие в избранное
+ * @property commentsCount - число комментариев к событию
+ * @property siteUrl - адрес события на сайте kudago.com
  * @property tags - тэги события
- * @property participants - агенты события
- * @constructor Create empty Get perfomance
+ * @property participants - агенты события [PerformanceParticipantsModel]
  *
  * @author Marianna Sabanchieva
  */
 
 data class PerformanceModel(
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int,
     @SerializedName("publication_date")
-    val publication_date: Int? = null,
+    val publicationDate: Long? = 0,
     @SerializedName("dates")
-    val dates: ArrayList<PerformanceDates> = arrayListOf(),
+    val dates: List<PerformanceDatesModel> = listOf(),
     @SerializedName("title")
-    val title: String? = null,
+    val title: String,
     @SerializedName("short_title")
-    val short_title: String? = null,
+    val shortTitle: String = String.EMPTY,
     @SerializedName("slug")
-    val slug: String? = null,
+    val slug: String = String.EMPTY,
     @SerializedName("place")
-    val place: PerformancePlace? = PerformancePlace(),
+    val place: PerformancePlaceModel? = null,
     @SerializedName("description")
-    val description: String? = null,
+    val description: String = String.EMPTY,
     @SerializedName("body_text")
-    val body_text: String? = null,
+    val bodyText: String = String.EMPTY,
     @SerializedName("location")
-    val location: PerformancePlaceLocation? = PerformancePlaceLocation(),
+    val location: PerformancePlaceLocationModel? = null,
     @SerializedName("categories")
-    val categories: ArrayList<String> = arrayListOf(),
+    val categories: List<String> = listOf(),
     @SerializedName("tagline")
-    val tagline: String? = null,
+    val tagline: String = String.EMPTY,
     @SerializedName("age_restriction")
-    val age_restriction: String? = null,
+    val ageRestriction: String = String.EMPTY,
     @SerializedName("price")
-    val price: String? = null,
+    val price: String = String.EMPTY,
     @SerializedName("is_free")
-    val is_free: Boolean? = null,
+    val isFree: Boolean? = false,
     @SerializedName("images")
-    val images: ArrayList<ModelImages> = arrayListOf(),
+    val images: List<ModelImages> = listOf(),
     @SerializedName("favorites_count")
-    val favorites_count: Int? = null,
+    val favoritesCount: Int? = 0,
     @SerializedName("comments_count")
-    val comments_count: Int? = null,
+    val commentsCount: Int? = 0,
     @SerializedName("site_url")
-    val site_url: String? = null,
+    val siteUrl: String = String.EMPTY,
     @SerializedName("tags")
-    val tags: ArrayList<String> = arrayListOf(),
+    val tags: List<String> = listOf(),
     @SerializedName("participants")
-    val participants: ArrayList<PerformanceParticipants> = arrayListOf()
+    val participants: List<PerformanceParticipantsModel> = listOf()
 )

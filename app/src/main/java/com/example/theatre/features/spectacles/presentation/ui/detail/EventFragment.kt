@@ -63,16 +63,16 @@ class EventFragment : Fragment() {
     }
 
     private fun setDetails(eventDetails: Performance) {
-        eventURL = eventDetails.site_url
+        eventURL = eventDetails.siteUrl
         with(binding.content) {
             with(eventDetails) {
-                textName.text = short_title.orEmpty().replaceFirstChar { it.uppercaseChar() }
-                if (is_free == true) {
+                textName.text = shortTitle.orEmpty().replaceFirstChar { it.uppercaseChar() }
+                if (isFree == true) {
                     textPrice.text = ISFREE
                 } else {
                     textPrice.text = price
                 }
-                val imageURL = if (images.isNotEmpty()) images.first().image.orEmpty() else String.EMPTY
+                val imageURL = if (images.isNotEmpty()) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {
                     context?.let {
                         Glide

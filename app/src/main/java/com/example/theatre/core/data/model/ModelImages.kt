@@ -1,17 +1,16 @@
 package com.example.theatre.core.data.model
 
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
- * Model images
+ * Model images - модель для получения изображения
  *
- * @property image - ссылка на изображение
- * @constructor Create empty Model images
- *
+ * @property imageURL - ссылка на изображение
  * @author Marianna Sabanchieva
  */
 
 data class ModelImages(
     @SerializedName("image")
-    val image: String? = null
+    val imageURL: String = String.EMPTY
 )

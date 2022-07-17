@@ -1,33 +1,29 @@
 package com.example.theatre.core.domain.model
 
-import com.example.theatre.core.data.model.ModelImages
-import com.example.theatre.core.data.model.AgentParticipations
-
 /**
- * Agent
+ * Agent - модель для получения деталей об актере
  *
  * @property id - идентификатор
  * @property title - наименование агента
  * @property slug - слаг
  * @property description - описание
- * @property body_text - полное описание
- * @property agent_type - тип агента
+ * @property bodyText - полное описание
+ * @property agentType - тип агента
  * @property images - картинки объекта
- * @property site_url - адрес события на сайте kudago.com
- * @property participations - список участий агента
- * @constructor Create empty Agent
+ * @property siteUrl - адрес события на сайте kudago.com
+ * @property participations - список участий агента [AgentParticipations]
  *
  * @author Marianna Sabanchieva
  */
 
 data class Agent(
-    val id: Int? = null,
-    val title: String? = null,
-    val slug: String? = null,
-    val description: String? = null,
-    val body_text: String? = null,
-    val agent_type: String? = null,
-    val images: ArrayList<ModelImages> = arrayListOf(),
-    val site_url: String? = null,
-    val participations : ArrayList<AgentParticipations> = arrayListOf()
+    val id: Int?,
+    val title: String?,
+    val slug: String?,
+    val description: String?,
+    val bodyText: String?,
+    val agentType: String?,
+    val images: List<Images>,
+    val siteUrl: String?,
+    val participations : List<AgentParticipations>
 )

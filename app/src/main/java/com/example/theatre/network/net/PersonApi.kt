@@ -24,7 +24,12 @@ import retrofit2.http.Path
  */
 
 interface PersonApi {
-    @GET("agents/?fields=$ID,$TITLE,$SLUG,$DESCRIPTION,$BODY_TEXT,$SITE_URL,$CTYPE,$IMAGES,$AGENT_TYPE,$PARTICIPATIONS&category=theatre&agent_type=person&role_id=2")
+    @GET(
+        """
+        agents/?fields=$ID,$TITLE,$SLUG,$DESCRIPTION,$BODY_TEXT,$SITE_URL,$CTYPE,$IMAGES,
+        $AGENT_TYPE,$PARTICIPATIONS&category=theatre&agent_type=person&role_id=2
+        """
+    )
     suspend fun getPerson(): AgentsListResult
 
     @GET("agents/{${AGENT_ID}}/")

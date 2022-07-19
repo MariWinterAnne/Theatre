@@ -36,10 +36,14 @@ import retrofit2.http.Path
  */
 
 interface PerformanceApi {
-    @GET("events/?fields=$ID,$PUBLICATION_DATE,$DATES,$TITLE,$SHORT_TITLE,$SLUG,$PLACE,$DESCRIPTION," +
-            "$BODY_TEXT,$LOCATION,$CATEGORIES,$TAGLINE,$AGE_RESTRICTION,$PRICE,$IS_FREE,$IMAGES," +
-            "$FAVORITES_COUNT,$COMMENTS_COUNT,$SITE_URL,$TAGS," +
-            "$PARTICIPANTS&categories=theater&order_by=-publication_date&text_format=plain")
+    @GET(
+        """
+        events/?fields=$ID,$PUBLICATION_DATE,$DATES,$TITLE,$SHORT_TITLE,$SLUG,$PLACE,$DESCRIPTION,
+        $BODY_TEXT,$LOCATION,$CATEGORIES,$TAGLINE,$AGE_RESTRICTION,$PRICE,$IS_FREE,$IMAGES,
+        $FAVORITES_COUNT,$COMMENTS_COUNT,$SITE_URL,$TAGS,
+        $PARTICIPANTS&categories=theater&order_by=-publication_date&text_format=plain
+        """
+    )
     suspend fun getPerformance(): PerformancesListResult
 
     @GET("events/{$EVENT_ID}/")

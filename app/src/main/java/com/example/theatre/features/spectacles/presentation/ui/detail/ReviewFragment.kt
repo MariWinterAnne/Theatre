@@ -68,7 +68,7 @@ class ReviewFragment : Fragment() {
             with(eventDetails) {
                 textAgeRestriction.text = ageRestriction
                 textEventStartEnd.text = dateFormatter.getUpcomingPerformanceDates(dates)
-                textParticipantsList.text = participants.toListOfActorsInPerformance(requireContext())
+                textParticipantsList.text = participants?.toListOfActorsInPerformance(requireContext())
             }
         }
     }

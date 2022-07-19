@@ -72,7 +72,7 @@ class EventFragment : Fragment() {
                 } else {
                     textPrice.text = price
                 }
-                val imageURL = if (images.isNotEmpty()) images.first().imageURL.orEmpty() else String.EMPTY
+                val imageURL = if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {
                     context?.let {
                         Glide

@@ -16,19 +16,19 @@ import com.example.theatre.core.data.model.PerformancePlaceModel
  */
 
 fun PerformanceModel.toListPerformanceDates() =
-    dates.map { it.toPerformanceDates() }
+    dates?.map { it.toPerformanceDates() }
 
 fun PerformanceModel.toListPerformanceImages() =
-    images.map { it.toImages() }
+    images?.map { it.toImages() }
 
 fun PerformanceModel.toListPerformanceParticipants() =
-    participants.map { it.toPerformanceParticipants() }
+    participants?.map { it.toPerformanceParticipants() }
 
 fun AgentModel.toListAgentImages() =
-    images.map { it.toImages() }
+    images?.map { it.toImages() }
 
 fun AgentModel.toListAgentParticipations() =
-    participations.map { it.toAgentParticipations() }
+    participations?.map { it.toAgentParticipations() }
 
 fun PerformanceModel.toPerformancePlaceLocation() =
     location?.toPerformancePlaceLocation()

@@ -31,7 +31,7 @@ package com.example.theatre.core.domain.model
 data class Performance(
     val id: Int,
     val publicationDate: Long?,
-    val dates: List<PerformanceDates>,
+    val dates: List<PerformanceDates>?,
     val title: String,
     val shortTitle: String?,
     val slug: String?,
@@ -44,10 +44,10 @@ data class Performance(
     val ageRestriction: String?,
     val price: String?,
     val isFree: Boolean?,
-    val images: List<Images>,
+    val images: List<Images>?,
     val favoritesCount: Int?,
     val commentsCount: Int?,
     val siteUrl: String?,
-    val tags: List<String>,
-    val participants: List<PerformanceParticipants>
+    val tags: List<String>?,
+    val participants: List<PerformanceParticipants>?
 )

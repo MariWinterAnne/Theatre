@@ -23,7 +23,7 @@ data class Agent(
     val description: String?,
     val bodyText: String?,
     val agentType: String?,
-    val images: List<Images>,
+    val images: List<Images>?,
     val siteUrl: String?,
-    val participations : List<AgentParticipations>
+    val participations : List<AgentParticipations>?
 )

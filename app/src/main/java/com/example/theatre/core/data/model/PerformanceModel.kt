@@ -37,7 +37,7 @@ data class PerformanceModel(
     @SerializedName("publication_date")
     val publicationDate: Long? = 0,
     @SerializedName("dates")
-    val dates: List<PerformanceDatesModel> = listOf(),
+    val dates: List<PerformanceDatesModel>? = listOf(),
     @SerializedName("title")
     val title: String,
     @SerializedName("short_title")
@@ -53,7 +53,7 @@ data class PerformanceModel(
     @SerializedName("location")
     val location: PerformancePlaceLocationModel? = null,
     @SerializedName("categories")
-    val categories: List<String> = listOf(),
+    val categories: List<String>? = listOf(),
     @SerializedName("tagline")
     val tagline: String = String.EMPTY,
     @SerializedName("age_restriction")
@@ -63,7 +63,7 @@ data class PerformanceModel(
     @SerializedName("is_free")
     val isFree: Boolean? = false,
     @SerializedName("images")
-    val images: List<ModelImages> = listOf(),
+    val images: List<ModelImages>? = listOf(),
     @SerializedName("favorites_count")
     val favoritesCount: Int? = 0,
     @SerializedName("comments_count")
@@ -71,7 +71,7 @@ data class PerformanceModel(
     @SerializedName("site_url")
     val siteUrl: String = String.EMPTY,
     @SerializedName("tags")
-    val tags: List<String> = listOf(),
+    val tags: List<String>? = listOf(),
     @SerializedName("participants")
-    val participants: List<PerformanceParticipantsModel> = listOf()
+    val participants: List<PerformanceParticipantsModel>? = listOf()
 )

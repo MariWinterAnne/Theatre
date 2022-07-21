@@ -1,10 +1,7 @@
 package com.example.theatre.features.info.domain.model
 
-import com.example.theatre.features.info.data.model.Coords
-import com.example.theatre.features.info.data.model.Images
-
 /**
- * Theatre
+ * Theatre - модель для получения данных о театре
  *
  * @property id - идентификатор
  * @property title - название
@@ -15,12 +12,12 @@ import com.example.theatre.features.info.data.model.Images
  * @property timetable - расписание
  * @property phone - телефон
  * @property isStub - является ли заглушкой
- * @property images - галерея места
+ * @property images - галерея места [Images]
  * @property description - описание
  * @property bodyText - полное описание
  * @property siteUrl - адрес места на сайте kudago.com
  * @property foreignUrl - сайт места
- * @property coords - координаты места
+ * @property coords - координаты места [TheatreCoordinates]
  * @property subway - метро рядом
  * @property favoritesCount - число пользователей, добавивших место в избранное
  * @property commentsCount - число комментариев
@@ -31,25 +28,25 @@ import com.example.theatre.features.info.data.model.Images
  */
 
 data class Theatre(
-    var id: Int?,
-    var title: String?,
-    var shortTitle: String?,
-    var slug: String?,
-    var address: String?,
-    var location: String?,
-    var timetable: String?,
-    var phone: String?,
-    var isStub: Boolean?,
-    var images: ArrayList<Images>,
-    var description: String?,
-    var bodyText: String?,
-    var siteUrl: String?,
-    var foreignUrl: String?,
-    var coords: Coords?,
-    var subway: String?,
-    var favoritesCount: Int?,
-    var commentsCount: Int?,
-    var isClosed: Boolean?,
-    var categories: ArrayList<String>,
-    var tags: ArrayList<String>
+    val id: Int,
+    val title: String,
+    val shortTitle: String?,
+    val slug: String?,
+    val address: String?,
+    val location: String?,
+    val timetable: String?,
+    val phone: String?,
+    val isStub: Boolean?,
+    val images: List<Images>?,
+    val description: String?,
+    val bodyText: String?,
+    val siteUrl: String?,
+    val foreignUrl: String?,
+    val coords: TheatreCoordinates?,
+    val subway: String?,
+    val favoritesCount: Int?,
+    val commentsCount: Int?,
+    val isClosed: Boolean?,
+    val categories: List<String>?,
+    val tags: List<String>?
 )

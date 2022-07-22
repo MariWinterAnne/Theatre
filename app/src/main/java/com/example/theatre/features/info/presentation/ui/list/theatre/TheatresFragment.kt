@@ -1,23 +1,30 @@
 package com.example.theatre.features.info.presentation.ui.list.theatre
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentTheatresBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import com.example.theatre.features.info.presentation.adapters.TheatresListAdapter
-import com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+/**
+ * Фрагмент со списком театров
+ *
+ * @author Marianna Sabanchieva
+ */
 
 class TheatresFragment : Fragment() {
 
     companion object {
+        const val DESCRIPTION_TAB = 0
+        const val THEATRE = "Театр"
         fun newInstance(): TheatresFragment {
             return TheatresFragment()
         }
@@ -29,7 +36,8 @@ class TheatresFragment : Fragment() {
     private val theatreViewModel by viewModel<TheatreViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_theatres, container, false)
@@ -39,18 +47,15 @@ class TheatresFragment : Fragment() {
             onTheatreClick(id)
         }
         recyclerView.adapter = theatresAdapter
-        initObservers()
-
-        lifecycleScope.launchWhenCreated {
-            theatreViewModel.init()
-        }
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTheatresBinding.bind(view)
+
+        initObservers()
+        theatreViewModel.init()
     }
 
     private fun initObservers() {
@@ -62,9 +67,8 @@ class TheatresFragment : Fragment() {
     }
 
     private fun onTheatreClick(id: Int) {
-        val intent = Intent(activity, TheatreActivity::class.java)
-        intent.putExtra("theatre_id", id)
-        startActivity(intent)
+        val bundle = bundleOf("id" to id)
+        requireActivity().findNavController(R.id.navHostFragment)
+            .navigate(R.id.action_info_to_theatreFragment, bundle)
     }
-
 }

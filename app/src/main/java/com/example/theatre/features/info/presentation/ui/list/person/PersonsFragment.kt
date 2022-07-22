@@ -1,24 +1,29 @@
 package com.example.theatre.features.info.presentation.ui.list.person
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
 import com.example.theatre.features.info.domain.model.Agent
 import com.example.theatre.features.info.presentation.adapters.PersonsListAdapter
-import com.example.theatre.features.info.presentation.ui.detail.person.PersonActivity
-
-
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+/**
+ * Фрагмент со списком актеров
+ *
+ * @author Marianna Sabanchieva
+ */
 
 class PersonsFragment : Fragment() {
 
     companion object {
+        const val DETAILS_TAB = 1
+        const val PERSON = "Персона"
         fun newInstance(): PersonsFragment {
             return PersonsFragment()
         }
@@ -39,13 +44,14 @@ class PersonsFragment : Fragment() {
             onPersonClick(id)
         }
         recyclerView.adapter = personsAdapter
-        initObservers()
-
-        lifecycleScope.launchWhenCreated {
-            personsViewModel.init()
-        }
-
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initObservers()
+        personsViewModel.init()
     }
 
     private fun initObservers() {
@@ -57,9 +63,8 @@ class PersonsFragment : Fragment() {
     }
 
     private fun onPersonClick(id: Int) {
-        val intent = Intent(activity, PersonActivity::class.java)
-        intent.putExtra("person_id", id)
-        startActivity(intent)
+        val bundle = bundleOf("id" to id)
+        requireActivity().findNavController(R.id.navHostFragment)
+            .navigate(R.id.action_info_to_personFragment, bundle)
     }
-
 }

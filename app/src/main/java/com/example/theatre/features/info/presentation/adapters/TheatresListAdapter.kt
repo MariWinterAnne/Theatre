@@ -1,52 +1,71 @@
 package com.example.theatre.features.info.presentation.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.theatre.R
+import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentTheatresItemBinding
 import com.example.theatre.features.info.domain.model.Theatre
-import com.squareup.picasso.Picasso
+import com.example.theatre.network.Constants.CLOSED
+
+/**
+ * Адаптер для списка театров
+ *
+ * @property theatres - список театров
+ * @property onItemClicked - обработка нажатия на элемент списка
+ *
+ * @author Marianna Sabanchieva
+ */
 
 class TheatresListAdapter(
-    val theatres: MutableList<Theatre>,
+    private val theatres: MutableList<Theatre>,
     private val onItemClicked: (id: Int) -> Unit,
-) :
-    RecyclerView.Adapter<TheatresListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<TheatresListAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            FragmentTheatresItemBinding.bind(LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_theatres_item, parent, false))
+    class ViewHolder(val binding: FragmentTheatresItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ViewHolder(
+            FragmentTheatresItemBinding.bind(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.fragment_theatres_item, parent, false)
+            )
         )
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context: Context = holder.binding.imageThumbnail.context
         with(holder.binding) {
-            textName.text = theatres[position].title!!.replaceFirstChar { it.uppercaseChar() }
-            if (theatres[position].isClosed == true) {
-                textClosed.text = "закрыто"
-            }
-            Picasso.get()
-                .load(theatres[position].images[0].image.toString())
-                .into(imageThumbnail)
-            textDescription.text = HtmlCompat.fromHtml(theatres[position].description!!,
-                HtmlCompat.FROM_HTML_MODE_LEGACY)
-            root.setOnClickListener {
-                onItemClicked(theatres[position].id!!)
+            with(theatres[position]) {
+                textName.text = title.replaceFirstChar { it.uppercaseChar() }
+                if (isClosed == true) { textClosed.text = CLOSED }
+                val imageURL =
+                    if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
+                if (imageURL.isNotEmpty()) {
+                    Glide
+                        .with(context)
+                        .load(imageURL)
+                        .into(imageThumbnail)
+                }
+                textDescription.text = description.orEmpty().deleteHTML()
+                root.setOnClickListener {
+                    onItemClicked(id)
+                }
             }
         }
     }
 
     override fun getItemCount(): Int = theatres.size
 
-    class ViewHolder(val binding: FragmentTheatresItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
     fun setTheatres(theatreList: List<Theatre>) {
-        theatres.clear()
-        theatres.addAll(theatreList)
-        notifyDataSetChanged()
+        if (theatreList.isNotEmpty()) {
+            theatres.clear()
+            theatres.addAll(theatreList)
+            notifyDataSetChanged()
+        }
     }
 }

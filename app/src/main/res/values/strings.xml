@@ -4,7 +4,7 @@
     <string name="favourite">Избранное</string>
     <string name="performance">Спектакли</string>
     <string name="info">Информация</string>
-    <string name="empty_icon" translatable="false">Нет информации для отображения.</string>
+    <string name="empty_icon">Нет информации для отображения.</string>
     <string name="action_settings">Настройки</string>
     <string name="action_tickets">Билеты</string>
     <string name="gaps">", "</string>
@@ -13,9 +13,23 @@
     <string name="website">"website: "</string>
     <string name="place_is_closed">Закрыто.</string>
     <string name="event_date_time">Сеансы:</string>
-    <string name="dash">-</string>
+    <string name="dash">" - "</string>
     <string name="actors">Участники:</string>
     <string name="theatre_schedule">Расписание:</string>
     <string name="theatre_address">Расположение:</string>
     <string name="person_participations">Участие в постановках:</string>
+    <string name="actor">Актеры</string>
+    <string name="director">Режиссеры</string>
+    <string name="musician">Музыканты</string>
+    <string name="screenwriter">Сценаристы</string>
+    <string name="stage_theatre">Театры-постановщики</string>
+    <string name="search">Поиск</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="search_by_city">Поиск по городу</string>
+    <string name="exception">Activity cannot be null</string>
+    <string name="error">Ошибка получения данных.</string>
+    <string name="activist">Деятель</string>
+    <string name="organization">Организация</string>
+    <string name="empty">""</string>
+    <string name="free">бесплатно</string>
 </resources>

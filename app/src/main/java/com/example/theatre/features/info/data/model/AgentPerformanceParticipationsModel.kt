@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AgentPerformanceParticipationsModel(
     @SerializedName("role")
-    val role: AgentRoleNameModel? = AgentRoleNameModel(),
+    val role: AgentRoleNameModel?,
     @SerializedName("item")
-    val item: AgentPerformanceParticipationNameModel? = AgentPerformanceParticipationNameModel()
+    val item: AgentPerformanceParticipationNameModel?
 )

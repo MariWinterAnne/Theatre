@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
 
 data class TheatreCoordinatesModel(
     @SerializedName("lat")
-    val lat: Double? = 55.7602196,
+    val lat: Double = 55.7602196,
     @SerializedName("lon")
-    val lon: Double? = 37.6186409
+    val lon: Double = 37.6186409
 )

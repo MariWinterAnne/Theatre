@@ -12,8 +12,8 @@ package com.example.theatre.features.info.domain.model
  */
 
 data class TheatreLocation(
-    val slug: String? = null,
-    val name: String? = null,
-    val timezone: String? = null,
-    val language: String? = null
+    val slug: String?,
+    val name: String?,
+    val timezone: String?,
+    val language: String?
 )

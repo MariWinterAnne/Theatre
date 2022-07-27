@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class AgentsListResult(
     @SerializedName("count")
-    val count: Int? = 0,
+    val count: Int = 0,
     @SerializedName("next")
     val next: String = String.EMPTY,
     @SerializedName("previous")

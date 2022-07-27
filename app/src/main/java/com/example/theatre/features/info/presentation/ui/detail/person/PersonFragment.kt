@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.utils.StringUtils.EMPTY
@@ -72,7 +73,7 @@ class PersonFragment : Fragment() {
                         Glide
                             .with(it)
                             .load(imageURL)
-                            .into(imageThumbnail)
+                            .into(binding.imageLarge)
                     }
                 }
             }
@@ -81,7 +82,7 @@ class PersonFragment : Fragment() {
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            android.R.id.home -> activity?.onBackPressed()
+            android.R.id.home -> requireActivity().findNavController(R.id.navHostFragment).popBackStack()
         }
         return super.onOptionsItemSelected(menuItem)
     }

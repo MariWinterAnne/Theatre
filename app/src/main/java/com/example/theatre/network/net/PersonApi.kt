@@ -27,7 +27,7 @@ interface PersonApi {
     @GET(
         """
         agents/?fields=$ID,$TITLE,$SLUG,$DESCRIPTION,$BODY_TEXT,$SITE_URL,$CTYPE,$IMAGES,
-        $AGENT_TYPE,$PARTICIPATIONS&category=theatre&agent_type=person&role_id=2
+        $AGENT_TYPE,$PARTICIPATIONS&category=theatre&agent_type=person&role_id=2&page_size=100
         """
     )
     suspend fun getPerson(): AgentsListResult

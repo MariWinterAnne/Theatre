@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AgentPerformanceParticipationNameModel(
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int = 0,
     @SerializedName("title")
     val title: String = String.EMPTY,
     @SerializedName("ctype" )

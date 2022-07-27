@@ -33,9 +33,9 @@ data class AgentModel(
     @SerializedName("agent_type")
     val agentType: String = String.EMPTY,
     @SerializedName("images")
-    val images: List<ImagesModel>? = listOf(),
+    val images: List<ImagesModel>?,
     @SerializedName("site_url")
     val siteUrl: String = String.EMPTY,
     @SerializedName("participations")
-    val participations: List<AgentPerformanceParticipationsModel>? = listOf()
+    val participations: List<AgentPerformanceParticipationsModel>?
 )

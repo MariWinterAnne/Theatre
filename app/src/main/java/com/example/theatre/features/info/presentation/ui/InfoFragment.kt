@@ -31,7 +31,7 @@ class InfoFragment : Fragment() {
         binding = FragmentInfoBinding.bind(view)
 
         val viewPager = binding.viewPager
-        viewPager.adapter = SectionPagerAdapter(requireActivity().supportFragmentManager)
+        viewPager.adapter = SectionPagerAdapter(childFragmentManager)
 
         val tabLayout = binding.tabs
         tabLayout.setupWithViewPager(viewPager)

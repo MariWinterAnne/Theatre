@@ -11,7 +11,7 @@ package com.example.theatre.features.info.domain.model
  */
 
 data class AgentParticipationTitle(
-    val id: Int?,
+    val id: Int,
     val title: String?,
     val ctype: String?
 )

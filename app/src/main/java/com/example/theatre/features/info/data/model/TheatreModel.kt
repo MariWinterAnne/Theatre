@@ -49,9 +49,9 @@ data class TheatreModel(
     @SerializedName("phone")
     val phone: String = String.EMPTY,
     @SerializedName("is_stub")
-    val isStub: Boolean? = false,
+    val isStub: Boolean = false,
     @SerializedName("images")
-    val images: List<ImagesModel>? = listOf(),
+    val images: List<ImagesModel>?,
     @SerializedName("description")
     val description: String = String.EMPTY,
     @SerializedName("body_text")
@@ -61,17 +61,17 @@ data class TheatreModel(
     @SerializedName("foreign_url")
     val foreignUrl: String = String.EMPTY,
     @SerializedName("coords")
-    val coords: TheatreCoordinatesModel? = TheatreCoordinatesModel(),
+    val coords: TheatreCoordinatesModel?,
     @SerializedName("subway")
     val subway: String = String.EMPTY,
     @SerializedName("favorites_count")
-    val favoritesCount: Int? = 0,
+    val favoritesCount: Int = 0,
     @SerializedName("comments_count")
-    val commentsCount: Int? = 0,
+    val commentsCount: Int = 0,
     @SerializedName("is_closed")
-    val isClosed: Boolean? = false,
+    val isClosed: Boolean = false,
     @SerializedName("categories")
-    val categories: List<String>? = listOf(),
+    val categories: List<String>?,
     @SerializedName("tags")
-    val tags: List<String>? = listOf(),
+    val tags: List<String>?,
 )

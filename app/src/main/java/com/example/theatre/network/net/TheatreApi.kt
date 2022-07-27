@@ -39,7 +39,7 @@ interface TheatreApi {
         """
             places/?fields=$ID,$TITLE,$SHORT_TITLE,$SLUG,$ADDRESS,$LOCATION,$TIMETABLE,$PHONE,
             $IS_STUB,$IMAGES,$DESCRIPTION,$BODY_TEXT,$SITE_URL,$FOREIGN_URL,$COORDS,$SUBWAY,
-            $FAVORITES_COUNT,$COMMENTS_COUNT,$IS_CLOSED,$CATEGORIES,$TAGS&categories=theatre
+            $FAVORITES_COUNT,$COMMENTS_COUNT,$IS_CLOSED,$CATEGORIES,$TAGS&categories=theatre&page_size=100
         """
     )
     suspend fun getTheatres(): TheatresListResult

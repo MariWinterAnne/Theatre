@@ -17,7 +17,7 @@ sealed class RoleType(val title: String, @StringRes val resId: Int) {
     object Musician : RoleType("musician", R.string.musician)
     object Screenwriter : RoleType("screenwriter", R.string.screenwriter)
     object Stage : RoleType("stage-theatre", R.string.stage_theatre)
-    object Unknown : RoleType("", -1)
+    object Unknown : RoleType("", R.string.empty)
 }
 
 fun String.toRole(): Int =
@@ -41,7 +41,7 @@ fun String.toRole(): Int =
 sealed class AgentType(val title: String, @StringRes val resId: Int) {
     object Person : AgentType("person", R.string.activist)
     object Organization : AgentType("organization", R.string.organization)
-    object Unknown : AgentType("", -1)
+    object Unknown : AgentType("", R.string.empty)
 }
 
 fun String.toAgent(): Int =

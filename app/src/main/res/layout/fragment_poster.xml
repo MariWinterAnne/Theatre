@@ -39,11 +39,9 @@
                 android:layout_height="wrap_content"
                 app:tabBackground="@drawable/tab_color_selector"
                 app:tabGravity="fill"
-                app:tabIndicatorColor="@color/ultramarine"
                 app:tabMaxWidth="0dp"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/ultramarine" />
+                app:tabSelectedTextColor="@color/white" />
 
         </com.google.android.material.card.MaterialCardView>
 

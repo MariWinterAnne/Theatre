@@ -63,8 +63,9 @@ class TheatreDescriptionFragment : Fragment() {
                     }
                 }
                 textName.text = title.replaceFirstChar { it.uppercaseChar() }
-                textDescription.text = description.orEmpty().deleteHTML()
-                textBody.text = bodyText.orEmpty().deleteHTML()
+                textDescription.text = description.orEmpty().deleteHTML().trimEnd()
+                textBody.text = bodyText.orEmpty().deleteHTML().trimEnd()
+                textTagline.visibility = View.GONE
             }
         }
     }

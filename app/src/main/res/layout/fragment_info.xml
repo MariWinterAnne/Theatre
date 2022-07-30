@@ -19,10 +19,9 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_margin"
-            android:layout_marginEnd="@dimen/layout_margin"
             android:elevation="@dimen/cardview_elevation"
             android:transitionGroup="true"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintTop_toBottomOf="@+id/card_tab"
             tools:layout_editor_absoluteX="@dimen/layout_editor_absoluteX"
             tools:layout_editor_absoluteY="0dp" />
@@ -32,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/cardview_elevation"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.tabs.TabLayout
@@ -40,11 +40,11 @@
                 android:layout_height="wrap_content"
                 app:tabBackground="@drawable/tab_color_selector"
                 app:tabGravity="fill"
-                app:tabIndicatorColor="@color/ultramarine"
+                app:tabIndicatorColor="@color/second_color"
                 app:tabMaxWidth="0dp"
                 app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/ultramarine" />
+                app:tabTextColor="@color/second_color" />
 
         </com.google.android.material.card.MaterialCardView>
 

@@ -63,8 +63,9 @@ class PersonDescriptionFragment : Fragment() {
                     }
                 }
                 textName.text = title
-                textDescription.text = description.orEmpty().deleteHTML()
-                textBody.text = bodyText.orEmpty().deleteHTML()
+                textDescription.text = description.orEmpty().deleteHTML().trimEnd()
+                textBody.text = bodyText.orEmpty().deleteHTML().trimEnd()
+                textTagline.visibility = View.GONE
             }
         }
     }

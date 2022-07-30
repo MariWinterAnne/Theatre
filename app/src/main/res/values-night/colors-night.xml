@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_color">#87314e</color>
-    <color name="second_color">#512645</color>
+    <color name="main_color">#512645</color>
+    <color name="second_color">#87314e</color>
     <color name="info_color">#E71D36</color>
-    <color name="text_color">#FF000000</color>
+    <color name="text_color">#FFFFFFFF</color>
 
-    <color name="violet">#BC00FF</color>
+    <color name="violet">#9C00FF</color>
     <color name="black">#FF000000</color>
     <color name="blue">#304FEE</color>
     <color name="white">#FFFFFFFF</color>

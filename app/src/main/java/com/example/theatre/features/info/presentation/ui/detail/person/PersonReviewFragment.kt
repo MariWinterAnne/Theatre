@@ -51,11 +51,11 @@ class PersonReviewFragment : Fragment() {
     private fun setDetails(personDetails: Agent) {
         with(binding) {
             textDatetime.text = getString(R.string.person_participations)
-            textPlaceTitle.isInvisible = true
-            textPlaceSubway.isInvisible = true
-            textPlaceAddress.isInvisible = true
-            textPlacePhone.isInvisible = true
-            textPlaceSite.isInvisible = true
+            textPlaceTitle.visibility = View.GONE
+            textPlaceSubway.visibility = View.GONE
+            textPlaceAddress.visibility = View.GONE
+            textPlacePhone.visibility = View.GONE
+            textPlaceSite.visibility = View.GONE
             with(personDetails) {
                 textEventStartEnd.text = participations?.toListOfPerformances(requireContext())
             }

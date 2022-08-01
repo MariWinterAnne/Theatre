@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.example.theatre.features.poster.presentation.ui.detail.PosterFragment"
+        android:name="com.example.theatre.features.poster.presentation.ui.list.PosterFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_poster" />
 

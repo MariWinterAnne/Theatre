@@ -1,5 +1,10 @@
 package com.example.theatre.features.poster.presentation.adapters
 
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+
 /**
  * Класс для списка афиш
  *
@@ -7,6 +12,20 @@ package com.example.theatre.features.poster.presentation.adapters
  * @property onItemClicked
  * @author Tamerlan Mamukhov on 2022-05-28
  */
+class PostersListAdapter(
+    private val count: Int,
+    private val fm: FragmentManager,
+    private val lc: Lifecycle
+) : FragmentStateAdapter(fm, lc) {
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun createFragment(position: Int): Fragment {
+        TODO("Not yet implemented")
+    }
+
+}
 //class PostersListAdapter(
 //    private val spectacles: MutableList<Performance>,
 //    private val onItemClicked: (id: Int) -> Unit,

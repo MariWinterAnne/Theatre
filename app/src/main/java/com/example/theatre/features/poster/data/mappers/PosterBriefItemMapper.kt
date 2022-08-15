@@ -9,3 +9,4 @@ fun Performance.toPosterBriefItem() = PosterBriefItem(
     title = title,
     description = description
 )
+

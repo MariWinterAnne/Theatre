@@ -10,10 +10,17 @@ import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.ItemPosterBriefInfoBinding
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
 
+/**
+ * Адаптер кратких афиш
+ *
+ * @property onItemClicked  слушатель нажатия на элемент списка
+ * @author Tamerlan Mamukhov on 2022-08-16
+ */
 class PosterBriefItemAdapter(
-    private val data: MutableList<PosterBriefItem>,
     private val onItemClicked: (id: Int) -> Unit
 ) : RecyclerView.Adapter<PosterBriefItemAdapter.ViewHolder>() {
+
+    private var data: List<PosterBriefItem> = mutableListOf()
 
     class ViewHolder(val binding: ItemPosterBriefInfoBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -28,7 +35,6 @@ class PosterBriefItemAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val context: Context = holder.binding.placeImage.context
-        val item = data[position]
 
         with(holder.binding) {
             with(data[position]) {
@@ -54,10 +60,9 @@ class PosterBriefItemAdapter(
 
     override fun getItemCount(): Int = data.size
 
-    fun setData(list: List<PosterBriefItem>) {
-        if (list.isNotEmpty()) {
-            data.clear()
-            data.addAll(list)
+    fun setData(data: List<PosterBriefItem>) {
+        if (data.isNotEmpty()) {
+            this.data = data
             notifyDataSetChanged()
         }
     }

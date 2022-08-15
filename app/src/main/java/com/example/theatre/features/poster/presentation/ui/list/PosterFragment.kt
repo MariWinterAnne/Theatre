@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentPosterBinding
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
+import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.adapters.PosterBriefItemAdapter
-import org.intellij.lang.annotations.JdkConstants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -40,21 +40,32 @@ class PosterFragment : Fragment() {
         binding.postersList.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        adapter = PosterBriefItemAdapter(mutableListOf()) {
+        adapter = PosterBriefItemAdapter {
 
         }
+
         binding.postersList.adapter = adapter
 
-        binding.postersList.animation = AnimationUtils.loadAnimation(binding.postersList.context, R.anim.amination_poster)
+        binding.postersList.animation =
+            AnimationUtils.loadAnimation(binding.postersList.context, R.anim.amination_poster)
 
         initObservers()
 
-        viewModel.init()
+        viewModel.getPosters()
+
+        viewModel.getPosterDetails(24570)
+    }
+
+    private fun onItemClicked(id: Int) {
+        TODO("Сделать переход к другому фрагменту с подробностями")
     }
 
     private fun initObservers() {
         viewModel.postersBrief.observe(viewLifecycleOwner, ::setData)
+        viewModel.posterDetails.observe(viewLifecycleOwner, ::logData)
     }
+
+    private fun logData(posterDetails: PosterDetails?) = Log.d("DATA!!!", "logData: $posterDetails")
 
     private fun setData(list: List<PosterBriefItem>) {
         adapter.setData(list)

@@ -4,14 +4,13 @@ import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**
- * Класс афиши краткой?
- * TODO: подумать над тем, стоит ли это иметь. Может, стоит добавить просто один класс в дата и потом конвертировать его в два в домайн?
+ * Класс кратких афиш из сети
  *
- * @property id
- * @property title
- * @property description
- * @property images
- * @constructor Create empty Poster brief model
+ * @property id             ид
+ * @property images         картинки
+ * @property title          заголовок
+ * @property description    описание
+ * @author Tamerlan Mamukhov on 2022-08-16
  */
 data class PosterBriefModel(
     @SerializedName("id")
@@ -21,5 +20,5 @@ data class PosterBriefModel(
     @SerializedName("description")
     val description: String = String.EMPTY,
     @SerializedName("images")
-    val images: List<ModelImages>? = listOf(),
+    val images: List<ModelImages>?,
 )

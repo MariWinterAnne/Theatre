@@ -1,6 +1,7 @@
 package com.example.theatre.features.poster.domain.repository
 
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
+import com.example.theatre.features.poster.domain.model.PosterDetails
 
 /**
  * Репозиторий для списка афиш и их детализации
@@ -9,4 +10,6 @@ import com.example.theatre.features.poster.domain.model.PosterBriefItem
  */
 interface PosterRepository {
    suspend fun getPostersBrief(): List<PosterBriefItem>
+
+   suspend fun getPosterDetailsById(id: Int): PosterDetails
 }

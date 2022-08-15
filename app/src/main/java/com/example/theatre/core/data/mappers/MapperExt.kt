@@ -12,7 +12,9 @@ import com.example.theatre.core.domain.model.PerformanceParticipants
 import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.core.domain.model.PerformancePlaceCoordinates
 import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.features.poster.data.model.PosterDetailsModel
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
+import com.example.theatre.features.poster.domain.model.PosterDetails
 
 /**
  * Конвертирует data model в domain model
@@ -128,10 +130,14 @@ fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipatio
     ageRestriction = ageRestriction
 )
 
-// TODO: афиши краткие
+// TODO: афиши краткие и подробные
 fun PosterBriefModel.toPosterBriefItem() = PosterBriefItem(
     id = id,
     image = images?.first()?.toImages(),
     title = title,
     description = description
+)
+
+fun PosterDetailsModel.toPosterDetails() = PosterDetails(
+    id, images, title, description, publicationDate
 )

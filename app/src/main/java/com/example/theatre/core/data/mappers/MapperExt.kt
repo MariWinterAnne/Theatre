@@ -1,16 +1,6 @@
 package com.example.theatre.core.data.mappers
 
-import com.example.theatre.core.data.model.AgentModel
-import com.example.theatre.core.data.model.AgentParticipationsModel
-import com.example.theatre.core.data.model.AgentParticipationsItemModel
-import com.example.theatre.core.data.model.AgentRoleModel
-import com.example.theatre.core.data.model.ModelImages
-import com.example.theatre.core.data.model.PerformanceModel
-import com.example.theatre.core.data.model.PerformanceDatesModel
-import com.example.theatre.core.data.model.PerformanceParticipantsModel
-import com.example.theatre.core.data.model.PerformancePlaceModel
-import com.example.theatre.core.data.model.PerformancePlaceCoordinatesModel
-import com.example.theatre.core.data.model.PerformancePlaceLocationModel
+import com.example.theatre.core.data.model.*
 import com.example.theatre.core.domain.model.Agent
 import com.example.theatre.core.domain.model.AgentParticipations
 import com.example.theatre.core.domain.model.AgentParticipationsItem
@@ -22,6 +12,9 @@ import com.example.theatre.core.domain.model.PerformanceParticipants
 import com.example.theatre.core.domain.model.PerformancePlace
 import com.example.theatre.core.domain.model.PerformancePlaceCoordinates
 import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.features.poster.data.model.PosterDetailsModel
+import com.example.theatre.features.poster.domain.model.PosterBriefItem
+import com.example.theatre.features.poster.domain.model.PosterDetails
 
 /**
  * Конвертирует data model в domain model
@@ -135,4 +128,16 @@ fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipatio
     performancePlace = toPerformancePlace(),
     firstImage = toImages(),
     ageRestriction = ageRestriction
+)
+
+// TODO: афиши краткие и подробные
+fun PosterBriefModel.toPosterBriefItem() = PosterBriefItem(
+    id = id,
+    image = images?.first()?.toImages(),
+    title = title,
+    description = description
+)
+
+fun PosterDetailsModel.toPosterDetails() = PosterDetails(
+    id, images, title, description, publicationDate
 )

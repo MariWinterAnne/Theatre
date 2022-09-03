@@ -1,11 +1,11 @@
 package com.example.theatre.features.info.data
 
+import com.example.theatre.features.info.data.api.PersonApiMapper
+import com.example.theatre.features.info.data.api.TheatreApiMapper
 import com.example.theatre.features.info.domain.model.Agent
-import com.example.theatre.features.info.domain.model.TheatreLocation
 import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.features.info.domain.model.TheatreLocation
 import com.example.theatre.features.info.domain.repository.TheatreRepository
-import com.example.theatre.network.PersonApiMapper
-import com.example.theatre.network.TheatreApiMapper
 
 /**
  * Реализация функций репозитория

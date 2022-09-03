@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/text_closed"
-            android:layout_width="75dp"
+            android:layout_width="@dimen/text_size_item_closed"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/container_margin"
             android:layout_marginBottom="@dimen/container_margin"

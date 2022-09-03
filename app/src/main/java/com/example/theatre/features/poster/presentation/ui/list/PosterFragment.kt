@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theatre.R
 import com.example.theatre.databinding.FragmentPosterBinding
@@ -41,7 +43,7 @@ class PosterFragment : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         adapter = PosterBriefItemAdapter {
-
+            id: Int -> onItemClicked(id)
         }
 
         binding.postersList.adapter = adapter
@@ -52,24 +54,21 @@ class PosterFragment : Fragment() {
         initObservers()
 
         viewModel.getPosters()
-
-        viewModel.getPosterDetails(24570)
     }
 
     private fun onItemClicked(id: Int) {
-        TODO("Сделать переход к другому фрагменту с подробностями")
+        val bundle = bundleOf("poster_id" to id)
+        findNavController()
+            .navigate(R.id.action_home_to_posterDetailFragment, bundle)
     }
 
     private fun initObservers() {
         viewModel.postersBrief.observe(viewLifecycleOwner, ::setData)
-        viewModel.posterDetails.observe(viewLifecycleOwner, ::logData)
     }
 
-    private fun logData(posterDetails: PosterDetails?) = Log.d("DATA!!!", "logData: $posterDetails")
 
     private fun setData(list: List<PosterBriefItem>) {
         adapter.setData(list)
-        Log.d("DATA!!!", "setData: $list")
     }
 
 }

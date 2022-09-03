@@ -1,17 +1,13 @@
 package com.example.theatre.core.data.mappers
 
-import com.example.theatre.core.data.model.*
-import com.example.theatre.core.domain.model.Agent
-import com.example.theatre.core.domain.model.AgentParticipations
-import com.example.theatre.core.domain.model.AgentParticipationsItem
-import com.example.theatre.core.domain.model.AgentRole
-import com.example.theatre.core.domain.model.Images
-import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.domain.model.PerformanceDates
-import com.example.theatre.core.domain.model.PerformanceParticipants
-import com.example.theatre.core.domain.model.PerformancePlace
-import com.example.theatre.core.domain.model.PerformancePlaceCoordinates
-import com.example.theatre.core.domain.model.PerformancePlaceLocation
+import com.example.theatre.core.data.model.ImageModel
+import com.example.theatre.core.data.model.agent.AgentModel
+import com.example.theatre.core.data.model.agent.AgentParticipationsItemModel
+import com.example.theatre.core.data.model.agent.AgentParticipationsModel
+import com.example.theatre.core.data.model.agent.AgentRoleModel
+import com.example.theatre.core.data.model.performance.*
+import com.example.theatre.core.data.model.poster.PosterBriefModel
+import com.example.theatre.core.domain.model.*
 import com.example.theatre.features.poster.data.model.PosterDetailsModel
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
 import com.example.theatre.features.poster.domain.model.PosterDetails
@@ -87,7 +83,7 @@ fun PerformancePlaceCoordinatesModel.toPerformancePlaceCoordinates() = Performan
     lon = lon
 )
 
-fun ModelImages.toImages() = Images(
+fun ImageModel.toImages() = Images(
     imageURL = imageURL
 )
 
@@ -139,5 +135,17 @@ fun PosterBriefModel.toPosterBriefItem() = PosterBriefItem(
 )
 
 fun PosterDetailsModel.toPosterDetails() = PosterDetails(
-    id, images, title, description, publicationDate
+    id,
+    images = images?.map { it.toImages() },
+    title,
+    shortTitle = shortTitle,
+    description = description,
+    tagline = tagline,
+    publicationDate = publicationDate,
+    price = price,
+    ageRestriction = ageRestriction,
+    dates = dates?.map { it.toPerformanceDates() },
+    participants = participants?.map { it.toPerformanceParticipants() },
+    bodyText = bodyText,
+    siteUrl = siteUrl
 )

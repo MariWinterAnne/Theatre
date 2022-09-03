@@ -32,4 +32,11 @@
     <string name="organization">Организация</string>
     <string name="empty">""</string>
     <string name="free">бесплатно</string>
+
+    <!--Ошибки-->
+    <string name="network_error_title">Ошибка подключения</string>
+    <string name="network_error_description">Проверьте соединение с сетью и обновите страницу</string>
+    <string name="loading_error_title">Ошибка загрузки</string>
+    <string name="loading_error_description">Повторите запрос или попробуйте позднее</string>
+
 </resources>

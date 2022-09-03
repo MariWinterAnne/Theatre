@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.poster.presentation.ui.detail.PosterDescriptionFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -18,9 +19,9 @@
                 android:id="@+id/text_tagline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginTop="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:layout_marginStart="@dimen/margin_start_default"
+                android:layout_marginTop="@dimen/margin_top_default"
+                android:layout_marginEnd="@dimen/margin_end_default"
                 android:fontFamily="@font/decadancecursiv"
                 android:gravity="center"
                 android:textColor="@color/ultramarine"
@@ -30,9 +31,9 @@
                 android:id="@+id/text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginTop="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:layout_marginStart="@dimen/margin_start_default"
+                android:layout_marginTop="@dimen/margin_top_default"
+                android:layout_marginEnd="@dimen/margin_end_default"
                 android:fontFamily="@font/moderno"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -42,15 +43,16 @@
                 android:id="@+id/text_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginTop="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
+                android:layout_marginStart="@dimen/margin_start_default"
+                android:layout_marginTop="@dimen/margin_top_default"
+                android:layout_marginEnd="@dimen/margin_end_default"
                 android:gravity="center"
                 android:textColor="@color/black" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_main"
                 android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/cardview_corner_radius"
                 android:layout_height="@dimen/app_bar_layout_height"
                 android:layout_margin="@dimen/cardview_layout_margin"
                 android:elevation="@dimen/cardview_elevation">
@@ -66,6 +68,16 @@
                     tools:src="@tools:sample/backgrounds/scenic" />
 
             </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/text_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_start_default"
+                android:layout_marginEnd="@dimen/margin_end_default"
+                android:layout_marginBottom="@dimen/margin_bottom_default"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

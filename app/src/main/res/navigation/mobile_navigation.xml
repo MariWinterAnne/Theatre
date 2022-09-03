@@ -9,7 +9,13 @@
         android:id="@+id/home"
         android:name="com.example.theatre.features.poster.presentation.ui.list.PosterFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_poster" />
+        tools:layout="@layout/fragment_poster" >
+        <action
+            android:id="@+id/action_home_to_posterDetailFragment"
+            app:destination="@id/posterDetailFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/home" />
+    </fragment>
 
     <fragment
         android:id="@+id/favourite"
@@ -161,6 +167,44 @@
         android:id="@+id/personReviewFragment"
         android:name="com.example.theatre.features.info.presentation.ui.detail.person.PersonReviewFragment"
         android:label="PersonReviewFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/posterDetailFragment"
+        android:name="com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment"
+        android:label="fragment_poster_detail"
+        tools:layout="@layout/fragment_poster_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_posterDetailFragment_to_posterDescriptionFragment"
+            app:destination="@id/posterDescriptionFragment" />
+        <action
+            android:id="@+id/action_posterDetailFragment_to_posterReviewFragment"
+            app:destination="@id/posterReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/posterDescriptionFragment"
+        android:name="com.example.theatre.features.poster.presentation.ui.detail.PosterDescriptionFragment"
+        android:label="fragment_poster_description"
+        tools:layout="@layout/fragment_poster_description" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/posterReviewFragment"
+        android:name="com.example.theatre.features.poster.presentation.ui.detail.PosterReviewFragment"
+        android:label="fragment_poster_review"
+        tools:layout="@layout/fragment_poster_review" >
         <argument
             android:name="id"
             app:argType="integer"

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentasion.ui.detail.EventFragment"
+    tools:showIn="@layout/fragment_poster_detail">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:fillViewport="true"
+        app:behavior_overlapTop="@dimen/behavior_overlaptop"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_main"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/cardview_layout_margin"
+            android:layout_marginLeft="@dimen/cardview_layout_margin"
+            android:layout_marginTop="@dimen/cardview_layout_margin_top"
+            android:layout_marginEnd="@dimen/cardview_layout_margin"
+            android:layout_marginRight="@dimen/cardview_layout_margin"
+            android:layout_marginBottom="@dimen/cardview_layout_margin"
+            android:elevation="@dimen/cardview_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_thumbnail"
+            android:layout_width="@dimen/image_height_width"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/cardview_layout_margin"
+            android:background="@android:color/darker_gray"
+            android:cropToPadding="true"
+            android:elevation="@dimen/cardview_elevation"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="W,4:3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/cardview_layout_margin"
+            android:transitionGroup="true"
+            app:cardBackgroundColor="@color/ultramarine"
+            app:cardElevation="@dimen/cardview_elevation"
+            app:layout_constraintRight_toRightOf="@id/card_main"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/cardview_layout_margin"
+                android:ellipsize="end"
+                android:fontFamily="@font/decadancecursiv"
+                android:maxWidth="@dimen/max_width"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="?android:textColorPrimaryInverse"
+                tools:text="@tools:sample/us_zipcodes" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/event_layout_margin"
+            android:elevation="@dimen/cardview_elevation"
+            android:fontFamily="@font/moderno"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintLeft_toRightOf="@id/image_thumbnail"
+            app:layout_constraintRight_toRightOf="@id/card_main"
+            app:layout_constraintTop_toBottomOf="@id/card_price" />
+
+        <TextView
+            android:id="@+id/text_venue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/event_layout_margin"
+            android:elevation="@dimen/cardview_elevation"
+            android:fontFamily="@font/decadancecursiv"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/card_tab"
+            app:layout_constraintLeft_toRightOf="@id/image_thumbnail"
+            app:layout_constraintRight_toRightOf="@id/card_main"
+            app:layout_constraintTop_toBottomOf="@id/text_name" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/event_layout_margin"
+            android:layout_marginRight="@dimen/event_layout_margin"
+            android:layout_marginBottom="@dimen/event_layout_margin"
+            android:elevation="@dimen/cardview_elevation"
+            android:transitionGroup="true"
+            app:layout_constraintBottom_toBottomOf="@id/card_main"
+            app:layout_constraintLeft_toLeftOf="@id/card_main"
+            app:layout_constraintRight_toRightOf="@id/card_main"
+            app:layout_constraintTop_toBottomOf="@id/card_tab" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cardview_layout_margin"
+            android:layout_marginTop="@dimen/event_layout_margin"
+            android:layout_marginRight="@dimen/cardview_layout_margin"
+            android:layout_marginBottom="@dimen/event_layout_margin"
+            app:cardElevation="@dimen/cardview_elevation"
+            app:layout_constraintLeft_toLeftOf="@id/card_main"
+            app:layout_constraintRight_toRightOf="@id/card_main"
+            app:layout_constraintTop_toBottomOf="@id/text_venue"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@drawable/tab_color_selector"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/ultramarine"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/ultramarine" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

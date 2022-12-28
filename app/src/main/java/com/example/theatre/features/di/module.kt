@@ -5,6 +5,7 @@ import com.example.theatre.features.info.presentation.ui.detail.person.PersonDet
 import com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreDetailViewModel
 import com.example.theatre.features.info.presentation.ui.list.person.PersonViewModel
 import com.example.theatre.features.info.presentation.ui.list.theatre.TheatreViewModel
+import com.example.theatre.features.poster.presentation.ui.list.PostersViewModel
 import com.example.theatre.features.spectacles.presentation.ui.list.SpectacleViewModel
 import com.example.theatre.features.spectacles.presentation.ui.detail.SpectacleDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,5 +18,6 @@ val presentation = module {
     viewModel { PersonDetailViewModel(get()) }
     viewModel { SpectacleViewModel(get()) }
     viewModel { SpectacleDetailsViewModel(get()) }
+    viewModel { PostersViewModel(get()) }
     factory { PerformanceDateFormatter() }
 }

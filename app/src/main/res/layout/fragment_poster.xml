@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.poster.presentation.ui.detail.PosterFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +12,6 @@
         android:fillViewport="true"
         app:behavior_overlapTop="@dimen/behavior_overlaptop"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
@@ -25,27 +23,26 @@
             app:layout_constraintTop_toBottomOf="@+id/card_tab"
             tools:layout_editor_absoluteX="@dimen/layout_editor_absoluteX"
             tools:layout_editor_absoluteY="0dp" />
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="@dimen/cardview_elevation"
             tools:ignore="MissingConstraints">
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabBackground="@drawable/tab_color_selector"
                 app:tabGravity="fill"
+                app:tabIndicatorColor="@color/ultramarine"
                 app:tabMaxWidth="0dp"
                 app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/ultramarine" />
                 app:tabSelectedTextColor="@color/white" />
 
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </FrameLayout>

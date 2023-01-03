@@ -24,7 +24,6 @@
                 android:layout_marginEnd="@dimen/margin_end_default"
                 android:fontFamily="@font/decadancecursiv"
                 android:gravity="center"
-                android:textColor="@color/ultramarine"
                 android:textStyle="italic" />
 
             <TextView

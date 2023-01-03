@@ -6,9 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
-        android:paddingLeft="@dimen/padding_left_right"
+        android:paddingStart="@dimen/padding_start_end"
         android:paddingTop="@dimen/padding_top"
-        android:paddingRight="@dimen/padding_left_right">
+        android:paddingEnd="@dimen/padding_start_end">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview"
@@ -18,6 +18,7 @@
             android:layout_marginTop="@dimen/cardview_margin_top"
             android:layout_marginBottom="@dimen/cardview_layout_margin_end_bottom"
             android:elevation="@dimen/cardview_elevation"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/image_cardview"
             app:layout_constraintRight_toRightOf="parent"
@@ -27,11 +28,12 @@
             android:id="@+id/image_cardview"
             android:layout_width="@dimen/image_height_width"
             android:layout_height="@dimen/image_height_width"
-            android:layout_marginStart="@dimen/container_margin"
+            android:layout_marginStart="@dimen/layout_margin_start_end"
             android:elevation="@dimen/cardview_elevation"
+            app:cardCornerRadius="@dimen/card_corner_radius"
             tools:ignore="MissingConstraints">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_thumbnail"
                 android:layout_width="@dimen/image_height_width"
                 android:layout_height="@dimen/image_height_width"
@@ -40,6 +42,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSizePercent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
         </androidx.cardview.widget.CardView>
@@ -47,6 +50,7 @@
         <TextView
             android:id="@+id/text_closed"
             android:layout_width="@dimen/text_size_item_closed"
+            android:layout_width="@dimen/text_price_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/container_margin"
             android:layout_marginBottom="@dimen/container_margin"
@@ -56,7 +60,7 @@
             android:gravity="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/ultramarine"
+            android:textColor="@color/second_color"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -88,7 +92,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/decadancecursiv"
             android:maxLines="3"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             app:layout_constraintLeft_toRightOf="@+id/image_cardview"
             app:layout_constraintRight_toRightOf="@+id/cardview"
             app:layout_constraintTop_toBottomOf="@+id/text_name"

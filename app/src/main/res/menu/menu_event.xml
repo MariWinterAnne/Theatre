@@ -6,6 +6,6 @@
     <item
         android:id="@+id/action_event"
         android:icon="@drawable/ic_local_play_white_24dp"
-        app:showAsAction="ifRoom"
-        android:title="@string/action_tickets" />
+        android:title="@string/action_tickets"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -1,6 +1,9 @@
 package com.example.theatre.features.poster.data.model
 
-import com.example.theatre.core.domain.model.Images
+import com.example.theatre.core.data.model.ImageModel
+import com.example.theatre.core.data.model.performance.PerformanceDatesModel
+import com.example.theatre.core.data.model.performance.PerformanceParticipantsModel
+import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 
@@ -20,11 +23,26 @@ data class PosterDetailsModel(
     @SerializedName("id")
     val id: Int,
     @SerializedName("images")
-    val images: List<Images>?,
+    val images: List<ImageModel>? = listOf(),
     @SerializedName("title")
-    val title: String?,
+    val title: String,
+    @SerializedName("short_title")
+    val shortTitle: String = String.EMPTY,
     @SerializedName("description")
     val description: String?,
-    @SerializedName("publicationDate")
-    val publicationDate: Long?
+    @SerializedName("tagline")
+    val tagline: String = String.EMPTY,
+    @SerializedName("publication_date")
+    val publicationDate: Long?,
+    val price: String?,
+    @SerializedName("age_restriction")
+    val ageRestriction: String = String.EMPTY,
+    @SerializedName("dates")
+    val dates: List<PerformanceDatesModel>? = listOf(),
+    @SerializedName("participants")
+    val participants: List<PerformanceParticipantsModel>? = listOf(),
+    @SerializedName("body_text")
+    val bodyText: String = String.EMPTY,
+    @SerializedName("site_url")
+    val siteUrl: String = String.EMPTY
 )

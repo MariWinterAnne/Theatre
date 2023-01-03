@@ -14,6 +14,7 @@ import com.example.theatre.R
 import com.example.theatre.databinding.ActivityMainBinding
 import com.example.theatre.features.info.presentation.ui.detail.person.PersonDetailViewModel
 import com.example.theatre.features.info.presentation.ui.detail.theatre.TheatreDetailViewModel
+import com.example.theatre.features.poster.presentation.ui.detail.PosterDetailsViewModel
 import com.example.theatre.features.spectacles.presentation.ui.detail.SpectacleDetailsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val spectacleViewModel by viewModel<SpectacleDetailsViewModel>()
     private val theatreViewModel by viewModel<TheatreDetailViewModel>()
     private val personViewModel by viewModel<PersonDetailViewModel>()
+    private val posterDetailsViewModel by viewModel<PosterDetailsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

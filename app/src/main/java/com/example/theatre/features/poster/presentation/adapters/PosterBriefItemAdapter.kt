@@ -50,7 +50,7 @@ class PosterBriefItemAdapter(
                 }
 
                 textDescription.text = description.orEmpty().deleteHTML()
-                root.setOnClickListener {
+                textTitle.setOnClickListener {
                     onItemClicked(id)
                 }
 
@@ -63,7 +63,6 @@ class PosterBriefItemAdapter(
     fun setData(data: List<PosterBriefItem>) {
         if (data.isNotEmpty()) {
             this.data = data
-            notifyDataSetChanged()
         }
     }
 }

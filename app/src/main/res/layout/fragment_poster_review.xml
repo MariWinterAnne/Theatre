@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".features.poster.presentation.ui.detail.PosterReviewFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/fragment_layout_margin">
+
+            <TextView
+                android:id="@+id/text_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/decadancecursiv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/text_age_restriction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/decadancecursiv"
+                android:gravity="end"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/text_datetime"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/text_event_start_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/text_datetime" />
+
+            <TextView
+                android:id="@+id/text_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:fontFamily="@font/decadancecursiv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintTop_toBottomOf="@id/text_event_start_end" />
+
+            <TextView
+                android:id="@+id/text_place_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/theater"
+                app:layout_constraintTop_toBottomOf="@id/text_place" />
+
+            <TextView
+                android:id="@+id/text_place_subway"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/underground_station"
+                app:layout_constraintTop_toBottomOf="@id/text_place_title" />
+
+            <TextView
+                android:id="@+id/text_place_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/location"
+                app:layout_constraintTop_toBottomOf="@id/text_place_subway" />
+
+            <TextView
+                android:id="@+id/text_place_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/phone"
+                app:layout_constraintTop_toBottomOf="@id/text_place_address" />
+
+            <TextView
+                android:id="@+id/text_place_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:autoLink="web"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/website"
+                app:layout_constraintTop_toBottomOf="@id/text_place_phone" />
+
+            <TextView
+                android:id="@+id/text_place_isclosed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:textColor="@android:color/holo_red_dark"
+                app:layout_constraintTop_toBottomOf="@id/text_place_site" />
+
+            <TextView
+                android:id="@+id/text_participants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:fontFamily="@font/decadancecursiv"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/text_place_isclosed" />
+
+            <TextView
+                android:id="@+id/text_participants_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_margin_top"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/text_participants" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

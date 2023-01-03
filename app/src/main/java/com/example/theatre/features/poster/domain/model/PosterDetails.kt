@@ -1,6 +1,8 @@
 package com.example.theatre.features.poster.domain.model
 
 import com.example.theatre.core.domain.model.Images
+import com.example.theatre.core.domain.model.PerformanceDates
+import com.example.theatre.core.domain.model.PerformanceParticipants
 
 /**
  * @author Tamerlan Mamukhov
@@ -9,7 +11,15 @@ import com.example.theatre.core.domain.model.Images
 data class PosterDetails(
     val id: Int,
     val images: List<Images>?,
-    val title: String?,
+    val title: String,
+    val shortTitle: String?,
     val description: String?,
-    val publicationDate: Long?
+    val tagline: String?,
+    val publicationDate: Long?,
+    val price: String?,
+    val ageRestriction: String?,
+    val dates: List<PerformanceDates>?,
+    val participants: List<PerformanceParticipants>?,
+    val bodyText: String?,
+    val siteUrl: String?
 )

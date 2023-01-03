@@ -14,6 +14,7 @@
     <dimen name="text_price_width">74dp</dimen>
     <dimen name="fragment_layout_margin">16dp</dimen>
     <dimen name="drawable_padding">10dp</dimen>
+
     <dimen name="cardview_elevation">8dp</dimen>
     <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="layout_margin">8dp</dimen>
@@ -34,6 +35,9 @@
     /* fragment_info */
     <dimen name="layout_editor_absoluteX">16dp</dimen>
 
+
+    /* fragment_spectacles_item */
+
     /* fragment_spectacles */
     <dimen name="cardview_corner_radius">20dp</dimen>
 
@@ -49,7 +53,27 @@
     <dimen name="padding_top">8dp</dimen>
     <dimen name="padding_left_right">8dp</dimen>
     <dimen name="cardview_margin_top">8dp</dimen>
+
+
+    <dimen name="text_size_item_closed">76sp</dimen>
+
+    <dimen name="margin_start_default">16dp</dimen>
+    <dimen name="margin_end_default">16dp</dimen>
+    <dimen name="margin_top_default">16dp</dimen>
+    <dimen name="margin_bottom_default">16dp</dimen>
+
+    /* Общие измерения */
     <dimen name="container_margin">8dp</dimen>
+
+    /* cardview */
+    <dimen name="cardview_corner_radius">20dp</dimen>
+    <dimen name="cardview_elevation">8dp</dimen>
+    /* margins */
+    <dimen name="layout_margin_top_large">32dp</dimen>
+    <dimen name="layout_margin_top_medium">24dp</dimen>
+    /* text size */
+    <dimen name="text_size_large">32sp</dimen>
+    <dimen name="text_size_medium">24sp</dimen>
     <dimen name="padding_start_end">4dp</dimen>
     <dimen name="layout_margin_start_end">4dp</dimen>
 

@@ -1,84 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".features.poster.presentation.ui.detail.PosterDetailFragment">
 
-    <androidx.core.widget.NestedScrollView
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="@dimen/app_bar_layout_height"
+            android:fitsSystemWindows="true">
 
-            <TextView
-                android:id="@+id/text_tagline"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                app:cardCornerRadius="@dimen/cardview_corner_radius"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginTop="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
-                android:fontFamily="@font/decadancecursiv"
-                android:gravity="center"
-                android:textColor="@color/ultramarine"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/text_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginTop="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
-                android:fontFamily="@font/moderno"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/text_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginTop="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_main"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/app_bar_layout_height"
-                android:layout_margin="@dimen/cardview_layout_margin"
-                android:elevation="@dimen/cardview_elevation">
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/ultramarine"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
 
                 <ImageView
-                    android:id="@+id/image_thumbnail"
+                    android:id="@+id/image_large"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/darker_gray"
-                    android:cropToPadding="true"
-                    android:elevation="@dimen/cardview_elevation"
+                    android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    app:tintMode="src_atop"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:id="@+id/text_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_description_layout_margin"
-                android:layout_marginEnd="@dimen/text_description_layout_margin"
-                android:layout_marginBottom="@dimen/text_description_layout_margin"
-                android:textColor="@color/black" />
+        <include
+            android:id="@+id/content"
+            layout="@layout/content_poster_detail" />
 
-        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </androidx.core.widget.NestedScrollView>
-
-
-</FrameLayout>
+</layout>

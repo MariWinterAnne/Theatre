@@ -36,9 +36,9 @@ class PosterReviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.run { viewModel.init(getInt(poster_id)) }
+        arguments?.run { viewModel.getPoster(getInt(poster_id)) }
 
-        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
+//        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
     }
 
     private fun setDetails(posterDetails: PosterDetails) =

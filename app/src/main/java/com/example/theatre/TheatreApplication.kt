@@ -1,6 +1,7 @@
 package com.example.theatre
 
 import android.app.Application
+import com.example.theatre.core.di.databaseModule
 import com.example.theatre.features.di.data
 import com.example.theatre.features.di.domain
 import com.example.theatre.features.di.networkmodule
@@ -14,7 +15,7 @@ class TheatreApplication: Application() {
 
         startKoin {
             androidContext(this@TheatreApplication)
-            modules(networkmodule, data, domain, presentation)
+            modules(databaseModule, networkmodule, data, domain, presentation)
         }
     }
 }

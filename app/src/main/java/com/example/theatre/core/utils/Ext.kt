@@ -1,7 +1,7 @@
 package com.example.theatre.core.utils
 
 import android.content.Context
-import com.example.theatre.core.domain.model.PerformanceParticipants
+import com.example.theatre.core.domain.models.PerformanceParticipants
 import com.example.theatre.features.info.presentation.ui.detail.toRole
 
 /**

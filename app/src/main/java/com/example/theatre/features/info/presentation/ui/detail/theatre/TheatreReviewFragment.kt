@@ -43,10 +43,11 @@ class TheatreReviewFragment : Fragment() {
 
         binding = FragmentReviewBinding.bind(view)
         arguments?.run { theatreViewModel.getTheatreById(getInt(theatre_id)) }
-        theatreViewModel.theatreDetails.observe(viewLifecycleOwner, ::setDetails)
+//        theatreViewModel.theatreDetailsContent.observe(viewLifecycleOwner, ::handleContent)
     }
 
-    private fun setDetails(theatreDetails: Theatre){
+
+    private fun setDetails(theatreDetails: Theatre) {
         with(binding) {
             textDatetime.text = getString(R.string.theatre_schedule)
             textPlace.text = getString(R.string.theatre_address)
@@ -63,4 +64,8 @@ class TheatreReviewFragment : Fragment() {
             }
         }
     }
+
+
 }
+
+

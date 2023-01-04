@@ -1,14 +1,15 @@
 package com.example.theatre.features.info.presentation.ui.list.person
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.features.info.domain.model.Agent
 import com.example.theatre.features.info.presentation.adapters.PersonsListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,12 +56,19 @@ class PersonsFragment : Fragment() {
     }
 
     private fun initObservers() {
-        personsViewModel.personLoaded.observe(viewLifecycleOwner, ::setPersons)
+        personsViewModel.personLoaded.observe(viewLifecycleOwner) {
+            it.handleContents(
+                onStateSuccess = {
+                    personsAdapter.setPersons(it as List<Agent>)
+                },
+                onStateError = {
+
+                }
+
+            )
+        }
     }
 
-    private fun setPersons(persons: List<Agent>) {
-        personsAdapter.setPersons(persons)
-    }
 
     private fun onPersonClick(id: Int) {
         val bundle = bundleOf("id" to id)

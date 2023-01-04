@@ -20,7 +20,6 @@ val data = module {
     factory { PerformanceApiMapper(get()) }
     factory<PerformanceRepository> { PerformanceRepositoryImpl(get()) }
 
-    // TODO: постеры и прочее...
     factory { PosterApiMapper(get()) }
     factory<PosterRepository> { PosterRepositoryImpl(get()) }
 }

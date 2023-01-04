@@ -1,19 +1,17 @@
 package com.example.theatre.features.poster.presentation.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentPosterBinding
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
-import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.adapters.PosterBriefItemAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,21 +37,14 @@ class PosterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.postersList.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-
-        adapter = PosterBriefItemAdapter {
-            id: Int -> onItemClicked(id)
+        adapter = PosterBriefItemAdapter { id: Int ->
+            onItemClicked(id)
         }
 
-        binding.postersList.adapter = adapter
-
-        binding.postersList.animation =
-            AnimationUtils.loadAnimation(binding.postersList.context, R.anim.amination_poster)
+        viewModel.getPosters()
 
         initObservers()
 
-        viewModel.getPosters()
     }
 
     private fun onItemClicked(id: Int) {
@@ -63,12 +54,19 @@ class PosterFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.postersBrief.observe(viewLifecycleOwner, ::setData)
+        viewModel.postersBrief.observe(viewLifecycleOwner, ::handlePosters)
     }
 
 
-    private fun setData(list: List<PosterBriefItem>) {
-        adapter.setData(list)
-    }
+    private fun handlePosters(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = {
+                adapter.setData(it as List<PosterBriefItem>)
+    //                binding.viewPager.adapter = adapter
+            },
+            onStateError = {
+
+            }
+        )
 
 }

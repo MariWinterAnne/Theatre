@@ -3,18 +3,18 @@ package com.example.theatre.features.spectacles.data.mappers
 import com.example.theatre.core.data.mappers.toAgent
 import com.example.theatre.core.data.mappers.toAgentRole
 import com.example.theatre.core.data.mappers.toImages
-import com.example.theatre.core.domain.models.Performance
-import com.example.theatre.core.domain.models.PerformanceDates
-import com.example.theatre.core.domain.models.PerformanceParticipants
-import com.example.theatre.core.domain.models.PerformancePlace
-import com.example.theatre.core.domain.models.PerformancePlaceCoordinates
-import com.example.theatre.core.domain.models.PerformancePlaceLocation
-import com.example.theatre.features.spectacles.api.model.PerformanceDatesModel
-import com.example.theatre.features.spectacles.api.model.PerformanceModel
-import com.example.theatre.features.spectacles.api.model.PerformanceParticipantsModel
-import com.example.theatre.features.spectacles.api.model.PerformancePlaceCoordinatesModel
-import com.example.theatre.features.spectacles.api.model.PerformancePlaceLocationModel
-import com.example.theatre.features.spectacles.api.model.PerformancePlaceModel
+import com.example.theatre.core.domain.model.common.Performance
+import com.example.theatre.core.domain.model.common.PerformanceDates
+import com.example.theatre.core.domain.model.common.PerformanceParticipants
+import com.example.theatre.core.domain.model.common.PerformancePlace
+import com.example.theatre.core.domain.model.common.PerformancePlaceCoordinates
+import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.features.spectacles.data.api.model.PerformanceDatesModel
+import com.example.theatre.features.spectacles.data.api.model.PerformanceModel
+import com.example.theatre.features.spectacles.data.api.model.PerformanceParticipantsModel
+import com.example.theatre.features.spectacles.data.api.model.PerformancePlaceCoordinatesModel
+import com.example.theatre.features.spectacles.data.api.model.PerformancePlaceLocationModel
+import com.example.theatre.features.spectacles.data.api.model.PerformancePlaceModel
 
 fun PerformanceModel.toPerformancePlaceLocation() =
     location?.toPerformancePlaceLocation()

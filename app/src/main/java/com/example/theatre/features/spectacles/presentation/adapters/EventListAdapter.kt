@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.domain.models.Performance
-import com.example.theatre.core.utils.StringUtils.EMPTY
-import com.example.theatre.core.utils.StringUtils.deleteHTML
+import com.example.theatre.core.domain.model.common.Performance
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.databinding.ItemSpectacleBinding
 
 /**

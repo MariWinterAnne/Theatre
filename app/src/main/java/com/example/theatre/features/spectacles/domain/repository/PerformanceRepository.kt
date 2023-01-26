@@ -1,8 +1,8 @@
 package com.example.theatre.features.spectacles.domain.repository
 
-import com.example.theatre.core.domain.models.Performance
-import com.example.theatre.core.domain.models.PerformancePlace
-import com.example.theatre.core.domain.models.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.common.Performance
+import com.example.theatre.core.domain.model.common.PerformancePlace
+import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
 
 /**
  * Репозиторий для списка постановок и их детализации

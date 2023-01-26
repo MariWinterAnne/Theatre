@@ -1,8 +1,8 @@
 package com.example.theatre.features.poster.domain.model
 
-import com.example.theatre.core.domain.models.Images
-import com.example.theatre.core.domain.models.PerformanceDates
-import com.example.theatre.core.domain.models.PerformanceParticipants
+import com.example.theatre.core.domain.model.common.Images
+import com.example.theatre.core.domain.model.common.PerformanceDates
+import com.example.theatre.core.domain.model.common.PerformanceParticipants
 
 /**
  * @author Tamerlan Mamukhov

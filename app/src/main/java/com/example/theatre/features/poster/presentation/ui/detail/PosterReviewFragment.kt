@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.theatre.R
-import com.example.theatre.core.utils.PerformanceDateFormatter
-import com.example.theatre.core.utils.toListOfActorsInPerformance
+import com.example.theatre.core.presentation.PerformanceDateFormatter
+import com.example.theatre.core.presentation.ext.toListOfActorsInPerformance
 import com.example.theatre.databinding.FragmentPosterReviewBinding
 import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment.Companion.poster_id
@@ -37,8 +37,6 @@ class PosterReviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.run { viewModel.getPoster(getInt(poster_id)) }
-
-//        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
     }
 
     private fun setDetails(posterDetails: PosterDetails) =

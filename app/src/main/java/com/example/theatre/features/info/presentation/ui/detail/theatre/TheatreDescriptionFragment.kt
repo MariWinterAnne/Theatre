@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.core.presentation.model.ContentResultState
-import com.example.theatre.core.utils.StringUtils.EMPTY
-import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

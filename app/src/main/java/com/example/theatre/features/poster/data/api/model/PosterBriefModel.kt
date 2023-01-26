@@ -1,7 +1,7 @@
 package com.example.theatre.features.poster.data.api.model
 
 import com.example.theatre.core.data.model.common.ImageModel
-import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.presentation.ext.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**

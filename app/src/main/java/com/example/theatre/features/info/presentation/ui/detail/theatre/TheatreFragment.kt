@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.theatre.R
+import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.model.ContentResultState
-import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.databinding.FragmentEventBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import com.example.theatre.features.info.domain.model.TheatreLocation

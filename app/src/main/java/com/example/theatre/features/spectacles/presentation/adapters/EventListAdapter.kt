@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.models.Performance
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.core.utils.StringUtils.deleteHTML
-import com.example.theatre.databinding.FragmentSpectaclesItemBinding
-import com.example.theatre.network.Constants.ISFREE
+import com.example.theatre.databinding.ItemSpectacleBinding
 
 /**
  * Адаптер для списка постановок
@@ -25,14 +24,14 @@ class EventListAdapter(
     private val onItemClicked: (id: Int) -> Unit,
 ) : RecyclerView.Adapter<EventListAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: FragmentSpectaclesItemBinding) :
+    class ViewHolder(val binding: ItemSpectacleBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
-            FragmentSpectaclesItemBinding.bind(
+            ItemSpectacleBinding.bind(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.fragment_spectacles_item, parent, false)
+                    .inflate(R.layout.item_spectacle, parent, false)
             )
         )
 
@@ -42,11 +41,12 @@ class EventListAdapter(
             with(spectacles[position]) {
                 textName.text = title.replaceFirstChar { it.uppercaseChar() }
                 if (isFree == true) {
-                    textPrice.text = ISFREE
+                    textPrice.text = context.getString(R.string.free)
                 } else {
                     textPrice.text = price
                 }
-                val imageURL = if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
+                val imageURL =
+                    if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {
                     Glide
                         .with(context)

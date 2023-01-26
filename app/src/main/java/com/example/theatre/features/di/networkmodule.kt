@@ -1,15 +1,15 @@
 package com.example.theatre.features.di
 
+import com.example.theatre.features.Constants.BASE_URL
 import com.example.theatre.features.info.data.api.PersonApi
 import com.example.theatre.features.info.data.api.TheatreApi
 import com.example.theatre.features.poster.data.api.PosterApi
 import com.example.theatre.features.spectacles.api.PerformanceApi
-import com.example.theatre.network.Constants.BASE_URL
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 val networkmodule = module {
 

@@ -1,20 +1,20 @@
 package com.example.theatre.features.poster.data.api
 
-import com.example.theatre.core.data.common.ItemsListResultModel
-import com.example.theatre.core.data.model.poster.PosterBriefModel
+import com.example.theatre.core.data.model.common.ItemsListResultModel
+import com.example.theatre.features.Constants
+import com.example.theatre.features.Constants.AGE_RESTRICTION
+import com.example.theatre.features.Constants.BODY_TEXT
+import com.example.theatre.features.Constants.DATES
+import com.example.theatre.features.Constants.DESCRIPTION
+import com.example.theatre.features.Constants.ID
+import com.example.theatre.features.Constants.IMAGES
+import com.example.theatre.features.Constants.PARTICIPANTS
+import com.example.theatre.features.Constants.PRICE
+import com.example.theatre.features.Constants.PUBLICATION_DATE
+import com.example.theatre.features.Constants.SHORT_TITLE
+import com.example.theatre.features.Constants.TITLE
+import com.example.theatre.features.poster.data.api.model.PosterBriefModel
 import com.example.theatre.features.poster.data.model.PosterDetailsModel
-import com.example.theatre.network.Constants
-import com.example.theatre.network.Constants.AGE_RESTRICTION
-import com.example.theatre.network.Constants.BODY_TEXT
-import com.example.theatre.network.Constants.DATES
-import com.example.theatre.network.Constants.DESCRIPTION
-import com.example.theatre.network.Constants.ID
-import com.example.theatre.network.Constants.IMAGES
-import com.example.theatre.network.Constants.PARTICIPANTS
-import com.example.theatre.network.Constants.PRICE
-import com.example.theatre.network.Constants.PUBLICATION_DATE
-import com.example.theatre.network.Constants.SHORT_TITLE
-import com.example.theatre.network.Constants.TITLE
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -1,18 +1,18 @@
 package com.example.theatre.features.info.data.api
 
-import com.example.theatre.core.data.common.ItemsListResultModel
+import com.example.theatre.core.data.model.common.ItemsListResultModel
+import com.example.theatre.features.Constants.AGENT_ID
+import com.example.theatre.features.Constants.AGENT_TYPE
+import com.example.theatre.features.Constants.BODY_TEXT
+import com.example.theatre.features.Constants.CTYPE
+import com.example.theatre.features.Constants.DESCRIPTION
+import com.example.theatre.features.Constants.ID
+import com.example.theatre.features.Constants.IMAGES
+import com.example.theatre.features.Constants.PARTICIPATIONS
+import com.example.theatre.features.Constants.SITE_URL
+import com.example.theatre.features.Constants.SLUG
+import com.example.theatre.features.Constants.TITLE
 import com.example.theatre.features.info.data.model.AgentModel
-import com.example.theatre.network.Constants.AGENT_ID
-import com.example.theatre.network.Constants.AGENT_TYPE
-import com.example.theatre.network.Constants.BODY_TEXT
-import com.example.theatre.network.Constants.CTYPE
-import com.example.theatre.network.Constants.DESCRIPTION
-import com.example.theatre.network.Constants.ID
-import com.example.theatre.network.Constants.IMAGES
-import com.example.theatre.network.Constants.PARTICIPATIONS
-import com.example.theatre.network.Constants.SITE_URL
-import com.example.theatre.network.Constants.SLUG
-import com.example.theatre.network.Constants.TITLE
 import retrofit2.http.GET
 import retrofit2.http.Path
 

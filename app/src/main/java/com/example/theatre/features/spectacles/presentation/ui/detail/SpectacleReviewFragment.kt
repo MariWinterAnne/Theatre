@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.theatre.R
-import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.domain.model.PerformancePlaceLocation
-import com.example.theatre.core.domain.model.PerformancePlace
-import com.example.theatre.databinding.FragmentReviewBinding
+import com.example.theatre.core.domain.models.Performance
+import com.example.theatre.core.domain.models.PerformancePlace
+import com.example.theatre.core.domain.models.PerformancePlaceLocation
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.core.utils.PerformanceDateFormatter
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.core.utils.toListOfActorsInPerformance
-import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
+import com.example.theatre.databinding.FragmentReviewBinding
+import com.example.theatre.features.spectacles.presentation.ui.detail.SpectacleDetailsFragment.Companion.event_id
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -23,13 +25,13 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * @author Marianna Sabanchieva
  */
 
-class ReviewFragment : Fragment() {
+class SpectacleReviewFragment : Fragment() {
 
     companion object {
         const val DETAILS_TAB = 1
         const val DETAILS = "Детали"
-        fun newInstance(): ReviewFragment {
-            return ReviewFragment()
+        fun newInstance(): SpectacleReviewFragment {
+            return SpectacleReviewFragment()
         }
     }
 
@@ -54,11 +56,33 @@ class ReviewFragment : Fragment() {
         gaps = getString(R.string.gaps)
         with(spectacleViewModel) {
             arguments?.run { init(getInt(event_id)) }
-            spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
-            cityLoaded.observe(viewLifecycleOwner, ::setCity)
-            placeLoaded.observe(viewLifecycleOwner, ::setPlace)
+            spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleInfo)
+            cityLoaded.observe(viewLifecycleOwner, ::handleInfo)
+            placeLoaded.observe(viewLifecycleOwner, ::handleInfo)
         }
     }
+
+    private fun handleInfo(contentResultState: ContentResultState) {
+        contentResultState.handleContents(
+            onStateSuccess = {
+                when (it) {
+                    is Performance -> {
+                        setDetails(it)
+                    }
+                    is PerformancePlaceLocation -> {
+                        setCity(it)
+                    }
+                    is PerformancePlace -> {
+                        setPlace(it)
+                    }
+                }
+            },
+            onStateError = {
+
+            }
+        )
+    }
+
 
     private fun setDetails(eventDetails: Performance) {
         with(binding) {
@@ -68,7 +92,8 @@ class ReviewFragment : Fragment() {
             with(eventDetails) {
                 textAgeRestriction.text = ageRestriction
                 textEventStartEnd.text = dateFormatter.getUpcomingPerformanceDates(dates)
-                textParticipantsList.text = participants?.toListOfActorsInPerformance(requireContext())
+                textParticipantsList.text =
+                    participants?.toListOfActorsInPerformance(requireContext())
             }
         }
     }

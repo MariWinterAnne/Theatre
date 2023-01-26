@@ -1,19 +1,18 @@
 package com.example.theatre.features.poster.presentation.ui.detail
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.databinding.FragmentPosterDetailBinding
 import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.adapters.PosterDetailsViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -58,14 +57,36 @@ class PosterDetailFragment : Fragment() {
             }.attach()
         }
 
-        arguments?.run { viewModel.init(getInt(poster_id)) }
+        arguments?.run { viewModel.getPoster(getInt(poster_id)) }
 
-        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
+        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::handlePoster)
+    }
+
+
+    private fun handlePoster(contentResultState: ContentResultState) =
+        when (contentResultState) {
+            is ContentResultState.Content -> {
+                contentResultState.handleContent()
+            }
+            is ContentResultState.Error -> {
+                contentResultState.handleError()
+            }
+            else -> {}
+        }
+
+
+    private fun ContentResultState.Content.handleContent() {
+//        setDetails(contentSingle as PosterDetails)
+    }
+
+    private fun ContentResultState.Error.handleError() {
+
     }
 
     private fun setDetails(posterDetails: PosterDetails) {
         with(binding.content) {
-            textName.text = posterDetails?.shortTitle.orEmpty().replaceFirstChar { it.uppercaseChar() }
+            textName.text =
+                posterDetails?.shortTitle.orEmpty().replaceFirstChar { it.uppercaseChar() }
 
             val imageURL =
                 if (posterDetails?.images?.isNotEmpty() == true) posterDetails?.images.first().imageURL.orEmpty() else String.EMPTY

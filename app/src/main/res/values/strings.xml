@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Театрал</string>
+    <!--    Названия экранов-->
     <string name="home">Афиша</string>
     <string name="favourite">Избранное</string>
     <string name="performance">Спектакли</string>
     <string name="info">Информация</string>
+    <!--    Прочее-->
     <string name="empty_icon">Нет информации для отображения.</string>
     <string name="action_settings">Настройки</string>
     <string name="action_tickets">Билеты</string>
@@ -18,26 +20,30 @@
     <string name="theatre_schedule">Расписание:</string>
     <string name="theatre_address">Расположение:</string>
     <string name="person_participations">Участие в постановках:</string>
+    <!--    Роли-->
     <string name="actor">Актеры</string>
     <string name="director">Режиссеры</string>
     <string name="musician">Музыканты</string>
     <string name="screenwriter">Сценаристы</string>
     <string name="stage_theatre">Театры-постановщики</string>
+    <string name="activist">Деятель</string>
+    <string name="organization">Организация</string>
+    <!--    Поиск-->
     <string name="search">Поиск</string>
     <string name="search_by_city">Поиск по городу</string>
     <string name="exception">Activity cannot be null</string>
-    <string name="error">Ошибка получения данных.</string>
-    <string name="activist">Деятель</string>
-    <string name="organization">Организация</string>
     <string name="empty">""</string>
+
+    <!--    Цены и состояние-->
     <string name="free">бесплатно</string>
+    <string name="closed">закрыто</string>
 
     <!--Ошибки-->
     <string name="network_error_title">Ошибка подключения</string>
     <string name="network_error_description">Проверьте соединение с сетью и обновите страницу</string>
     <string name="loading_error_title">Ошибка загрузки</string>
     <string name="loading_error_description">Повторите запрос или попробуйте позднее</string>
-
+    <!--    Коды городов-->
     <string name="msk">msk</string>
     <string name="spb">spb</string>
     <string name="ekb">ekb</string>
@@ -52,9 +58,10 @@
     <string name="vbg">vbg</string>
     <string name="kev">kev</string>
     <string name="new_york">new-york</string>
+    <!--    Работа с темой-->
     <string name="mode_night_no">Светлая тема</string>
     <string name="mode_night_yes">Темная тема</string>
     <string name="mode_night_follow_system">Как в системе</string>
     <string name="mode_night_auto_battery">Автоматический выбор</string>
-    <string name="theme_choise">Выбор темы</string>
+    <string name="theme_choice">Выбор темы</string>
 </resources>

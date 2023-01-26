@@ -1,13 +1,10 @@
 package com.example.theatre.features.info.presentation.ui.list.theatre
 
-import androidx.lifecycle.LiveData
+import GetTheatreUseCase
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.features.info.domain.usecases.GetTheatreUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.theatre.core.presentation.ext.viewModelCall
+import com.example.theatre.core.presentation.model.ContentResultState
 
 /**
  * View model для хранения списка театров
@@ -18,12 +15,13 @@ import kotlinx.coroutines.launch
 class TheatreViewModel(
     private val getTheatreUseCase: GetTheatreUseCase
 ) : ViewModel() {
-    private val _theatreLoaded = MutableLiveData<List<Theatre>>()
-    val theatreLoaded: LiveData<List<Theatre>> get() = _theatreLoaded
+    private val _theatresContent = MutableLiveData<ContentResultState>()
+    val theatresContent get() = _theatresContent
 
-    fun init() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _theatreLoaded.postValue(getTheatreUseCase.getTheatre())
-        }
-    }
+    fun getTheatres() = viewModelCall(
+        call = { getTheatreUseCase.getTheatre() },
+        contentResultState = _theatresContent
+    )
+
+
 }

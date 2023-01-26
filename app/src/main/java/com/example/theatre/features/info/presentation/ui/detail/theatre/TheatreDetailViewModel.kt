@@ -1,17 +1,10 @@
 package com.example.theatre.features.info.presentation.ui.detail.theatre
 
-import androidx.lifecycle.LiveData
+import GetTheatreUseCase
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.theatre.features.info.domain.model.TheatreLocation
-import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.features.info.domain.usecases.GetTheatreUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.theatre.core.presentation.ext.viewModelCall
+import com.example.theatre.core.presentation.model.ContentResultState
 
 /**
  * View model для хранения детальных данных о театре
@@ -22,23 +15,23 @@ import kotlinx.coroutines.withContext
 class TheatreDetailViewModel(
     private val getTheatreUseCase: GetTheatreUseCase
 ) : ViewModel() {
-    private val _theatreDetailsMutableLiveData = MutableLiveData<Theatre>()
-    val theatreDetails: LiveData<Theatre> get() = _theatreDetailsMutableLiveData
+    private val _theatreDetailsContent = MutableLiveData<ContentResultState>()
+    val theatreDetailsContent get() = _theatreDetailsContent
 
-    private val _cityLoaded = MutableLiveData<TheatreLocation>()
-    val cityLoaded: LiveData<TheatreLocation> get() = _cityLoaded
+    private val _cityContent = MutableLiveData<ContentResultState>()
+    val cityContent get() = _cityContent
 
     fun getTheatreById(id: Int) {
-        viewModelScope.launch {
-            _theatreDetailsMutableLiveData.value =
-                withContext(Dispatchers.IO) { getTheatreUseCase.getTheatreById(id) }
-
-            if (_theatreDetailsMutableLiveData.value?.location != null) {
-                val jobLocationDeferred = async(Dispatchers.IO + SupervisorJob()) {
-                    getTheatreUseCase.getCityName(_theatreDetailsMutableLiveData.value?.location.orEmpty())
-                }
-                _cityLoaded.value = jobLocationDeferred.await()
-            }
-        }
+        viewModelCall(
+            call = { getTheatreUseCase.getTheatreById(id) },
+            contentResultState = _theatreDetailsContent
+        )
+//
+//        if ((_theatreDetailsContent as Theatre).location != null) {
+//            viewModelCall(
+//                call = { getTheatreUseCase.getCityName((_theatreDetailsContent as Theatre).location.orEmpty()) },
+//                contentResultState = _cityContent
+//            )
+//        }
     }
 }

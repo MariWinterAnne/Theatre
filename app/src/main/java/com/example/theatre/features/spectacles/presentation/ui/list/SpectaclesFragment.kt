@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
-import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.models.Performance
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentSpectaclesBinding
 import com.example.theatre.features.spectacles.presentation.adapters.EventListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,30 +36,35 @@ class SpectaclesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_spectacles, container, false)
 
-        recyclerView = view.findViewById(R.id.list_event) as RecyclerView
         performancesAdapter = EventListAdapter(mutableListOf()) { id ->
             onSpectacleClick(id)
         }
-        recyclerView.adapter = performancesAdapter
-
-        initObservers()
-        spectacleViewModel.init()
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSpectaclesBinding.bind(view)
+
+        initObservers()
+        spectacleViewModel.init()
     }
 
     private fun initObservers() {
-        spectacleViewModel.spectacleLoaded.observe(viewLifecycleOwner, ::setSpectacles)
+        spectacleViewModel.spectacleLoaded.observe(viewLifecycleOwner, ::handleSpectacles)
     }
 
-    private fun setSpectacles(performances: List<Performance>) {
-        performancesAdapter.setSpectacles(performances)
-    }
+    private fun handleSpectacles(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = {
+                performancesAdapter.setSpectacles(it as List<Performance>)
+                binding.listEvent.adapter = performancesAdapter
+//                binding.listEvent.adapter = performancesAdapter
+            },
+            onStateError = {
+
+            }
+        )
 
     private fun onSpectacleClick(id: Int) {
         val bundle = bundleOf("id" to id)

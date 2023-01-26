@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.domain.model.Performance
+import com.example.theatre.core.domain.models.Performance
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
-import com.example.theatre.features.spectacles.presentation.ui.detail.EventFragment.Companion.event_id
+import com.example.theatre.features.spectacles.presentation.ui.detail.SpectacleDetailsFragment.Companion.event_id
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -20,13 +22,13 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * @author Marianna Sabanchieva
  */
 
-class EventDescriptionFragment : Fragment() {
+class SpectacleDetailsDescriptionFragment : Fragment() {
 
     companion object {
         const val DESCRIPTION_TAB = 0
         const val INFO = "Информация"
-        fun newInstance(): EventDescriptionFragment {
-            return EventDescriptionFragment()
+        fun newInstance(): SpectacleDetailsDescriptionFragment {
+            return SpectacleDetailsDescriptionFragment()
         }
     }
 
@@ -46,13 +48,29 @@ class EventDescriptionFragment : Fragment() {
 
         binding = FragmentEventDescriptionBinding.bind(view)
         arguments?.run { spectacleViewModel.init(getInt(event_id)) }
-        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::setDetails)
+        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleInfo)
+    }
+
+    private fun handleInfo(contentResultState: ContentResultState) {
+        contentResultState.handleContents(
+            onStateSuccess = {
+                when (it) {
+                    is Performance -> {
+                        setDetails(it)
+                    }
+                }
+            },
+            onStateError = {
+
+            }
+        )
     }
 
     private fun setDetails(eventDetails: Performance) {
         with(binding) {
             with(eventDetails) {
-                val imageURL = if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
+                val imageURL =
+                    if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {
                     context?.let {
                         Glide

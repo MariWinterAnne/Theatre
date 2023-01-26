@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
@@ -46,10 +47,31 @@ class TheatreDescriptionFragment : Fragment() {
 
         binding = FragmentEventDescriptionBinding.bind(view)
         arguments?.run { theatreViewModel.getTheatreById(getInt(theatre_id)) }
-        theatreViewModel.theatreDetails.observe(viewLifecycleOwner, ::setDetails)
+        theatreViewModel.theatreDetailsContent.observe(viewLifecycleOwner, ::handleContent)
     }
 
-    private fun setDetails(theatreDetails: Theatre){
+
+    private fun handleContent(contentResultState: ContentResultState) = when (contentResultState) {
+        is ContentResultState.Content -> {
+            contentResultState.handle()
+        }
+        is ContentResultState.Error -> {
+            contentResultState.handle()
+        }
+        else -> {}
+    }
+
+
+    private fun ContentResultState.Content.handle() = when (content) {
+        is Theatre -> setDetails(content)
+        else -> {}
+    }
+
+    private fun ContentResultState.Error.handle() {
+
+    }
+
+    private fun setDetails(theatreDetails: Theatre) {
         with(binding) {
             with(theatreDetails) {
                 val imageURL =

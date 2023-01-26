@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentTheatresBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import com.example.theatre.features.info.presentation.adapters.TheatresListAdapter
@@ -55,15 +57,16 @@ class TheatresFragment : Fragment() {
         binding = FragmentTheatresBinding.bind(view)
 
         initObservers()
-        theatreViewModel.init()
+        theatreViewModel.getTheatres()
     }
 
     private fun initObservers() {
-        theatreViewModel.theatreLoaded.observe(viewLifecycleOwner, ::setTheatres)
-    }
-
-    private fun setTheatres(theatres: List<Theatre>) {
-        theatresAdapter.setTheatres(theatres)
+        theatreViewModel.theatresContent.observe(viewLifecycleOwner) {
+            it?.handleContents(
+                { theatresAdapter.setTheatres(it as List<Theatre>) },
+                { Toast.makeText(activity, "No internet!", Toast.LENGTH_SHORT).show() }
+            )
+        }
     }
 
     private fun onTheatreClick(id: Int) {

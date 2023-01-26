@@ -22,6 +22,8 @@ class PosterBriefItemAdapter(
 
     private var data: List<PosterBriefItem> = mutableListOf()
 
+    val datas get() = data
+
     class ViewHolder(val binding: ItemPosterBriefInfoBinding) :
         RecyclerView.ViewHolder(binding.root)
 

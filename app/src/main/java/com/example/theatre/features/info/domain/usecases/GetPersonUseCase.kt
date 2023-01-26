@@ -1,5 +1,8 @@
 package com.example.theatre.features.info.domain.usecases
 
+
+import com.example.theatre.core.domain.model.ResultState
+import com.example.theatre.core.domain.model.safeCall
 import com.example.theatre.features.info.domain.model.Agent
 import com.example.theatre.features.info.domain.repository.TheatreRepository
 
@@ -11,6 +14,7 @@ import com.example.theatre.features.info.domain.repository.TheatreRepository
  */
 
 class GetPersonUseCase(private val theatreRepository: TheatreRepository) {
-    suspend fun getPerson(): List<Agent> = theatreRepository.getPerson()
-    suspend fun getPersonById(id: Int): Agent = theatreRepository.getPersonById(id)
+    suspend fun getPerson(): ResultState<List<Agent>> = safeCall { theatreRepository.getPerson() }
+    suspend fun getPersonById(id: Int): ResultState<Agent> =
+        safeCall { theatreRepository.getPersonById(id) }
 }

@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.core.utils.StringUtils.deleteHTML
-import com.example.theatre.databinding.FragmentPersonsItemBinding
+import com.example.theatre.databinding.ItemPersonBinding
 import com.example.theatre.features.info.domain.model.Agent
 
 /**
@@ -25,14 +25,14 @@ class PersonsListAdapter(
     private val onItemClicked: (id: Int) -> Unit,
 ) : RecyclerView.Adapter<PersonsListAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: FragmentPersonsItemBinding) :
+    class ViewHolder(val binding: ItemPersonBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
-            FragmentPersonsItemBinding.bind(
+            ItemPersonBinding.bind(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.fragment_persons_item, parent, false)
+                    .inflate(R.layout.item_person, parent, false)
             )
         )
 

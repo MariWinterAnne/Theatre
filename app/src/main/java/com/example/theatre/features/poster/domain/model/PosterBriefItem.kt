@@ -1,6 +1,6 @@
 package com.example.theatre.features.poster.domain.model
 
-import com.example.theatre.core.domain.model.Images
+import com.example.theatre.core.domain.models.Images
 
 /**
  * Класс представления кратких афиш

@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import com.example.theatre.core.utils.StringUtils.deleteHTML
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
@@ -46,7 +48,19 @@ class PersonDescriptionFragment : Fragment() {
 
         binding = FragmentEventDescriptionBinding.bind(view)
         arguments?.run { personViewModel.getPersonById(getInt(person_id)) }
-        personViewModel.personDetails.observe(viewLifecycleOwner, ::setDetails)
+        personViewModel.personDetails.observe(viewLifecycleOwner, ::handleInfo)
+    }
+
+
+    private fun handleInfo(contentResultState: ContentResultState) {
+        contentResultState.handleContents(
+            onStateSuccess = {
+                setDetails(it as Agent)
+            },
+            onStateError = {
+
+            }
+        )
     }
 
     private fun setDetails(personDetails: Agent) {

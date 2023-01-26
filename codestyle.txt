@@ -1,0 +1,2 @@
+1. json или response или model // подумать
+2. data

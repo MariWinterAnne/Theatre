@@ -1,6 +1,6 @@
 package com.example.theatre.core.utils
 
-import com.example.theatre.core.domain.model.PerformanceDates
+import com.example.theatre.core.domain.models.PerformanceDates
 import com.example.theatre.core.utils.StringUtils.EMPTY
 import java.text.SimpleDateFormat
 import java.util.Date

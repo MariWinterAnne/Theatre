@@ -4,10 +4,10 @@ import com.example.theatre.core.data.model.common.agent.AgentModel
 import com.example.theatre.core.data.model.common.agent.AgentParticipationsItemModel
 import com.example.theatre.core.data.model.common.agent.AgentParticipationsModel
 import com.example.theatre.core.data.model.common.agent.AgentRoleModel
-import com.example.theatre.core.domain.models.Agent
-import com.example.theatre.core.domain.models.AgentParticipations
-import com.example.theatre.core.domain.models.AgentParticipationsItem
-import com.example.theatre.core.domain.models.AgentRole
+import com.example.theatre.core.domain.model.common.Agent
+import com.example.theatre.core.domain.model.common.AgentParticipations
+import com.example.theatre.core.domain.model.common.AgentParticipationsItem
+import com.example.theatre.core.domain.model.common.AgentRole
 import com.example.theatre.features.spectacles.data.mappers.toPerformancePlace
 
 /**

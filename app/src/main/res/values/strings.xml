@@ -64,4 +64,5 @@
     <string name="mode_night_follow_system">Как в системе</string>
     <string name="mode_night_auto_battery">Автоматический выбор</string>
     <string name="theme_choice">Выбор темы</string>
+    <string name="refresh">Refresh</string>
 </resources>

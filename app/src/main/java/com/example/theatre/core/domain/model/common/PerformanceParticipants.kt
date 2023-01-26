@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.models
+package com.example.theatre.core.domain.model.common
 
 /**
  * Performance participants - модель для получения списка актеров и их ролей

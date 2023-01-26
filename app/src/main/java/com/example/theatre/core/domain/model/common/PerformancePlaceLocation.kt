@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.models
+package com.example.theatre.core.domain.model.common
 
 /**
  * Performance place location - модель для получения доп. деталей о месте постановки

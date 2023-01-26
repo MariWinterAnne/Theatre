@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.models
+package com.example.theatre.core.domain.model.common
 
 /**
  * Agent participations item - модель для получения постановок, в которых задействован актер

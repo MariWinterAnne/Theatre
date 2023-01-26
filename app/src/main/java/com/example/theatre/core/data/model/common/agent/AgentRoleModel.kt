@@ -1,6 +1,6 @@
 package com.example.theatre.core.data.model.common.agent
 
-import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.presentation.ext.EMPTY
 import com.google.gson.annotations.SerializedName
 
 /**

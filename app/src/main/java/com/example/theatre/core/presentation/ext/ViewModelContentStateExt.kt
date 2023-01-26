@@ -44,18 +44,21 @@ suspend fun onResultStateError(
 fun ViewModel.viewModelCall(
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
     call: suspend () -> Any,
-    contentResultState: MutableLiveData<ContentResultState>,
+    contentResultState: MutableLiveData<ContentResultState>? = null,
 ) = viewModelScope.launch(dispatcher) {
     when (val resultState = call.invoke()) {
-        is ResultState.Success<*> -> {
+        is ResultState.Success<*> -> contentResultState?.let {
             onResultStateSuccess(
-                content = resultState.data,
-                contentResultState = contentResultState
+                resultState.data,
+                contentResultState = it
             )
         }
-        is ResultState.Error -> onResultStateError(
-            isNetworkError = resultState.errorData,
-            contentResultState = contentResultState
-        )
+
+        is ResultState.Error -> contentResultState?.let {
+            onResultStateError(
+                isNetworkError = resultState.errorData,
+                contentResultState = it
+            )
+        }
     }
 }

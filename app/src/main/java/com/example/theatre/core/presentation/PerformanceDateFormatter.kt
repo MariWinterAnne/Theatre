@@ -1,7 +1,8 @@
-package com.example.theatre.core.utils
+package com.example.theatre.core.presentation
 
-import com.example.theatre.core.domain.models.PerformanceDates
-import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.domain.model.common.PerformanceDates
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.ext.orLongDefault
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -10,9 +11,11 @@ import java.util.Date
  *
  * @author Marianne Sabanchieva
  */
-
 class PerformanceDateFormatter {
-    private fun performanceDateFormat(performanceStartDate: Long, performanceEndDate: Long): String {
+    private fun performanceDateFormat(
+        performanceStartDate: Long,
+        performanceEndDate: Long
+    ): String {
         //приведение к формату "dd.MM.yyyy"
         val dateFormatter = SimpleDateFormat(DAY_MONTH_YEAR_FORMAT)
         val startDate = dateFormatter.format(Date(performanceStartDate * LONG_TO_MILLISECONDS))
@@ -24,7 +27,10 @@ class PerformanceDateFormatter {
         return "$startDate - $endDate, $startTime"
     }
 
-    private fun getUpcomingPerformanceDateToLine(performanceStartDate: Long, performanceEndDate: Long): String {
+    private fun getUpcomingPerformanceDateToLine(
+        performanceStartDate: Long,
+        performanceEndDate: Long
+    ): String {
         var formattedDateLine = String.EMPTY
         val startDate = performanceStartDate * LONG_TO_MILLISECONDS
         //исключение уже прошедших сеансов
@@ -38,14 +44,23 @@ class PerformanceDateFormatter {
         val datesList = StringBuilder()
         if (dates != null) {
             for (date in dates) {
-                if (getUpcomingPerformanceDateToLine(date.start.orLongDefault(), date.end.orLongDefault()) != String.EMPTY)
-                    datesList.appendLine(getUpcomingPerformanceDateToLine(date.start.orLongDefault(), date.end.orLongDefault()))
+                if (getUpcomingPerformanceDateToLine(
+                        date.start.orLongDefault(),
+                        date.end.orLongDefault()
+                    ) != String.EMPTY
+                )
+                    datesList.appendLine(
+                        getUpcomingPerformanceDateToLine(
+                            date.start.orLongDefault(),
+                            date.end.orLongDefault()
+                        )
+                    )
             }
         }
         return datesList.toString()
     }
 
-    companion object{
+    companion object {
         private const val DAY_MONTH_YEAR_FORMAT = "dd.MM.yyyy"
         private const val HOURS_MINUTES_FORMAT = "HH:mm"
         private const val LONG_TO_MILLISECONDS = 1000

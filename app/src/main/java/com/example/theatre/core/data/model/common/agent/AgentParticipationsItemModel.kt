@@ -1,8 +1,9 @@
 package com.example.theatre.core.data.model.common.agent
 
 import com.example.theatre.core.data.model.common.ImageModel
-import com.example.theatre.core.utils.StringUtils.EMPTY
-import com.example.theatre.features.spectacles.api.model.PerformancePlaceModel
+import com.example.theatre.core.presentation.ext.EMPTY
+
+import com.example.theatre.features.spectacles.data.api.model.PerformancePlaceModel
 import com.google.gson.annotations.SerializedName
 
 /**

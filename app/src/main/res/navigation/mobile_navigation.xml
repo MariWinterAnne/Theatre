@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.example.theatre.features.poster.presentation.ui.list.PosterFragment"
+        android:name="com.example.theatre.features.poster.presentation.ui.list.PostersListFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_poster" >
         <action
@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/favourite"
-        android:name="com.example.theatre.features.favourite.FavoriteFragment"
+        android:name="com.example.theatre.features.favourite.presentation.ui.list.FavoritesListFragment"
         android:label="@string/favourite"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/performance"
-        android:name="com.example.theatre.features.spectacles.presentation.ui.list.SpectaclesFragment"
+        android:name="com.example.theatre.features.spectacles.presentation.ui.list.SpectaclesListFragment"
         android:label="@string/performance"
         tools:layout="@layout/fragment_spectacles" >
         <action
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/personsFragment"
-        android:name="com.example.theatre.features.info.presentation.ui.list.person.PersonsFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.list.person.PersonsListFragment"
         android:label="fragment_persons"
         tools:layout="@layout/fragment_persons" >
         <action
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/theatresFragment"
-        android:name="com.example.theatre.features.info.presentation.ui.list.theatre.TheatresFragment"
+        android:name="com.example.theatre.features.info.presentation.ui.list.theatre.TheatresListFragment"
         android:label="fragment_theatres"
         tools:layout="@layout/fragment_theatres" >
         <action

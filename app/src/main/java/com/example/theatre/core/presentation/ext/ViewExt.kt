@@ -2,6 +2,7 @@ package com.example.theatre.core.presentation.ext
 
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Фукнции для [View]
@@ -18,4 +19,19 @@ fun EditText.onDone(callback: (query: String) -> Unit) =
             return@setOnEditorActionListener false
         }
         false
+    }
+
+/**
+ * Выполняет функции при не/пустом адаптере
+ *
+ * @param onAdapterEmpty        действие при пустом адаптере
+ * @param onAdapterNotEmpty     действие при непустом адаптере
+ */
+fun RecyclerView.Adapter<RecyclerView.ViewHolder>.handleErrorMessage(
+    onAdapterEmpty: () -> Unit,
+    onAdapterNotEmpty: () -> Unit
+) =
+    when (this.itemCount) {
+        0 -> onAdapterEmpty.invoke()
+        else -> onAdapterNotEmpty.invoke()
     }

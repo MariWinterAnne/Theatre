@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.models
+package com.example.theatre.core.domain.model.common
 
 /**
  * Performance dates - модель для получения списка дат, на которые назначен показ постановки

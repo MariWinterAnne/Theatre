@@ -55,34 +55,46 @@ class SpectacleReviewFragment : Fragment() {
         binding = FragmentReviewBinding.bind(view)
         gaps = getString(R.string.gaps)
         with(spectacleViewModel) {
-            arguments?.run { init(getInt(event_id)) }
-            spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleInfo)
-            cityLoaded.observe(viewLifecycleOwner, ::handleInfo)
-            placeLoaded.observe(viewLifecycleOwner, ::handleInfo)
+            arguments?.run { getSpectacleDetails(getInt(event_id)) }
+            spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleSpecDetails)
+
+            cityLoaded.observe(viewLifecycleOwner, ::handleSpecCity)
+            placeLoaded.observe(viewLifecycleOwner, ::handleSpecPlace)
         }
     }
 
-    private fun handleInfo(contentResultState: ContentResultState) {
+    private fun handleSpecDetails(contentResultState: ContentResultState) =
         contentResultState.handleContents(
             onStateSuccess = {
-                when (it) {
-                    is Performance -> {
-                        setDetails(it)
-                    }
-                    is PerformancePlaceLocation -> {
-                        setCity(it)
-                    }
-                    is PerformancePlace -> {
-                        setPlace(it)
-                    }
+                with(it as Performance) {
+                    val placeId = this.place?.id
+                    val citySlug = this.location?.slug
+                    setDetails(this)
+                    placeId?.let { it1 -> spectacleViewModel.getPlace(it1) }
+                    citySlug?.let { it1 -> spectacleViewModel.getCity(it1) }
                 }
             },
             onStateError = {
-
+                // TODO: Добавить обработку ошибки (например сообщение)
             }
         )
-    }
 
+
+    private fun handleSpecCity(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = { setCity(it as PerformancePlaceLocation) },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
+
+    private fun handleSpecPlace(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = { setPlace(it as PerformancePlace) },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
 
     private fun setDetails(eventDetails: Performance) {
         with(binding) {

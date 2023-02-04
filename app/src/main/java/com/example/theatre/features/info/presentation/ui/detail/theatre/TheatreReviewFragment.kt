@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentReviewBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -43,8 +45,18 @@ class TheatreReviewFragment : Fragment() {
 
         binding = FragmentReviewBinding.bind(view)
         arguments?.run { theatreViewModel.getTheatreById(getInt(theatre_id)) }
-//        theatreViewModel.theatreDetailsContent.observe(viewLifecycleOwner, ::handleContent)
+        theatreViewModel.theatreDetailsContent.observe(viewLifecycleOwner, ::handleContent)
     }
+
+    private fun handleContent(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = {
+                setDetails(it as Theatre)
+            },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
 
 
     private fun setDetails(theatreDetails: Theatre) {

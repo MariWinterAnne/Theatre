@@ -21,17 +21,15 @@ class TheatreDetailViewModel(
     private val _cityContent = MutableLiveData<ContentResultState>()
     val cityContent get() = _cityContent
 
-    fun getTheatreById(id: Int) {
-        viewModelCall(
-            call = { getTheatreUseCase.getTheatreById(id) },
-            contentResultState = _theatreDetailsContent
-        )
-//
-//        if ((_theatreDetailsContent as Theatre).location != null) {
-//            viewModelCall(
-//                call = { getTheatreUseCase.getCityName((_theatreDetailsContent as Theatre).location.orEmpty()) },
-//                contentResultState = _cityContent
-//            )
-//        }
-    }
+    fun getTheatreById(id: Int) = viewModelCall(
+        call = { getTheatreUseCase.getTheatreById(id) },
+        contentResultState = _theatreDetailsContent
+    )
+
+    fun getCityBy(value: String) = viewModelCall(
+        call = { getTheatreUseCase.getCityName(value) },
+        contentResultState = _cityContent
+    )
+
+
 }

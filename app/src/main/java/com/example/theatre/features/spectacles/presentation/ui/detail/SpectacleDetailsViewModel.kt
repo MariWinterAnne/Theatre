@@ -11,7 +11,6 @@ import com.example.theatre.features.spectacles.domain.usecases.GetPerformanceUse
  *
  * @constructor Create empty Spectacle details view model
  */
-
 class SpectacleDetailsViewModel(
     private val getPerformanceUseCase: GetPerformanceUseCase
 ) : ViewModel() {
@@ -24,28 +23,22 @@ class SpectacleDetailsViewModel(
     private val _placeLoaded = MutableLiveData<ContentResultState>()
     val placeLoaded get() = _placeLoaded
 
-    fun init(id: Int) {
-
+    fun getSpectacleDetails(id: Int) {
         viewModelCall(
             call = { getPerformanceUseCase.getPerformanceById(id) },
             contentResultState = _spectacleDetailLoaded
         )
-
-//        val slug = (_spectacleDetailLoaded.value as Performance).location?.slug!!
-//        if (slug != null) {
-//            viewModelCall(
-//                call = { getPerformanceUseCase.getCityName(slug) },
-//                contentResultState = _cityLoaded
-//            )
-//        }
-//
-//        val place = (_spectacleDetailLoaded.value as Performance).place?.id
-//        if (place != null) {
-//            viewModelCall(
-//                call = { getPerformanceUseCase.getPlace(place) },
-//                contentResultState = _placeLoaded
-//            )
-//        }
-
     }
+
+    fun getCity(slug: String) =
+        viewModelCall(
+            call = { getPerformanceUseCase.getCityName(slug) },
+            contentResultState = _cityLoaded
+        )
+
+    fun getPlace(placeId: Int) =
+        viewModelCall(
+            call = { getPerformanceUseCase.getPlace(placeId) },
+            contentResultState = _placeLoaded
+        )
 }

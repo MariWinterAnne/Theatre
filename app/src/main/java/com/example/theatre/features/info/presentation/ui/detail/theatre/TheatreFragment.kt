@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.theatre.R
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentEventBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import com.example.theatre.features.info.domain.model.TheatreLocation
@@ -59,25 +60,18 @@ class TheatreFragment : Fragment() {
         theatreViewModel.cityContent.observe(viewLifecycleOwner, ::handleContent)
     }
 
-    private fun handleContent(contentResultState: ContentResultState) = when (contentResultState) {
-        is ContentResultState.Content -> {
-            contentResultState.handle()
-        }
-        is ContentResultState.Error -> {
-            contentResultState.handle()
-        }
-        else -> {}
-    }
-
-
-    private fun ContentResultState.Content.handle() = when (content) {
-        is Theatre -> setDetails(content)
-//        is TheatreLocation -> setCity(content)
-        else -> {}
-    }
-
-    private fun ContentResultState.Error.handle() {
-    }
+    private fun handleContent(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = {
+                when (it) {
+                    is Theatre -> setDetails(it)
+                    is TheatreLocation -> setCity(it)
+                }
+            },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
 
     private fun setDetails(theatreDetails: Theatre) {
         with(binding.content) {

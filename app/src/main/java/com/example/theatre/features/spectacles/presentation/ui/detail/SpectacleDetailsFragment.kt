@@ -58,25 +58,32 @@ class SpectacleDetailsFragment : Fragment() {
         val tabLayout = binding.content.tabs
         tabLayout.setupWithViewPager(viewPager)
 
-        arguments?.run { spectacleViewModel.init(getInt(event_id)) }
-        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleInfo)
-        spectacleViewModel.cityLoaded.observe(viewLifecycleOwner, ::handleInfo)
+        arguments?.run { spectacleViewModel.getSpectacleDetails(getInt(event_id)) }
+        spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleSpecDetails)
+
+
+        spectacleViewModel.cityLoaded.observe(viewLifecycleOwner, ::handleSpecCity)
     }
 
-    private fun handleInfo(contentResultState: ContentResultState) {
+    private fun handleSpecDetails(contentResultState: ContentResultState) {
         contentResultState.handleContents(
             onStateSuccess = {
-                when (it) {
-                    is Performance -> {
-                        setDetails(it)
-                    }
-                    is PerformancePlaceLocation -> {
-                        setCity(it)
-                    }
-                }
+                val slug = (it as Performance).location?.slug
+
+                setDetails(it as Performance)
+                slug?.let { it1 -> spectacleViewModel.getCity(it1) }
             },
             onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
+    }
 
+    private fun handleSpecCity(contentResultState: ContentResultState) {
+        contentResultState.handleContents(
+            onStateSuccess = { setCity(it as PerformancePlaceLocation) },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
             }
         )
     }

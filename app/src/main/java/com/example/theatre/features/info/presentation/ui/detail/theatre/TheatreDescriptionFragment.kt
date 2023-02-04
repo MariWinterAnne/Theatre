@@ -10,6 +10,7 @@ import com.example.theatre.R
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
 import com.example.theatre.features.info.domain.model.Theatre
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -51,25 +52,17 @@ class TheatreDescriptionFragment : Fragment() {
     }
 
 
-    private fun handleContent(contentResultState: ContentResultState) = when (contentResultState) {
-        is ContentResultState.Content -> {
-            contentResultState.handle()
-        }
-        is ContentResultState.Error -> {
-            contentResultState.handle()
-        }
-        else -> {}
-    }
+    private fun handleContent(contentResultState: ContentResultState) =
 
+        contentResultState.handleContents(
+            onStateSuccess = {
+                setDetails(it as Theatre)
+            },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
 
-    private fun ContentResultState.Content.handle() = when (content) {
-        is Theatre -> setDetails(content)
-        else -> {}
-    }
-
-    private fun ContentResultState.Error.handle() {
-
-    }
 
     private fun setDetails(theatreDetails: Theatre) {
         with(binding) {

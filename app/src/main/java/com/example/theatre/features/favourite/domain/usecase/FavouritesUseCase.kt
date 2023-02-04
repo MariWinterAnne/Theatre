@@ -9,22 +9,12 @@ class FavouritesUseCase(
     private val dao: FavouritesRepo
 ) {
 
-    suspend fun getById(id: Int): ResultState<FavouriteStuff> =
-        safeCall { dao.getById(id) }
+    suspend fun getById(id: Int): ResultState<FavouriteStuff> = safeCall { dao.getById(id) }
 
-    suspend fun getAll(): ResultState<List<FavouriteStuff>> =
-        safeCall {
-            dao.getAll()
-        }
+    suspend fun getAll(): ResultState<List<FavouriteStuff>> = safeCall { dao.getAll() }
 
-    suspend fun delete(fav: FavouriteStuff) =
-        safeCall {
-            dao.delete(fav)
-        }
+    suspend fun delete(fav: FavouriteStuff) = dao.delete(fav)
 
-    suspend fun insert(fav: FavouriteStuff) =
-//        safeCall {
-        dao.insert(fav)
-//        }
+    suspend fun insert(fav: FavouriteStuff) = dao.insert(fav)
 
 }

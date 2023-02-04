@@ -64,7 +64,7 @@ class PersonFragment : Fragment() {
                 setDetails(it as Agent)
             },
             onStateError = {
-
+                // TODO: Добавить обработку ошибки (например сообщение)
             }
         )
     }

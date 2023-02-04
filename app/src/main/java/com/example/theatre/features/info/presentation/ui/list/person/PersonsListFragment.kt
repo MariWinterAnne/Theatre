@@ -7,8 +7,12 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
+import com.example.theatre.core.presentation.ui.LayoutErrorHandler
+import com.example.theatre.databinding.FragmentPersonsBinding
+import com.example.theatre.features.info.domain.model.Agent
 import com.example.theatre.features.info.presentation.adapters.PersonsListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,59 +32,59 @@ class PersonsListFragment : Fragment() {
         }
     }
 
+    private lateinit var binding: FragmentPersonsBinding
     private lateinit var personsAdapter: PersonsListAdapter
-    private lateinit var recyclerView: RecyclerView
     private val personsViewModel by viewModel<PersonsListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_persons, container, false)
+        binding = FragmentPersonsBinding.inflate(inflater, container, false)
 
-        recyclerView = view.findViewById(R.id.list_persons) as RecyclerView
-        personsAdapter = PersonsListAdapter(mutableListOf()) { id ->
-            onPersonClick(id)
+        personsAdapter = PersonsListAdapter(
+            mutableListOf()
+        ) {
+            onPersonClick(it)
         }
-        recyclerView.adapter = personsAdapter
-        return view
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        initObservers()
-//        personsViewModel.init()
+        initObservers()
+        personsViewModel.init()
     }
 
-    private fun initObservers() {
-//        personsViewModel.personLoaded.observe(viewLifecycleOwner,::handlePersons)
+    private fun initObservers() =
+        personsViewModel.personLoaded.observe(viewLifecycleOwner, ::handlePersons)
+
+
+    private fun handlePersons(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = {
+                personsAdapter.setPersons(it as List<Agent>)
+                binding.listPersons.adapter = personsAdapter
+            },
+            onStateError = {
+                with(binding) {
+                    LayoutErrorHandler(
+                        this?.errorLayout!!,
+                        { tryAgain() },
+                        it,
+                        this.listPersons
+                    )
+                }
+            }
+        )
+
+    private fun tryAgain() {
+        binding?.errorLayout?.root?.visibility = View.INVISIBLE
+        personsViewModel.init()
+        initObservers()
     }
-
-
-//    private fun handlePersons(contentResultState: ContentResultState) =
-//        contentResultState.handleContents(
-//            onStateSuccess = {
-//                personsAdapter.setPersons(it as List<Agent>)
-//                binding.listTheatre.adapter = theatresAdapter
-//            },
-//            onStateError = {
-//                with(binding) {
-//                    LayoutErrorHandler(
-//                        this?.errorLayout!!,
-//                        { tryAgain() },
-//                        it,
-//                        this.listTheatre
-//                    )
-//                }
-//            }
-//        )
-//
-//    private fun tryAgain() {
-//        binding?.errorLayout?.root?.visibility = View.INVISIBLE
-//        theatreViewModel.getTheatres()
-//        initObservers()
-//    }
 
     private fun onPersonClick(id: Int) {
         val bundle = bundleOf("id" to id)

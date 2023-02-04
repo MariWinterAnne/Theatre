@@ -47,7 +47,7 @@ class SpectacleDetailsDescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentEventDescriptionBinding.bind(view)
-        arguments?.run { spectacleViewModel.init(getInt(event_id)) }
+        arguments?.run { spectacleViewModel.getSpectacleDetails(getInt(event_id)) }
         spectacleViewModel.spectacleDetailLoaded.observe(viewLifecycleOwner, ::handleInfo)
     }
 
@@ -61,7 +61,7 @@ class SpectacleDetailsDescriptionFragment : Fragment() {
                 }
             },
             onStateError = {
-
+                // TODO: Добавить обработку ошибки (например сообщение)
             }
         )
     }

@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import com.example.theatre.R
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentReviewBinding
 import com.example.theatre.features.info.domain.model.Agent
 import com.example.theatre.features.info.presentation.ui.utils.toListOfPerformances
@@ -45,7 +46,18 @@ class PersonReviewFragment : Fragment() {
 
         binding = FragmentReviewBinding.bind(view)
         arguments?.run { personViewModel.getPersonById(getInt(person_id)) }
-        personViewModel.personDetails.observe(viewLifecycleOwner, ::setDetails)
+        personViewModel.personDetails.observe(viewLifecycleOwner, ::handleInfo)
+    }
+
+    private fun handleInfo(contentResultState: ContentResultState) {
+        contentResultState.handleContents(
+            onStateSuccess = {
+                setDetails(it as Agent)
+            },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
     }
 
     private fun setDetails(personDetails: Agent) {

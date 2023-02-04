@@ -15,7 +15,6 @@
     <dimen name="fragment_layout_margin">16dp</dimen>
     <dimen name="drawable_padding">10dp</dimen>
 
-    <dimen name="cardview_elevation">8dp</dimen>
     <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="layout_margin">8dp</dimen>
 
@@ -34,12 +33,6 @@
 
     /* fragment_info */
     <dimen name="layout_editor_absoluteX">16dp</dimen>
-
-
-    /* fragment_spectacles_item */
-
-    /* fragment_spectacles */
-    <dimen name="cardview_corner_radius">20dp</dimen>
 
     /* fragment_list_item */
     <dimen name="app_bar_height">200dp</dimen>
@@ -76,5 +69,6 @@
     <dimen name="text_size_medium">24sp</dimen>
     <dimen name="padding_start_end">4dp</dimen>
     <dimen name="layout_margin_start_end">4dp</dimen>
+    <dimen name="event_layout_margin">4dp</dimen>
 
 </resources>

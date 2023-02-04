@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.utils.StringUtils.EMPTY
-import com.example.theatre.core.utils.StringUtils.deleteHTML
-import com.example.theatre.databinding.FragmentTheatresItemBinding
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.ext.deleteHTML
+import com.example.theatre.databinding.ItemTheatreBinding
 import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.network.Constants.CLOSED
 
 /**
  * Адаптер для списка театров
@@ -26,14 +25,14 @@ class TheatresListAdapter(
     private val onItemClicked: (id: Int) -> Unit,
 ) : RecyclerView.Adapter<TheatresListAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: FragmentTheatresItemBinding) :
+    class ViewHolder(val binding: ItemTheatreBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
-            FragmentTheatresItemBinding.bind(
+            ItemTheatreBinding.bind(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.fragment_theatres_item, parent, false)
+                    .inflate(R.layout.item_theatre, parent, false)
             )
         )
 
@@ -42,7 +41,9 @@ class TheatresListAdapter(
         with(holder.binding) {
             with(theatres[position]) {
                 textName.text = title.replaceFirstChar { it.uppercaseChar() }
-                if (isClosed == true) { textClosed.text = CLOSED }
+                if (isClosed == true) {
+                    textClosed.text = context.getString(R.string.closed)
+                }
                 val imageURL =
                     if (images?.isNotEmpty() == true) images.first().imageURL.orEmpty() else String.EMPTY
                 if (imageURL.isNotEmpty()) {

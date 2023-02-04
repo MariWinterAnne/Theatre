@@ -1,9 +1,9 @@
 package com.example.theatre.features.poster.data.model
 
-import com.example.theatre.core.data.model.ImageModel
-import com.example.theatre.core.data.model.performance.PerformanceDatesModel
-import com.example.theatre.core.data.model.performance.PerformanceParticipantsModel
-import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.data.model.common.ImageModel
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.features.spectacles.data.api.model.PerformanceDatesModel
+import com.example.theatre.features.spectacles.data.api.model.PerformanceParticipantsModel
 import com.google.gson.annotations.SerializedName
 
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.utils.StringUtils.deleteHTML
+import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.databinding.ItemPosterBriefInfoBinding
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
 
@@ -21,6 +21,8 @@ class PosterBriefItemAdapter(
 ) : RecyclerView.Adapter<PosterBriefItemAdapter.ViewHolder>() {
 
     private var data: List<PosterBriefItem> = mutableListOf()
+
+    val datas get() = data
 
     class ViewHolder(val binding: ItemPosterBriefInfoBinding) :
         RecyclerView.ViewHolder(binding.root)

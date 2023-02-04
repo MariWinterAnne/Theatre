@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentEventBinding
 import com.example.theatre.features.info.domain.model.Agent
 import com.example.theatre.features.info.presentation.adapters.PersonPagerAdapter
@@ -53,10 +55,21 @@ class PersonFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         arguments?.run { personViewModel.getPersonById(getInt(person_id)) }
-        personViewModel.personDetails.observe(viewLifecycleOwner, ::setDetails)
+        personViewModel.personDetails.observe(viewLifecycleOwner, ::handleInfo)
     }
 
-    private fun setDetails(personDetails: Agent){
+    private fun handleInfo(contentResultState: ContentResultState) {
+        contentResultState.handleContents(
+            onStateSuccess = {
+                setDetails(it as Agent)
+            },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
+    }
+
+    private fun setDetails(personDetails: Agent) {
         with(binding.content) {
             with(personDetails) {
                 textPrice.text = getString(agentType.orEmpty().toAgent())

@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.utils.StringUtils.EMPTY
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentEventBinding
-import com.example.theatre.features.info.domain.model.TheatreLocation
 import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.features.info.domain.model.TheatreLocation
 import com.example.theatre.features.info.presentation.adapters.TheatrePagerAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -53,9 +55,23 @@ class TheatreFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
 
         arguments?.run { theatreViewModel.getTheatreById(getInt(theatre_id)) }
-        theatreViewModel.theatreDetails.observe(viewLifecycleOwner, ::setDetails)
-        theatreViewModel.cityLoaded.observe(viewLifecycleOwner, ::setCity)
+
+        theatreViewModel.theatreDetailsContent.observe(viewLifecycleOwner, ::handleContent)
+        theatreViewModel.cityContent.observe(viewLifecycleOwner, ::handleContent)
     }
+
+    private fun handleContent(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = {
+                when (it) {
+                    is Theatre -> setDetails(it)
+                    is TheatreLocation -> setCity(it)
+                }
+            },
+            onStateError = {
+                // TODO: Добавить обработку ошибки (например сообщение)
+            }
+        )
 
     private fun setDetails(theatreDetails: Theatre) {
         with(binding.content) {
@@ -81,13 +97,14 @@ class TheatreFragment : Fragment() {
         }
     }
 
-    private fun setCity(city: TheatreLocation){
+    private fun setCity(city: TheatreLocation) {
         binding.content.textPrice.text = city.name
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            android.R.id.home -> requireActivity().findNavController(R.id.navHostFragment).popBackStack()
+            android.R.id.home -> requireActivity().findNavController(R.id.navHostFragment)
+                .popBackStack()
         }
         return super.onOptionsItemSelected(menuItem)
     }

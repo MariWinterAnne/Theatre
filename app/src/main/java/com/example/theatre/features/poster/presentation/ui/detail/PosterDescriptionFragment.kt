@@ -1,19 +1,17 @@
 package com.example.theatre.features.poster.presentation.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.theatre.core.utils.StringUtils.EMPTY
-import com.example.theatre.core.utils.StringUtils.deleteHTML
+import com.example.theatre.core.presentation.ext.EMPTY
+import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.databinding.FragmentPosterDescriptionBinding
 import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment.Companion.poster_id
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Фрагмент описания афиши
@@ -33,9 +31,9 @@ class PosterDescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.run { viewModel.init(getInt(poster_id)) }
+        arguments?.run { viewModel.getPoster(getInt(poster_id)) }
 
-        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
+//        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
     }
 
     private fun setDetails(posterDetails: PosterDetails) =

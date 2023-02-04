@@ -1,6 +1,5 @@
 package com.example.theatre.features.info.data.api
 
-import com.example.theatre.core.network.BaseApiMapper
 import com.example.theatre.features.info.data.mappers.toTheatre
 import com.example.theatre.features.info.data.mappers.toTheatreLocation
 import com.example.theatre.features.info.domain.model.Theatre
@@ -12,7 +11,7 @@ import com.example.theatre.features.info.domain.model.TheatreLocation
  * @author Marianna Sabanchieva
  */
 
-class TheatreApiMapper(private val theatreApi: TheatreApi) : BaseApiMapper() {
+class TheatreApiMapper(private val theatreApi: TheatreApi) {
     suspend fun getTheatres(): List<Theatre> =
         theatreApi.getTheatres().data.map { it.toTheatre() }
 

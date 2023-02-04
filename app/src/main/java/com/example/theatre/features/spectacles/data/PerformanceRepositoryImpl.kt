@@ -1,9 +1,9 @@
 package com.example.theatre.features.spectacles.data
 
-import com.example.theatre.core.domain.model.Performance
-import com.example.theatre.core.domain.model.PerformancePlace
-import com.example.theatre.core.domain.model.PerformancePlaceLocation
-import com.example.theatre.features.spectacles.api.PerformanceApiMapper
+import com.example.theatre.core.domain.model.common.Performance
+import com.example.theatre.core.domain.model.common.PerformancePlace
+import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.features.spectacles.data.api.PerformanceApiMapper
 import com.example.theatre.features.spectacles.domain.repository.PerformanceRepository
 
 /**

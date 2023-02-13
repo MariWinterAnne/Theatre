@@ -1,15 +1,15 @@
 
 import com.example.theatre.core.domain.model.ResultState
 import com.example.theatre.core.domain.model.safeCall
-import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.features.info.domain.model.TheatreLocation
+import com.example.theatre.features.info.domain.model.theatre.Theatre
+import com.example.theatre.features.info.domain.model.theatre.TheatreLocation
 import com.example.theatre.features.info.domain.repository.TheatreRepository
 
 /**
  * Get theatre use case
  *
  * @property theatreRepository - репозиторий
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class GetTheatreUseCase(private val theatreRepository: TheatreRepository) {

@@ -1,8 +1,8 @@
 package com.example.theatre.features.spectacles.data.api
 
-import com.example.theatre.core.domain.model.common.Performance
-import com.example.theatre.core.domain.model.common.PerformancePlace
-import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.common.performance.Performance
+import com.example.theatre.core.domain.model.common.performance.PerformancePlace
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceLocation
 import com.example.theatre.features.spectacles.data.mappers.toPerformance
 import com.example.theatre.features.spectacles.data.mappers.toPerformancePlace
 import com.example.theatre.features.spectacles.data.mappers.toPerformancePlaceLocation
@@ -10,7 +10,7 @@ import com.example.theatre.features.spectacles.data.mappers.toPerformancePlaceLo
 /**
  * Performance api mapper - маппер для списка постановок
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PerformanceApiMapper(private val performanceApi: PerformanceApi) {

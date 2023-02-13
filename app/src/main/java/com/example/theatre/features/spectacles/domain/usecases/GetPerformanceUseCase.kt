@@ -1,9 +1,9 @@
 package com.example.theatre.features.spectacles.domain.usecases
 
 import com.example.theatre.core.domain.model.ResultState
-import com.example.theatre.core.domain.model.common.Performance
-import com.example.theatre.core.domain.model.common.PerformancePlace
-import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.common.performance.Performance
+import com.example.theatre.core.domain.model.common.performance.PerformancePlace
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceLocation
 import com.example.theatre.core.domain.model.safeCall
 import com.example.theatre.features.spectacles.domain.repository.PerformanceRepository
 
@@ -12,7 +12,7 @@ import com.example.theatre.features.spectacles.domain.repository.PerformanceRepo
  *
  * @property performanceRepository - репозиторий
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class GetPerformanceUseCase(private val performanceRepository: PerformanceRepository) {

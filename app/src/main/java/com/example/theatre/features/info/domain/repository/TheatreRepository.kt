@@ -1,13 +1,13 @@
 package com.example.theatre.features.info.domain.repository
 
-import com.example.theatre.features.info.domain.model.Agent
-import com.example.theatre.features.info.domain.model.TheatreLocation
-import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.core.domain.model.common.agent.Agent
+import com.example.theatre.features.info.domain.model.theatre.TheatreLocation
+import com.example.theatre.features.info.domain.model.theatre.Theatre
 
 /**
  * Репозиторий для списка постановок и актеров, а также их детализации
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 interface TheatreRepository {

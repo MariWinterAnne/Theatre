@@ -7,7 +7,7 @@ import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.features.poster.domain.usecases.GetPosterUseCase
 
 /**
- * ViewModel для получения деталей постановки
+ * ViewModel для получения деталей афиши
  * @author Tamerlan Mamukhov
  * @created 2022-08-27
  */

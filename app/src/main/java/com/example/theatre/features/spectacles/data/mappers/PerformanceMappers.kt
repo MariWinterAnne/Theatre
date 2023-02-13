@@ -2,13 +2,13 @@ package com.example.theatre.features.spectacles.data.mappers
 
 import com.example.theatre.core.data.mappers.toAgent
 import com.example.theatre.core.data.mappers.toAgentRole
-import com.example.theatre.core.data.mappers.toImages
-import com.example.theatre.core.domain.model.common.Performance
-import com.example.theatre.core.domain.model.common.PerformanceDates
-import com.example.theatre.core.domain.model.common.PerformanceParticipants
-import com.example.theatre.core.domain.model.common.PerformancePlace
-import com.example.theatre.core.domain.model.common.PerformancePlaceCoordinates
-import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.core.data.mappers.toImage
+import com.example.theatre.core.domain.model.common.performance.Performance
+import com.example.theatre.core.domain.model.common.performance.PerformanceDates
+import com.example.theatre.core.domain.model.common.performance.PerformanceParticipants
+import com.example.theatre.core.domain.model.common.performance.PerformancePlace
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceCoordinates
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceLocation
 import com.example.theatre.features.spectacles.data.api.model.PerformanceDatesModel
 import com.example.theatre.features.spectacles.data.api.model.PerformanceModel
 import com.example.theatre.features.spectacles.data.api.model.PerformanceParticipantsModel
@@ -26,7 +26,7 @@ fun PerformanceModel.toListPerformanceDates() =
     dates?.map { it.toPerformanceDates() }
 
 fun PerformanceModel.toListPerformanceImages() =
-    images?.map { it.toImages() }
+    images?.map { it.toImage() }
 
 fun PerformanceModel.toListPerformanceParticipants() =
     participants?.map { it.toPerformanceParticipants() }

@@ -2,9 +2,9 @@ package com.example.theatre.features.info.data
 
 import com.example.theatre.features.info.data.api.PersonApiMapper
 import com.example.theatre.features.info.data.api.TheatreApiMapper
-import com.example.theatre.features.info.domain.model.Agent
-import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.features.info.domain.model.TheatreLocation
+import com.example.theatre.core.domain.model.common.agent.Agent
+import com.example.theatre.features.info.domain.model.theatre.Theatre
+import com.example.theatre.features.info.domain.model.theatre.TheatreLocation
 import com.example.theatre.features.info.domain.repository.TheatreRepository
 
 /**
@@ -14,7 +14,7 @@ import com.example.theatre.features.info.domain.repository.TheatreRepository
  * @property theatreApiMapper
  * @property personApiMapper
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatreRepositoryImpl(

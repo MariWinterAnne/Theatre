@@ -12,16 +12,17 @@ import com.example.theatre.R
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
+import com.example.theatre.core.presentation.model.refreshPage
 import com.example.theatre.databinding.FragmentEventBinding
-import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.features.info.domain.model.TheatreLocation
+import com.example.theatre.features.info.domain.model.theatre.Theatre
+import com.example.theatre.features.info.domain.model.theatre.TheatreLocation
 import com.example.theatre.features.info.presentation.adapters.TheatrePagerAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с отображением детальной информации о театре
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatreFragment : Fragment() {
@@ -60,7 +61,9 @@ class TheatreFragment : Fragment() {
         theatreViewModel.cityContent.observe(viewLifecycleOwner, ::handleContent)
     }
 
-    private fun handleContent(contentResultState: ContentResultState) =
+    private fun handleContent(contentResultState: ContentResultState) {
+
+        contentResultState.refreshPage(binding.contentDetailzz, binding.progressBar6)
         contentResultState.handleContents(
             onStateSuccess = {
                 when (it) {
@@ -72,6 +75,7 @@ class TheatreFragment : Fragment() {
                 // TODO: Добавить обработку ошибки (например сообщение)
             }
         )
+    }
 
     private fun setDetails(theatreDetails: Theatre) {
         with(binding.content) {

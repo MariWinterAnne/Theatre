@@ -23,15 +23,15 @@ import com.example.theatre.features.Constants.SUBWAY
 import com.example.theatre.features.Constants.TAGS
 import com.example.theatre.features.Constants.TIMETABLE
 import com.example.theatre.features.Constants.TITLE
-import com.example.theatre.features.info.data.model.TheatreLocationModel
-import com.example.theatre.features.info.data.model.TheatreModel
+import com.example.theatre.features.info.data.model.theatre.TheatreLocationModel
+import com.example.theatre.features.info.data.model.theatre.TheatreModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 /**
  * Theatre api - запрос списка театров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 interface TheatreApi {

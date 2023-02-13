@@ -13,17 +13,17 @@ import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentEventBinding
-import com.example.theatre.features.info.domain.model.Agent
+import com.example.theatre.core.domain.model.common.agent.Agent
 import com.example.theatre.features.info.presentation.adapters.PersonPagerAdapter
-import com.example.theatre.features.info.presentation.ui.detail.toAgent
+import com.example.theatre.core.presentation.ext.toAgent
+import com.example.theatre.core.presentation.model.refreshPage
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с отображением детальной информации об актере
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
-
 class PersonFragment : Fragment() {
 
     companion object {
@@ -59,12 +59,12 @@ class PersonFragment : Fragment() {
     }
 
     private fun handleInfo(contentResultState: ContentResultState) {
+        contentResultState.refreshPage(binding.contentDetailzz, binding.progressBar6)
         contentResultState.handleContents(
             onStateSuccess = {
                 setDetails(it as Agent)
             },
             onStateError = {
-                // TODO: Добавить обработку ошибки (например сообщение)
             }
         )
     }

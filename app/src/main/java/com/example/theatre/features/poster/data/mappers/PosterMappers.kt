@@ -1,5 +1,6 @@
-package com.example.theatre.core.data.mappers
+package com.example.theatre.features.poster.data.mappers
 
+import com.example.theatre.core.data.mappers.toImage
 import com.example.theatre.features.poster.data.api.model.PosterBriefModel
 import com.example.theatre.features.poster.data.model.PosterDetailsModel
 import com.example.theatre.features.poster.domain.model.PosterBriefItem
@@ -9,14 +10,14 @@ import com.example.theatre.features.spectacles.data.mappers.toPerformancePartici
 
 fun PosterBriefModel.toPosterBriefItem() = PosterBriefItem(
     id = id,
-    image = images?.first()?.toImages(),
+    image = images?.first()?.toImage(),
     title = title,
     description = description
 )
 
 fun PosterDetailsModel.toPosterDetails() = PosterDetails(
     id,
-    images = images?.map { it.toImages() },
+    images = images?.map { it.toImage() },
     title,
     shortTitle = shortTitle,
     description = description,

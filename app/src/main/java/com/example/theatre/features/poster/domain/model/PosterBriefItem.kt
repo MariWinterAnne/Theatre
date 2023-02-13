@@ -1,6 +1,6 @@
 package com.example.theatre.features.poster.domain.model
 
-import com.example.theatre.core.domain.model.common.Images
+import com.example.theatre.core.domain.model.common.Image
 
 /**
  * Класс представления кратких афиш
@@ -13,7 +13,7 @@ import com.example.theatre.core.domain.model.common.Images
  */
 data class PosterBriefItem(
     val id: Int,
-    val image: Images?,
+    val image: Image?,
     val title: String?,
     val description: String?
 )

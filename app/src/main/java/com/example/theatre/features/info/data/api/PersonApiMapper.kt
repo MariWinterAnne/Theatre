@@ -1,12 +1,12 @@
 package com.example.theatre.features.info.data.api
 
-import com.example.theatre.features.info.data.mappers.toAgent
-import com.example.theatre.features.info.domain.model.Agent
+import com.example.theatre.core.data.mappers.toAgent
+import com.example.theatre.core.domain.model.common.agent.Agent
 
 /**
  * Person api mapper - маппер для списка актеров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PersonApiMapper(private val personApi: PersonApi) {

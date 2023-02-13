@@ -15,7 +15,7 @@ import com.example.theatre.features.spectacles.presentation.ui.detail.SpectacleR
  *
  * @property items - названия вкладок
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class SectionPagerAdapter(fm: FragmentManager, private val items: Array<String> = arrayOf(INFO, DETAILS)) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

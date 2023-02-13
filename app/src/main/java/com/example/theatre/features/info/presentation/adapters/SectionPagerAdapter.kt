@@ -14,7 +14,7 @@ import com.example.theatre.features.info.presentation.ui.list.theatre.TheatresLi
  * Адаптер для списка фрагментов
  *
  * @property items - названия вкладок
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class SectionPagerAdapter(

@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.theatre.R
-import com.example.theatre.core.domain.model.common.Performance
-import com.example.theatre.core.domain.model.common.PerformancePlace
-import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.common.performance.Performance
+import com.example.theatre.core.domain.model.common.performance.PerformancePlace
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceLocation
 import com.example.theatre.core.presentation.PerformanceDateFormatter
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.ext.toListOfActorsInPerformance
@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 /**
  * Фрагмент с отображением деталей места постановки
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class SpectacleReviewFragment : Fragment() {

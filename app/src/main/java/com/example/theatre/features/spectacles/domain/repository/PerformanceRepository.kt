@@ -1,13 +1,13 @@
 package com.example.theatre.features.spectacles.domain.repository
 
-import com.example.theatre.core.domain.model.common.Performance
-import com.example.theatre.core.domain.model.common.PerformancePlace
-import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.common.performance.Performance
+import com.example.theatre.core.domain.model.common.performance.PerformancePlace
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceLocation
 
 /**
  * Репозиторий для списка постановок и их детализации
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 interface PerformanceRepository {

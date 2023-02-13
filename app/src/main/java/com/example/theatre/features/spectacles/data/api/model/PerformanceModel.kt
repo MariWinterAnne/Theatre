@@ -29,7 +29,7 @@ import com.google.gson.annotations.SerializedName
  * @property tags - тэги события
  * @property participants - агенты события [PerformanceParticipantsModel]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformanceModel(

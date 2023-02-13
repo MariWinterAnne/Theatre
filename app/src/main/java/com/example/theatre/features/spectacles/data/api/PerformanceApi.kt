@@ -32,7 +32,7 @@ import retrofit2.http.Path
 /**
  * Performance api - запрос списка постановок
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 interface PerformanceApi {

@@ -1,4 +1,6 @@
-package com.example.theatre.features.info.domain.model
+package com.example.theatre.features.info.domain.model.theatre
+
+import com.example.theatre.core.domain.model.common.Image
 
 /**
  * Theatre - модель для получения данных о театре
@@ -12,7 +14,7 @@ package com.example.theatre.features.info.domain.model
  * @property timetable - расписание
  * @property phone - телефон
  * @property isStub - является ли заглушкой
- * @property images - галерея места [Images]
+ * @property images - галерея места [Image]
  * @property description - описание
  * @property bodyText - полное описание
  * @property siteUrl - адрес места на сайте kudago.com
@@ -37,7 +39,7 @@ data class Theatre(
     val timetable: String?,
     val phone: String?,
     val isStub: Boolean?,
-    val images: List<Images>?,
+    val images: List<Image>?,
     val description: String?,
     val bodyText: String?,
     val siteUrl: String?,

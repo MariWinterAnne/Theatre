@@ -2,13 +2,13 @@ package com.example.theatre.features.info.data.api
 
 import com.example.theatre.features.info.data.mappers.toTheatre
 import com.example.theatre.features.info.data.mappers.toTheatreLocation
-import com.example.theatre.features.info.domain.model.Theatre
-import com.example.theatre.features.info.domain.model.TheatreLocation
+import com.example.theatre.features.info.domain.model.theatre.Theatre
+import com.example.theatre.features.info.domain.model.theatre.TheatreLocation
 
 /**
  * Theatre api mapper - маппер для списка театров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatreApiMapper(private val theatreApi: TheatreApi) {

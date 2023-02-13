@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.data.model
+package com.example.theatre.features.info.data.model.theatre
 
 import com.google.gson.annotations.SerializedName
 
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @property lat - широта
  * @property lon - долгота
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class TheatreCoordinatesModel(

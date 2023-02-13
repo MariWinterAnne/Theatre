@@ -12,8 +12,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.R
-import com.example.theatre.core.domain.model.common.Performance
-import com.example.theatre.core.domain.model.common.PerformancePlaceLocation
+import com.example.theatre.core.domain.model.common.performance.Performance
+import com.example.theatre.core.domain.model.common.performance.PerformancePlaceLocation
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
@@ -24,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 /**
  * Фрагмент с отображением деталей события
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class SpectacleDetailsFragment : Fragment() {

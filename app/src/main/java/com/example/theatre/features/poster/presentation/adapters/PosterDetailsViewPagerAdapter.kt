@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-// TODO: решить, какой ViewPager использовать
 /**
  * ViewPager фрагмент контента.
  * Использует фрагменты и создает их

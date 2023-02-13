@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
  * @property performancePlaceCoordinates - координаты места [PerformancePlaceCoordinatesModel]
  * @property language - язык
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformancePlaceLocationModel(

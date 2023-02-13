@@ -175,12 +175,12 @@
     <fragment
         android:id="@+id/posterDetailFragment"
         android:name="com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment"
-        android:label="fragment_poster_detail"
-        tools:layout="@layout/fragment_poster_detail" >
+        android:label="@string/home"
+        tools:layout="@layout/fragment_poster_detail">
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
         <action
             android:id="@+id/action_posterDetailFragment_to_posterDescriptionFragment"
             app:destination="@id/posterDescriptionFragment" />

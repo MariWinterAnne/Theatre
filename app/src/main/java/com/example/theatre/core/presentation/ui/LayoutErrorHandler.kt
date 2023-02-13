@@ -8,13 +8,13 @@ import com.example.theatre.databinding.LayoutErrorBinding
 
 typealias TryAgainAction = () -> Unit
 
-class LayoutErrorHandler(
-    private val binding: LayoutErrorBinding,
-    private val action: TryAgainAction,
-    private val errorModel: ErrorModel,
-    recyclerView: RecyclerView
-) {
-    init {
+class LayoutErrorHandler {
+    fun handleLayout(
+        binding: LayoutErrorBinding,
+        action: TryAgainAction,
+        errorModel: ErrorModel,
+        recyclerView: RecyclerView
+    ) {
         recyclerView.adapter?.handleErrorMessage(
             onAdapterEmpty = {
                 recyclerView.visibility = View.GONE

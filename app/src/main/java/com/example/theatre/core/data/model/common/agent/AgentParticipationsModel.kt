@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @property role - роль [AgentRoleModel]
  * @property agentParticipationsItem - расшифровка роли [AgentParticipationsItemModel]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class AgentParticipationsModel(

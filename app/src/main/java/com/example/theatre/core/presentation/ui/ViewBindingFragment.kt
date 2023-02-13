@@ -1,4 +1,4 @@
-package com.nightstalker.artic.core.presentation.ui
+package com.example.theatre.core.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,6 @@ import androidx.viewbinding.ViewBinding
 
 /**
  * Базовый класс [ViewBindingFragment] для Фрагментов отвечаюший за binding и его инициализацию
- *
- * @author Astemir Zashaev on 2022-11-8
  */
 abstract class ViewBindingFragment<T : ViewBinding> : Fragment() {
 

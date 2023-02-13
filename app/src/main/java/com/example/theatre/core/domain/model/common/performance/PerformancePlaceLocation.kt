@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.model.common
+package com.example.theatre.core.domain.model.common.performance
 
 /**
  * Performance place location - модель для получения доп. деталей о месте постановки
@@ -9,7 +9,7 @@ package com.example.theatre.core.domain.model.common
  * @property performancePlaceCoordinates - координаты места [PerformancePlaceCoordinates]
  * @property language - язык
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformancePlaceLocation(

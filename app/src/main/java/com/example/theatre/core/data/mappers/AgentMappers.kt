@@ -4,24 +4,21 @@ import com.example.theatre.core.data.model.common.agent.AgentModel
 import com.example.theatre.core.data.model.common.agent.AgentParticipationsItemModel
 import com.example.theatre.core.data.model.common.agent.AgentParticipationsModel
 import com.example.theatre.core.data.model.common.agent.AgentRoleModel
-import com.example.theatre.core.domain.model.common.Agent
-import com.example.theatre.core.domain.model.common.AgentParticipations
-import com.example.theatre.core.domain.model.common.AgentParticipationsItem
-import com.example.theatre.core.domain.model.common.AgentRole
+import com.example.theatre.core.domain.model.common.agent.Agent
+import com.example.theatre.core.domain.model.common.agent.AgentParticipationTitle
+import com.example.theatre.core.domain.model.common.agent.AgentParticipations
+import com.example.theatre.core.domain.model.common.agent.AgentRoleTitle
 import com.example.theatre.features.spectacles.data.mappers.toPerformancePlace
 
 /**
  * Проводит дополнительные преобразования
  * Например, конвертирует список из data model в список domain model
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
-
-fun AgentRoleModel.toAgentRole() = AgentRole(
-    id = id,
+fun AgentRoleModel.toAgentRole() = AgentRoleTitle(
     slug = slug,
-    name = name
 )
 
 fun AgentModel.toAgent() = Agent(
@@ -38,22 +35,16 @@ fun AgentModel.toAgent() = Agent(
 
 fun AgentParticipationsModel.toAgentParticipations() = AgentParticipations(
     role = toAgentRole(),
-    agentParticipationsItem = toAgentParticipationsItem()
+    item = toAgentParticipationsItem()
 )
 
-fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipationsItem(
-    id = id,
+fun AgentParticipationsItemModel.toAgentParticipationsItem() = AgentParticipationTitle(
     title = title,
-    description = description,
-    itemUrl = itemUrl,
     ctype = ctype,
-    performancePlace = toPerformancePlace(),
-    firstImage = toImages(),
-    ageRestriction = ageRestriction
 )
 
 fun AgentModel.toListAgentImages() =
-    images?.map { it.toImages() }
+    images?.map { it.toImage() }
 
 fun AgentModel.toListAgentParticipations() =
     participations?.map { it.toAgentParticipations() }
@@ -63,9 +54,3 @@ fun AgentParticipationsModel.toAgentParticipationsItem() =
 
 fun AgentParticipationsModel.toAgentRole() =
     role?.toAgentRole()
-
-fun AgentParticipationsItemModel.toImages() =
-    firstImage?.toImages()
-
-fun AgentParticipationsItemModel.toPerformancePlace() =
-    performancePlace?.toPerformancePlace()

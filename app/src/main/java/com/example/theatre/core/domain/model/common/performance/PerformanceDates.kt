@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.model.common
+package com.example.theatre.core.domain.model.common.performance
 
 /**
  * Performance dates - модель для получения списка дат, на которые назначен показ постановки
@@ -13,7 +13,7 @@ package com.example.theatre.core.domain.model.common
  * @property isEndless - мероприятие не имеет времени конца
  * @property isStartles - мероприятие не имеет времени начала
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformanceDates(

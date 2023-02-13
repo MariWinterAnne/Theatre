@@ -18,12 +18,9 @@ import com.google.gson.annotations.SerializedName
  * @property firstImage - главное изображение [ImageModel]
  * @property ageRestriction - ограничение по возрасту
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
-
 data class AgentParticipationsItemModel(
-    @SerializedName("id")
-    val id: Int? = null,
     @SerializedName("title")
     val title: String = String.EMPTY,
     @SerializedName("description")

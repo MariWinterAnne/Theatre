@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.model.common
+package com.example.theatre.core.domain.model.common.performance
 
 /**
  * Performance place - модель для детализации места постановки
@@ -17,7 +17,7 @@ package com.example.theatre.core.domain.model.common
  * @property isClosed - закрыто ли место
  * @property performancePlaceCoordinates - координаты места [PerformancePlaceCoordinates]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformancePlace(

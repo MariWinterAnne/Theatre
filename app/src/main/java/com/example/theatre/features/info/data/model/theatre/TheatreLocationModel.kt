@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.data.model
+package com.example.theatre.features.info.data.model.theatre
 
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.google.gson.annotations.SerializedName
@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
  * @property timezone - часовой пояс
  * @property language - язык
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class TheatreLocationModel(

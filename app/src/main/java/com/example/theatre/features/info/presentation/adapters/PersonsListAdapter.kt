@@ -9,7 +9,7 @@ import com.example.theatre.R
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.databinding.ItemPersonBinding
-import com.example.theatre.features.info.domain.model.Agent
+import com.example.theatre.core.domain.model.common.agent.Agent
 
 /**
  * Адаптер для списка актеров
@@ -17,7 +17,7 @@ import com.example.theatre.features.info.domain.model.Agent
  * @property persons - список актеров
  * @property onItemClicked - обработка нажатия на элемент списка
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PersonsListAdapter(

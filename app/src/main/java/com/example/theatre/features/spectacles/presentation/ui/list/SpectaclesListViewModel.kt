@@ -9,7 +9,7 @@ import com.example.theatre.features.spectacles.domain.usecases.GetPerformanceUse
 /**
  * View model для хранения списка событий
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class SpectaclesListViewModel(

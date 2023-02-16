@@ -9,7 +9,7 @@ import com.example.theatre.features.info.domain.usecases.GetPersonUseCase
 /**
  * View model для хранения детальных данных об актере
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PersonDetailViewModel(

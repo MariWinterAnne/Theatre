@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.domain.model
+package com.example.theatre.features.info.domain.model.theatre
 
 /**
  * Theatre location - модель для получения местонахождения театра
@@ -8,7 +8,7 @@ package com.example.theatre.features.info.domain.model
  * @property timezone - часовой пояс
  * @property language - язык
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class TheatreLocation(

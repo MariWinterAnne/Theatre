@@ -12,7 +12,7 @@ import com.example.theatre.features.info.presentation.adapters.SectionPagerAdapt
 /**
  * Фрагмент с вкладками, отображающими список театров и список актеров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class InfoFragment : Fragment() {

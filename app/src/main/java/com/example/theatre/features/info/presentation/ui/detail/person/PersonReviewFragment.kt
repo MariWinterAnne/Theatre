@@ -9,14 +9,14 @@ import com.example.theatre.R
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentReviewBinding
-import com.example.theatre.features.info.domain.model.Agent
-import com.example.theatre.features.info.presentation.ui.utils.toListOfPerformances
+import com.example.theatre.core.domain.model.common.agent.Agent
+import com.example.theatre.core.presentation.ext.toListOfPerformances
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с отображением подробностей об актере
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PersonReviewFragment : Fragment() {

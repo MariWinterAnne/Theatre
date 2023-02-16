@@ -17,12 +17,12 @@ import com.google.gson.annotations.SerializedName
  * @property siteUrl - адрес события на сайте kudago.com
  * @property participations - список участий агента [AgentParticipationsModel]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class AgentModel(
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int = 0,
     @SerializedName("title")
     val title: String = String.EMPTY,
     @SerializedName("slug")

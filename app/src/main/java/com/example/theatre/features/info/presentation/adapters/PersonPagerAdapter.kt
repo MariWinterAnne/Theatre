@@ -14,7 +14,7 @@ import com.example.theatre.features.info.presentation.ui.detail.person.PersonRev
  * Адаптер для списка фрагментов
  *
  * @property items - названия вкладок
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PersonPagerAdapter(

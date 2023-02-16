@@ -9,7 +9,7 @@ import com.example.theatre.core.presentation.model.ContentResultState
 /**
  * View model для хранения списка театров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatresListViewModel(

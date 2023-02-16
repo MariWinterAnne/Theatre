@@ -1,6 +1,7 @@
 package com.example.theatre.features.info.data.api
 
 import com.example.theatre.core.data.model.common.ItemsListResultModel
+import com.example.theatre.core.data.model.common.agent.AgentModel
 import com.example.theatre.features.Constants.AGENT_ID
 import com.example.theatre.features.Constants.AGENT_TYPE
 import com.example.theatre.features.Constants.BODY_TEXT
@@ -12,14 +13,13 @@ import com.example.theatre.features.Constants.PARTICIPATIONS
 import com.example.theatre.features.Constants.SITE_URL
 import com.example.theatre.features.Constants.SLUG
 import com.example.theatre.features.Constants.TITLE
-import com.example.theatre.features.info.data.model.AgentModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 /**
  * Person api - запрос списка актеров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 interface PersonApi {

@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * @property lon - долгота
  * @constructor Create empty Performance place coordinates
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformancePlaceCoordinatesModel(

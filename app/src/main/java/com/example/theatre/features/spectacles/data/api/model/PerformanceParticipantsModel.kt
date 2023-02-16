@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  * @property role - роль [AgentRoleModel]
  * @property agentModel - участник постановки [AgentModel]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformanceParticipantsModel(

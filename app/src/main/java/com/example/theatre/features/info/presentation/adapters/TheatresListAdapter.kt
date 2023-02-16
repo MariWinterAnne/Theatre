@@ -9,7 +9,7 @@ import com.example.theatre.R
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.databinding.ItemTheatreBinding
-import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.features.info.domain.model.theatre.Theatre
 
 /**
  * Адаптер для списка театров
@@ -17,7 +17,7 @@ import com.example.theatre.features.info.domain.model.Theatre
  * @property theatres - список театров
  * @property onItemClicked - обработка нажатия на элемент списка
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatresListAdapter(

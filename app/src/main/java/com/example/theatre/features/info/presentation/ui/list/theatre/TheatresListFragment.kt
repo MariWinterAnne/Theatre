@@ -11,16 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.theatre.R
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
+import com.example.theatre.core.presentation.model.refreshPage
 import com.example.theatre.core.presentation.ui.LayoutErrorHandler
 import com.example.theatre.databinding.FragmentTheatresBinding
-import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.features.info.domain.model.theatre.Theatre
 import com.example.theatre.features.info.presentation.adapters.TheatresListAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Фрагмент со списком театров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatresListFragment : Fragment() {
@@ -37,6 +39,7 @@ class TheatresListFragment : Fragment() {
     private lateinit var theatresAdapter: TheatresListAdapter
     private lateinit var recyclerView: RecyclerView
     private val theatresListViewModel by viewModel<TheatresListViewModel>()
+    private val layoutErrorHandler by inject<LayoutErrorHandler>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,7 +68,8 @@ class TheatresListFragment : Fragment() {
         theatresListViewModel.theatresContent.observe(viewLifecycleOwner, ::handleTheatres)
     }
 
-    private fun handleTheatres(contentResultState: ContentResultState) =
+    private fun handleTheatres(contentResultState: ContentResultState) {
+        contentResultState.refreshPage(binding?.listTheatre!!, binding?.progressBar5!!)
         contentResultState.handleContents(
             onStateSuccess = {
                 theatresAdapter.setTheatres(it as List<Theatre>)
@@ -73,7 +77,7 @@ class TheatresListFragment : Fragment() {
             },
             onStateError = {
                 with(binding) {
-                    LayoutErrorHandler(
+                    layoutErrorHandler.handleLayout(
                         this?.errorLayout!!,
                         { tryAgain() },
                         it,
@@ -82,6 +86,7 @@ class TheatresListFragment : Fragment() {
                 }
             }
         )
+    }
 
     private fun tryAgain() {
         binding?.errorLayout?.root?.visibility = View.INVISIBLE

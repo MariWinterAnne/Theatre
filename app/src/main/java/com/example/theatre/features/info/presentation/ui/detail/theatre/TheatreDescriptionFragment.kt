@@ -12,13 +12,13 @@ import com.example.theatre.core.presentation.ext.deleteHTML
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentEventDescriptionBinding
-import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.features.info.domain.model.theatre.Theatre
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с подробностями о театре
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatreDescriptionFragment : Fragment() {

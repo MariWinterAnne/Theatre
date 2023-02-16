@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName
  * @property isClosed - закрыто ли место
  * @property performancePlaceCoordinates - координаты места [PerformancePlaceCoordinatesModel]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformancePlaceModel(

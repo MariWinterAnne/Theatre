@@ -1,5 +1,6 @@
-package com.example.theatre.features.info.data.model
+package com.example.theatre.features.info.data.model.theatre
 
+import com.example.theatre.core.data.model.common.ImageModel
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.google.gson.annotations.SerializedName
 
@@ -28,7 +29,7 @@ import com.google.gson.annotations.SerializedName
  * @property categories - список категорий
  * @property tags - тэги места
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class TheatreModel(
@@ -51,7 +52,7 @@ data class TheatreModel(
     @SerializedName("is_stub")
     val isStub: Boolean = false,
     @SerializedName("images")
-    val images: List<ImagesModel>?,
+    val images: List<ImageModel>?,
     @SerializedName("description")
     val description: String = String.EMPTY,
     @SerializedName("body_text")

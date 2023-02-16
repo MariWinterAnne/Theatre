@@ -1,6 +1,6 @@
 package com.example.theatre.core.presentation
 
-import com.example.theatre.core.domain.model.common.PerformanceDates
+import com.example.theatre.core.domain.model.common.performance.PerformanceDates
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.ext.orLongDefault
 import java.text.SimpleDateFormat
@@ -9,7 +9,7 @@ import java.util.Date
 /**
  * Функции для работы с датой
  *
- * @author Marianne Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 class PerformanceDateFormatter {
     private fun performanceDateFormat(

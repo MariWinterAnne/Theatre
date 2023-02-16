@@ -12,14 +12,16 @@ import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.core.presentation.ui.LayoutErrorHandler
 import com.example.theatre.databinding.FragmentPersonsBinding
-import com.example.theatre.features.info.domain.model.Agent
+import com.example.theatre.core.domain.model.common.agent.Agent
+import com.example.theatre.core.presentation.model.refreshPage
 import com.example.theatre.features.info.presentation.adapters.PersonsListAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Фрагмент со списком актеров
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class PersonsListFragment : Fragment() {
@@ -35,6 +37,7 @@ class PersonsListFragment : Fragment() {
     private lateinit var binding: FragmentPersonsBinding
     private lateinit var personsAdapter: PersonsListAdapter
     private val personsViewModel by viewModel<PersonsListViewModel>()
+    private val layoutErrorHandler by inject<LayoutErrorHandler>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +65,8 @@ class PersonsListFragment : Fragment() {
         personsViewModel.personLoaded.observe(viewLifecycleOwner, ::handlePersons)
 
 
-    private fun handlePersons(contentResultState: ContentResultState) =
+    private fun handlePersons(contentResultState: ContentResultState) {
+        contentResultState.refreshPage(binding?.listPersons!!, binding?.progressBar4!!)
         contentResultState.handleContents(
             onStateSuccess = {
                 personsAdapter.setPersons(it as List<Agent>)
@@ -70,7 +74,7 @@ class PersonsListFragment : Fragment() {
             },
             onStateError = {
                 with(binding) {
-                    LayoutErrorHandler(
+                    layoutErrorHandler.handleLayout(
                         this?.errorLayout!!,
                         { tryAgain() },
                         it,
@@ -79,7 +83,7 @@ class PersonsListFragment : Fragment() {
                 }
             }
         )
-
+    }
     private fun tryAgain() {
         binding?.errorLayout?.root?.visibility = View.INVISIBLE
         personsViewModel.init()

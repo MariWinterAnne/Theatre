@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
+import com.example.theatre.core.presentation.model.refreshPage
+import com.example.theatre.core.presentation.ui.ViewBindingFragment
 import com.example.theatre.databinding.FragmentPosterDetailBinding
 import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.adapters.PosterDetailsViewPagerAdapter
@@ -20,21 +23,14 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  *
  * @author Tamerlan Mamukhov on 2022-05-28
  */
-class PosterDetailFragment : Fragment() {
+class PosterDetailFragment : ViewBindingFragment<FragmentPosterDetailBinding>() {
     private lateinit var adapter: PosterDetailsViewPagerAdapter
-    private lateinit var binding: FragmentPosterDetailBinding
     private lateinit var fragmentsList: ArrayList<Fragment>
-
 
     private val viewModel by sharedViewModel<PosterDetailsViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPosterDetailBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
+    override val initBinding: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentPosterDetailBinding
+        get() = FragmentPosterDetailBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +46,7 @@ class PosterDetailFragment : Fragment() {
             lifecycle
         )
 
-        with(binding) {
+        with(nonNullBinding) {
             content.viewPager.adapter = adapter
             TabLayoutMediator(content.tabs, content.viewPager) { tabs, position ->
                 tabs.text = getTitle(position)
@@ -63,45 +59,40 @@ class PosterDetailFragment : Fragment() {
     }
 
 
-    private fun handlePoster(contentResultState: ContentResultState) =
-        when (contentResultState) {
-            is ContentResultState.Content -> {
-                contentResultState.handleContent()
+    private fun handlePoster(contentResultState: ContentResultState) {
+        contentResultState.refreshPage(nonNullBinding.detailsContent, nonNullBinding.progressBar2)
+        contentResultState.handleContents(
+            onStateSuccess = {
+                setDetails(it as PosterDetails)
+            },
+            onStateError = {
+
             }
-            is ContentResultState.Error -> {
-                contentResultState.handleError()
-            }
-            else -> {}
-        }
-
-
-    private fun ContentResultState.Content.handleContent() {
-//        setDetails(contentSingle as PosterDetails)
-    }
-
-    private fun ContentResultState.Error.handleError() {
-
+        )
     }
 
     private fun setDetails(posterDetails: PosterDetails) {
-        with(binding.content) {
-            textName.text =
-                posterDetails?.shortTitle.orEmpty().replaceFirstChar { it.uppercaseChar() }
 
-            val imageURL =
-                if (posterDetails?.images?.isNotEmpty() == true) posterDetails?.images.first().imageURL.orEmpty() else String.EMPTY
+        with(nonNullBinding.content) {
+            with(posterDetails) {
+                textName.text =
+                    posterDetails.shortTitle.orEmpty().replaceFirstChar { it.uppercaseChar() }
 
-            if (imageURL.isNotEmpty()) {
-                context?.let {
-                    Glide
-                        .with(it)
-                        .load(imageURL)
-                        .into(imageThumbnail)
+                val imageURL = images?.first()?.imageURL.orEmpty()
 
-                    Glide
-                        .with(it)
-                        .load(imageURL)
-                        .into(binding.imageLarge)
+                if (imageURL.isNotEmpty()) {
+                    context?.let {
+                        Glide
+                            .with(it)
+                            .load(imageURL)
+                            .into(imageThumbnail)
+
+                        Glide
+                            .with(it)
+                            .load(imageURL)
+                            .into(nonNullBinding.imageLarge)
+                    }
+
                 }
             }
         }
@@ -116,5 +107,6 @@ class PosterDetailFragment : Fragment() {
     companion object {
         const val poster_id = "poster_id"
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.presentation.ui.detail
+package com.example.theatre.core.presentation.ext
 
 import androidx.annotation.StringRes
 import com.example.theatre.R
@@ -8,7 +8,7 @@ import com.example.theatre.R
  *
  * @property title - название роли
  * @property resId - строковый ресурс
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 sealed class RoleType(val title: String, @StringRes val resId: Int) {
@@ -35,7 +35,7 @@ fun String.toRole(): Int =
  *
  * @property title - тип элемента
  * @property resId - строковый ресурс
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 sealed class AgentType(val title: String, @StringRes val resId: Int) {

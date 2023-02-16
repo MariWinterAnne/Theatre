@@ -1,4 +1,6 @@
-package com.example.theatre.core.domain.model.common
+package com.example.theatre.core.domain.model.common.performance
+
+import com.example.theatre.core.domain.model.common.Image
 
 /**
  * Performance - модель для получения детализации постановки
@@ -18,14 +20,14 @@ package com.example.theatre.core.domain.model.common
  * @property ageRestriction - возрастное ограничение
  * @property price - стоимость
  * @property isFree - бесплатное ли событие
- * @property images - картинки [Images]
+ * @property images - картинки [Image]
  * @property favoritesCount - сколько пользователей добавило событие в избранное
  * @property commentsCount - число комментариев к событию
  * @property siteUrl - адрес события на сайте kudago.com
  * @property tags - тэги события
  * @property participants - агенты события [PerformanceParticipants]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class Performance(
@@ -44,7 +46,7 @@ data class Performance(
     val ageRestriction: String?,
     val price: String?,
     val isFree: Boolean?,
-    val images: List<Images>?,
+    val images: List<Image>?,
     val favoritesCount: Int?,
     val commentsCount: Int?,
     val siteUrl: String?,

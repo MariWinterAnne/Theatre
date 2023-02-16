@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * Модель для получения изображения
  *
  * @property imageURL - ссылка на изображение
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class ImageModel(

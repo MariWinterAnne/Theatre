@@ -8,7 +8,11 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.theatre.core.presentation.ext.EMPTY
 import com.example.theatre.core.presentation.ext.deleteHTML
+import com.example.theatre.core.presentation.model.ContentResultState
+import com.example.theatre.core.presentation.model.handleContents
+import com.example.theatre.core.presentation.ui.ViewBindingFragment
 import com.example.theatre.databinding.FragmentPosterDescriptionBinding
+import com.example.theatre.databinding.FragmentPosterDetailBinding
 import com.example.theatre.features.poster.domain.model.PosterDetails
 import com.example.theatre.features.poster.presentation.ui.detail.PosterDetailFragment.Companion.poster_id
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -17,27 +21,26 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * Фрагмент описания афиши
  * @author Tamerlan Mamukhov on 2022-05-28
  */
-class PosterDescriptionFragment : Fragment() {
-    private lateinit var binding: FragmentPosterDescriptionBinding
+class PosterDescriptionFragment : ViewBindingFragment<FragmentPosterDescriptionBinding>() {
     private val viewModel by sharedViewModel<PosterDetailsViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentPosterDescriptionBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override val initBinding: (inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> FragmentPosterDescriptionBinding
+        get() = FragmentPosterDescriptionBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.run { viewModel.getPoster(getInt(poster_id)) }
-
-//        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::setDetails)
+        viewModel.posterDetailedLoaded.observe(viewLifecycleOwner, ::handlePosterDetails)
     }
 
+    private fun handlePosterDetails(contentResultState: ContentResultState) =
+        contentResultState.handleContents(
+            onStateSuccess = { setDetails(it as PosterDetails) },
+            onStateError = {}
+        )
+
     private fun setDetails(posterDetails: PosterDetails) =
-        with(binding) {
+        with(nonNullBinding) {
             with(posterDetails) {
 
                 val imageURL =
@@ -59,4 +62,5 @@ class PosterDescriptionFragment : Fragment() {
 
             }
         }
+
 }

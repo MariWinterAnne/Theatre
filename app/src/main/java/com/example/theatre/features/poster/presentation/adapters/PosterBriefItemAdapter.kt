@@ -20,9 +20,7 @@ class PosterBriefItemAdapter(
     private val onItemClicked: (id: Int) -> Unit
 ) : RecyclerView.Adapter<PosterBriefItemAdapter.ViewHolder>() {
 
-    private var data: List<PosterBriefItem> = mutableListOf()
-
-    val datas get() = data
+    private var posters: MutableList<PosterBriefItem> = mutableListOf()
 
     class ViewHolder(val binding: ItemPosterBriefInfoBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -36,17 +34,17 @@ class PosterBriefItemAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val context: Context = holder.binding.placeImage.context
 
         with(holder.binding) {
-            with(data[position]) {
+            with(posters[position]) {
+
                 textTitle.text = title?.replaceFirstChar { it.uppercaseChar() }
 
                 val imageUrl = image?.imageURL.orEmpty()
 
                 if (imageUrl.isNotEmpty()) {
                     Glide
-                        .with(context)
+                        .with(placeImage.context)
                         .load(imageUrl)
                         .into(placeImage)
                 }
@@ -60,11 +58,10 @@ class PosterBriefItemAdapter(
         }
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = posters.size
 
     fun setData(data: List<PosterBriefItem>) {
-        if (data.isNotEmpty()) {
-            this.data = data
-        }
+        posters.clear()
+        posters.addAll(data)
     }
 }

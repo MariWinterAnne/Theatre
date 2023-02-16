@@ -3,14 +3,14 @@ package com.example.theatre.features.info.domain.usecases
 
 import com.example.theatre.core.domain.model.ResultState
 import com.example.theatre.core.domain.model.safeCall
-import com.example.theatre.features.info.domain.model.Agent
+import com.example.theatre.core.domain.model.common.agent.Agent
 import com.example.theatre.features.info.domain.repository.TheatreRepository
 
 /**
  * Get person use case
  *
  * @property theatreRepository - репозиторий
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class GetPersonUseCase(private val theatreRepository: TheatreRepository) {

@@ -1,11 +1,11 @@
-package com.example.theatre.features.info.domain.model
+package com.example.theatre.core.domain.model.common.agent
 
 /**
  * Agent role title - модель для расшифровки роли
  *
  * @property slug - слаг роли
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class AgentRoleTitle(

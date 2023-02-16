@@ -1,4 +1,6 @@
-package com.example.theatre.features.info.domain.model
+package com.example.theatre.core.domain.model.common.agent
+
+import com.example.theatre.core.domain.model.common.Image
 
 /**
  * Agent - модель для получения деталей об актере
@@ -11,9 +13,9 @@ package com.example.theatre.features.info.domain.model
  * @property agentType - тип агента
  * @property images - картинки объекта [Images]
  * @property siteUrl - адрес события на сайте kudago.com
- * @property participations - список участий агента [AgentPerformanceParticipations]
+ * @property participations - список участий агента [AgentParticipations]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class Agent(
@@ -23,7 +25,7 @@ data class Agent(
     val description: String?,
     val bodyText: String?,
     val agentType: String?,
-    val images: List<Images>?,
+    val images: List<Image>?,
     val siteUrl: String?,
-    val participations: List<AgentPerformanceParticipations>?
+    val participations: List<AgentParticipations>?
 )

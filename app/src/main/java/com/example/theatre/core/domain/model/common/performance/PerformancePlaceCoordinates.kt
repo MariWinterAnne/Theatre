@@ -1,4 +1,4 @@
-package com.example.theatre.core.domain.model.common
+package com.example.theatre.core.domain.model.common.performance
 
 /**
  * Performance place coordinates - модель для получения координат театра
@@ -7,7 +7,7 @@ package com.example.theatre.core.domain.model.common
  * @property lon - долгота
  * @constructor Create empty Performance place coordinates
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformancePlaceCoordinates(

@@ -9,13 +9,13 @@ import com.example.theatre.R
 import com.example.theatre.core.presentation.model.ContentResultState
 import com.example.theatre.core.presentation.model.handleContents
 import com.example.theatre.databinding.FragmentReviewBinding
-import com.example.theatre.features.info.domain.model.Theatre
+import com.example.theatre.features.info.domain.model.theatre.Theatre
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * Фрагмент с отображением подробностей о театре
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 class TheatreReviewFragment : Fragment() {

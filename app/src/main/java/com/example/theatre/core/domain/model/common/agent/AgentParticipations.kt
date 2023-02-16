@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.domain.model
+package com.example.theatre.core.domain.model.common.agent
 
 /**
  * Agent performance participations - модель для получения данных о постановках,
@@ -7,10 +7,10 @@ package com.example.theatre.features.info.domain.model
  * @property role - роль в постановке [AgentRoleTitle]
  * @property item - данные о постановке [AgentParticipationTitle]
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
-data class AgentPerformanceParticipations(
+data class AgentParticipations(
     val role: AgentRoleTitle?,
     val item: AgentParticipationTitle?
 )

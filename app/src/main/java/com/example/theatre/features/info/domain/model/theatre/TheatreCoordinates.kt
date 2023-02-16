@@ -1,4 +1,4 @@
-package com.example.theatre.features.info.domain.model
+package com.example.theatre.features.info.domain.model.theatre
 
 /**
  * Theatre coordinates - модель для получения координат театра
@@ -6,7 +6,7 @@ package com.example.theatre.features.info.domain.model
  * @property lat - широта
  * @property lon - долгота
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class TheatreCoordinates(

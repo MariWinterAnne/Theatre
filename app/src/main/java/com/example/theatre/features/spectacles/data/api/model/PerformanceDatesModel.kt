@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName
  * @property isEndless - мероприятие не имеет времени конца
  * @property isStartles - мероприятие не имеет времени начала
  *
- * @author Marianna Sabanchieva
+ * @author Tamerlan Mamukhov
  */
 
 data class PerformanceDatesModel(
